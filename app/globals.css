@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Dark warm background */
+        --background: 36 20% 5%;
+        --background-light: 36 15% 10%;
+        --foreground: 40 20% 92%;
+
+        --card: 36 15% 10%;
+        --card-foreground: 40 20% 92%;
+        --popover: 36 15% 10%;
+        --popover-foreground: 40 20% 92%;
+
+        /* Amber / Gold accent */
+        --primary: 43 96% 58%;
+        --primary-foreground: 36 20% 5%;
+        --secondary: 25 95% 53%;
+        --secondary-foreground: 36 20% 5%;
+
+        --muted: 36 10% 15%;
+        --muted-foreground: 40 10% 55%;
+        --accent: 36 10% 15%;
+        --accent-foreground: 40 20% 92%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 36 15% 20%;
+        --input: 36 10% 15%;
+        --ring: 43 96% 58%;
+        --chart-1: 43 80% 60%;
+        --chart-2: 25 80% 55%;
+        --chart-3: 15 70% 50%;
+        --chart-4: 55 70% 50%;
+        --chart-5: 5 80% 60%;
+    }
+}
+
+@layer base {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    * {
+        @apply border-border !cursor-none;
+    }
+    body {
+        @apply bg-background text-foreground font-roboto-flex;
+    }
+}
+
+@layer components {
+    .grid {
+        @apply gap-[25px];
+    }
+
+    .markdown-text ul {
+        @apply pl-5 mt-2 list-disc;
+    }
+}
