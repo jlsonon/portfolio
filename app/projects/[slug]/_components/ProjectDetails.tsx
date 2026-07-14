@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import ArrowAnimation from '@/components/ArrowAnimation';
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
+import { PROJECTS } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -17,6 +18,10 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ProjectDetails = ({ project }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const currentIndex = PROJECTS.findIndex((p) => p.slug === project.slug);
+    const prevProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null;
+    const nextProject = currentIndex < PROJECTS.length - 1 ? PROJECTS[currentIndex + 1] : null;
 
     useGSAP(
         () => {
@@ -207,6 +212,43 @@ const ProjectDetails = ({ project }: Props) => {
                         <div className="border border-dashed border-border/40 rounded-2xl p-16 text-center text-muted-foreground text-sm">
                             Screenshots coming soon
                         </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Previous / Next navigation */}
+            <div className="border-t border-border/30 mt-20">
+                <div className="container py-10 flex items-center justify-between gap-6">
+                    {prevProject ? (
+                        <TransitionLink
+                            href={`/projects/${prevProject.slug}`}
+                            className="group flex flex-col gap-1 text-left"
+                        >
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">
+                                ← Previous
+                            </span>
+                            <span className="font-anton text-xl group-hover:text-primary transition-colors">
+                                {prevProject.title}
+                            </span>
+                        </TransitionLink>
+                    ) : (
+                        <div />
+                    )}
+
+                    {nextProject ? (
+                        <TransitionLink
+                            href={`/projects/${nextProject.slug}`}
+                            className="group flex flex-col gap-1 text-right"
+                        >
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">
+                                Next →
+                            </span>
+                            <span className="font-anton text-xl group-hover:text-primary transition-colors">
+                                {nextProject.title}
+                            </span>
+                        </TransitionLink>
+                    ) : (
+                        <div />
                     )}
                 </div>
             </div>

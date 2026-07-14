@@ -11,6 +11,7 @@ const COLORS = [
     'bg-sky-500 text-white',
     'bg-fuchsia-500 text-white',
     'bg-cyan-500 text-white',
+    'bg-amber-500 text-white',
 ];
 
 const MENU_LINKS = [
@@ -18,6 +19,7 @@ const MENU_LINKS = [
     { name: 'About', url: '/#about-me' },
     { name: 'Stack', url: '/#my-stack' },
     { name: 'Experience', url: '/#my-experience' },
+    { name: 'Process', url: '/#my-process' },
     { name: 'Projects', url: '/#selected-projects' },
 ];
 

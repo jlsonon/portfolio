@@ -62,9 +62,9 @@ const Experiences = () => {
                                 <h3 className="text-2xl sm:text-3xl font-anton leading-tight text-foreground group-hover:text-primary transition-colors duration-300">
                                     {item.title}
                                 </h3>
-                                {(item as any).description && (
+                                {item.description && (
                                     <p className="mt-3 text-muted-foreground text-sm leading-relaxed max-w-2xl">
-                                        {(item as any).description}
+                                        {item.description}
                                     </p>
                                 )}
                             </div>

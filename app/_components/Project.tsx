@@ -110,7 +110,7 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
             {selectedProject === null && project.thumbnail && (
                 <Image
                     src={project.thumbnail}
-                    alt="Project"
+                    alt={`${project.title} project screenshot`}
                     width="300"
                     height="200"
                     className={cn(

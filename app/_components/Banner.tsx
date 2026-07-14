@@ -1,7 +1,7 @@
 'use client';
 import ArrowAnimation from '@/components/ArrowAnimation';
 import Button from '@/components/Button';
-import { GENERAL_INFO } from '@/lib/data';
+import { GENERAL_INFO, PROJECTS, MY_STACK } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -95,7 +95,7 @@ const Banner = () => {
                 {/* Stats */}
                 <div className="hero-item absolute bottom-10 left-0 right-0 container flex justify-center gap-12 sm:gap-20">
                     <div className="text-center">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">3</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">{PROJECTS.length}</p>
                         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">Active Products</p>
                     </div>
                     <div className="w-px bg-border/40" />
@@ -105,7 +105,9 @@ const Banner = () => {
                     </div>
                     <div className="w-px bg-border/40" />
                     <div className="text-center">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">10+</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                            {Object.values(MY_STACK).flat().length}+
+                        </p>
                         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">Technologies</p>
                     </div>
                 </div>

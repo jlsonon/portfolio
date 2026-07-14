@@ -27,8 +27,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: 'Jericho Sonon - Product-Ready Web Applications',
-    description: 'Jericho Sonon builds production-ready web applications for education, operations, and local business workflows from Quezon City, Philippines.',
+    metadataBase: new URL('https://jlsonon-portfolio.vercel.app'),
+    title: {
+        default: 'Jericho Sonon — Full-Stack Developer & Product Designer',
+        template: '%s | Jericho Sonon',
+    },
+    description:
+        'Jericho Sonon builds production-ready web applications for education, operations, and local business workflows from Quezon City, Philippines.',
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://jlsonon-portfolio.vercel.app',
+        siteName: 'Jericho Sonon Portfolio',
+        title: 'Jericho Sonon — Full-Stack Developer & Product Designer',
+        description:
+            'Filipino builder crafting useful web systems for learners, businesses, and local communities.',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Jericho Sonon — Full-Stack Developer & Product Designer',
+        description:
+            'Filipino builder crafting useful web systems for learners, businesses, and local communities.',
+        creator: '@jlsonon',
+    },
 };
 
 export default function RootLayout({

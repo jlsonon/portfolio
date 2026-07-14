@@ -1,4 +1,4 @@
-import { IProject } from '@/types';
+import { IProject, IExperience } from '@/types';
 
 export const GENERAL_INFO = {
     email: 'jlsonon12@gmail.com',
@@ -90,7 +90,7 @@ export const PROJECTS: IProject[] = [
     }
 ];
 
-export const MY_EXPERIENCE = [
+export const MY_EXPERIENCE: IExperience[] = [
     {
         title: 'Full-Stack Developer & Product Designer',
         company: 'Freelance',

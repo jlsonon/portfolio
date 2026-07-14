@@ -1,5 +1,6 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
+import { PROJECTS, MY_STACK } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -61,8 +62,8 @@ const AboutMe = () => {
                         <div className="grid grid-cols-2 gap-4">
                             {[
                                 { label: 'Years building', value: '4+' },
-                                { label: 'Products shipped', value: '3' },
-                                { label: 'Technologies', value: '10+' },
+                                { label: 'Products shipped', value: String(PROJECTS.length) },
+                                { label: 'Technologies', value: `${Object.values(MY_STACK).flat().length}+` },
                                 { label: 'Domain', value: 'Web & SaaS' },
                             ].map((fact) => (
                                 <div key={fact.label} className="border border-border/30 rounded-xl p-4">
