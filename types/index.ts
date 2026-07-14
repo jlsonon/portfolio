@@ -24,6 +24,7 @@ export interface IProject {
     slug: string;
     liveUrl?: string;
     sourceCode?: string;
+    status?: 'completed' | 'ongoing';
 }
 
 export interface IExperience {

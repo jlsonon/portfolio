@@ -86,7 +86,8 @@ export const PROJECTS: IProject[] = [
         techStack: ['React', 'Firebase', 'Tailwind CSS'],
         thumbnail: '/barangay_connect.png',
         longThumbnail: '/barangay_connect.png',
-        images: ['/barangay_connect.png'],
+        images: [],
+        status: 'ongoing',
     }
 ];
 

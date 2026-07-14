@@ -8,7 +8,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
 
 interface Props {
     project: IProject;
@@ -18,6 +19,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ProjectDetails = ({ project }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [iframeBlocked, setIframeBlocked] = useState(false);
+    const forceImagePreview = project.slug === 'prime-reviewer-ph';
 
     const currentIndex = PROJECTS.findIndex((p) => p.slug === project.slug);
     const prevProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null;
@@ -66,27 +69,6 @@ const ProjectDetails = ({ project }: Props) => {
         { scope: containerRef },
     );
 
-    // parallax effect on images
-    useGSAP(
-        () => {
-            gsap.utils
-                .toArray<HTMLDivElement>('#images > div')
-                .forEach((imageDiv, i) => {
-                    gsap.to(imageDiv, {
-                        backgroundPosition: `center 0%`,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: imageDiv,
-                            start: () => (i ? 'top bottom' : 'top 50%'),
-                            end: 'bottom top',
-                            scrub: true,
-                        },
-                    });
-                });
-        },
-        { scope: containerRef },
-    );
-
     return (
         <section className="pt-5 pb-20">
             <div className="container" ref={containerRef}>
@@ -109,8 +91,13 @@ const ProjectDetails = ({ project }: Props) => {
                     <div className="relative w-full">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 max-w-[800px] mx-auto border-b border-border/40 pb-8">
                             <div>
-                                <p className="fade-in-later text-xs font-semibold uppercase tracking-widest text-primary/70 mb-3">
+                                <p className="fade-in-later text-xs font-semibold uppercase tracking-widest text-primary/70 mb-3 flex items-center gap-3">
                                     Project — {project.year}
+                                    {project.status === 'ongoing' && (
+                                        <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] border border-primary/20 flex items-center gap-1.5">
+                                            <span>🚧</span> In Development
+                                        </span>
+                                    )}
                                 </p>
                                 <h1 className="fade-in-later text-4xl md:text-6xl font-anton leading-none">
                                     {project.title}
@@ -184,35 +171,47 @@ const ProjectDetails = ({ project }: Props) => {
                 </div>
 
                 <div
-                    className="fade-in-later relative flex flex-col gap-4 max-w-[900px] mx-auto"
+                    className="fade-in-later relative flex flex-col max-w-[1280px] mx-auto w-full aspect-[16/10] overflow-hidden rounded-xl border border-border/60 bg-background-light shadow-2xl"
                     id="images"
                 >
-                    {project.images.length > 0 ? (
-                        project.images.map((image) => (
-                            <div
-                                key={image}
-                                className="group relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-background-light"
-                                style={{
-                                    backgroundImage: `url(${image})`,
-                                    backgroundSize: 'cover',
-                                    backgroundPosition: 'center 50%',
-                                    backgroundRepeat: 'no-repeat',
-                                }}
-                            >
-                                <a
-                                    href={image}
-                                    target="_blank"
-                                    className="absolute top-4 right-4 bg-background/70 text-foreground size-12 inline-flex justify-center items-center rounded-full transition-all opacity-0 hover:bg-primary hover:text-primary-foreground group-hover:opacity-100"
-                                >
-                                    <ExternalLink size={20} />
-                                </a>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="border border-dashed border-border/40 rounded-2xl p-16 text-center text-muted-foreground text-sm">
-                            Screenshots coming soon
+                    {/* Browser chrome frame */}
+                    <div className="flex items-center gap-2 px-4 py-3 bg-background border-b border-border/40 shrink-0">
+                        <span className="size-3 rounded-full bg-red-500/70" />
+                        <span className="size-3 rounded-full bg-yellow-500/70" />
+                        <span className="size-3 rounded-full bg-green-500/70" />
+                        <div className="flex-1 mx-4 bg-background-light rounded-md px-4 py-1.5 flex items-center justify-center">
+                            <p className="text-xs text-muted-foreground truncate font-medium tracking-wide">
+                                {project.liveUrl?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
+                            </p>
                         </div>
-                    )}
+                    </div>
+
+                    <div className="relative flex-1 w-full bg-background overflow-hidden">
+                        {project.liveUrl && !forceImagePreview && !iframeBlocked ? (
+                            <>
+                                <iframe
+                                    src={project.liveUrl}
+                                    title={`${project.title} live preview`}
+                                    className="w-full h-full border-none bg-white absolute inset-0"
+                                    loading="lazy"
+                                    sandbox="allow-scripts allow-same-origin"
+                                    onError={() => setIframeBlocked(true)}
+                                />
+                            </>
+                        ) : project.images.length > 0 || project.thumbnail ? (
+                            <Image
+                                src={project.images[0] || project.thumbnail}
+                                alt={`${project.title} website preview`}
+                                fill
+                                className="object-cover object-top"
+                                unoptimized
+                            />
+                        ) : (
+                            <div className="absolute inset-0 flex items-center justify-center border-t border-dashed border-border/40 bg-background-light">
+                                <span className="text-muted-foreground text-sm">Screenshots coming soon</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
