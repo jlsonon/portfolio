@@ -1,4 +1,5 @@
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { SocialIcon } from './SocialIcon';
 
 const Footer = () => {
     const year = new Date().getFullYear();
@@ -35,8 +36,9 @@ const Footer = () => {
                                         href={link.url}
                                         target="_blank"
                                         rel="noreferrer noopener"
-                                        className="text-xs text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors duration-200"
+                                        className="text-xs text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors duration-200 flex items-center gap-2 group/link"
                                     >
+                                        <SocialIcon name={link.name} size={14} className="text-muted-foreground group-hover/link:text-primary transition-colors" />
                                         {link.name}
                                     </a>
                                 </li>

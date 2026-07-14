@@ -4,7 +4,6 @@ import { MY_STACK } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import Image from 'next/image';
 import React, { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -77,13 +76,13 @@ const Skills = () => {
                                         key={item.name}
                                     >
                                         <div className="p-3 bg-background rounded-xl border border-border/30 group-hover:shadow-sm transition-all duration-300">
-                                            <Image
+                                            <img
                                                 src={item.icon}
                                                 alt={item.name}
-                                                width={40}
-                                                height={40}
+                                                width="40"
+                                                height="40"
                                                 className="size-8 md:size-10 object-contain group-hover:scale-110 transition-transform duration-300"
-                                                unoptimized
+                                                loading="eager"
                                             />
                                         </div>
                                         <span className="text-sm md:text-base font-medium text-foreground/80 group-hover:text-primary transition-colors duration-300">

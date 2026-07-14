@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MoveUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { SocialIcon } from './SocialIcon';
 
 const COLORS = [
     'bg-indigo-500 text-white',
@@ -110,8 +111,9 @@ const Navbar = () => {
                                             href={link.url}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="text-lg capitalize hover:underline"
+                                            className="text-lg capitalize hover:underline flex items-center gap-3 group/link"
                                         >
+                                            <SocialIcon name={link.name} size={20} className="text-muted-foreground group-hover/link:text-foreground transition-colors" />
                                             {link.name}
                                         </a>
                                     </li>
