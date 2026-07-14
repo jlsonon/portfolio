@@ -13,17 +13,24 @@ const Experiences = () => {
 
     useGSAP(
         () => {
-            gsap.from('.experience-item', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 65%',
-                    end: 'bottom 50%',
-                    scrub: 0.8,
+            gsap.fromTo(
+                '.experience-item',
+                {
+                    x: -40,
+                    autoAlpha: 0,
                 },
-                x: -40,
-                opacity: 0,
-                stagger: 0.25,
-            });
+                {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 65%',
+                        end: 'bottom 50%',
+                        scrub: 0.8,
+                    },
+                    x: 0,
+                    autoAlpha: 1,
+                    stagger: 0.25,
+                }
+            );
         },
         { scope: containerRef },
     );

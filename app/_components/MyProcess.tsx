@@ -46,17 +46,24 @@ const MyProcess = () => {
 
     useGSAP(
         () => {
-            gsap.from('.process-step', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 70%',
-                    end: 'bottom 60%',
-                    scrub: 0.6,
+            gsap.fromTo(
+                '.process-step',
+                {
+                    y: 50,
+                    autoAlpha: 0,
                 },
-                y: 50,
-                opacity: 0,
-                stagger: 0.15,
-            });
+                {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 70%',
+                        end: 'bottom 60%',
+                        scrub: 0.6,
+                    },
+                    y: 0,
+                    autoAlpha: 1,
+                    stagger: 0.15,
+                }
+            );
         },
         { scope: containerRef },
     );

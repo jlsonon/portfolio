@@ -27,34 +27,23 @@ const Skills = () => {
                 },
             });
 
-            tl.from('.slide-up', {
-                opacity: 0,
-                y: 40,
-                ease: 'none',
-                stagger: 0.4,
-            });
-        },
-        { scope: containerRef },
-    );
-
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'bottom 50%',
-                    end: 'bottom 10%',
-                    scrub: 1,
+            tl.fromTo(
+                '.slide-up',
+                {
+                    autoAlpha: 0,
+                    y: 40,
                 },
-            });
-
-            tl.to(containerRef.current, {
-                y: -150,
-                opacity: 0,
-            });
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    ease: 'none',
+                    stagger: 0.4,
+                }
+            );
         },
         { scope: containerRef },
     );
+
 
     return (
         <section id="my-stack" ref={containerRef} className="pb-section pt-10">
