@@ -51,7 +51,7 @@ const Banner = () => {
                 ref={containerRef}
             >
                 {/* Role tag */}
-                <div className="hero-item flex items-center gap-2">
+                <div className="hero-item hidden md:flex items-center gap-2">
                     <span className="size-2 rounded-full bg-primary animate-pulse" />
                     <span className="text-xs font-semibold uppercase tracking-widest text-primary/80">
                         Available for full-time & freelance

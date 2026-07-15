@@ -47,12 +47,12 @@ export default function FloatingNav() {
     };
 
     return (
-        <div className="fixed right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-4">
+        <div className="fixed right-2 md:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 md:gap-4">
             {SECTIONS.map((section) => (
                 <button
                     key={section.id}
                     onClick={() => scrollTo(section.id)}
-                    className="group relative flex items-center justify-end w-8 h-8"
+                    className="group relative flex items-center justify-end w-10 h-10 md:w-8 md:h-8"
                     aria-label={`Scroll to ${section.name}`}
                 >
                     <span
