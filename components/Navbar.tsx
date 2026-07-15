@@ -38,7 +38,7 @@ const Navbar = () => {
                     aria-label="Go home"
                 >
                     <span className="size-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm tracking-wider select-none group-hover:scale-110 transition-transform duration-300">
-                        JL
+                        JS
                     </span>
                     <span className="font-anton text-lg tracking-wide hidden sm:block text-foreground/80 group-hover:text-primary transition-colors duration-300">
                         jlsonon
