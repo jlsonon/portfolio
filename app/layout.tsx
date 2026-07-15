@@ -5,7 +5,7 @@ import { ReactLenis } from 'lenis/react';
 import 'lenis/dist/lenis.css';
 import './globals.css';
 import Footer from '@/components/Footer';
-import ScrollProgressIndicator from '@/components/ScrollProgressIndicator';
+import FloatingNav from '@/components/FloatingNav';
 import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
 import CustomCursor from '@/components/CustomCursor';
@@ -85,7 +85,7 @@ export default function RootLayout({
 
                     <CustomCursor />
                     <Preloader />
-                    <ScrollProgressIndicator />
+                    <FloatingNav />
                     <ParticleBackground />
                     <StickyEmail />
                 </ReactLenis>
