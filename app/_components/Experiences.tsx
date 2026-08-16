@@ -1,5 +1,6 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
+import GitHubCalendar from '@/components/GitHubCalendar';
 import { MY_EXPERIENCE } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -43,7 +44,7 @@ const Experiences = () => {
             <div className="container" ref={containerRef}>
                 <SectionTitle title="Experience & Track Record" />
 
-                <div className="flex flex-col gap-8 mt-12 max-w-4xl">
+                <div className="flex flex-col gap-8 mt-12 max-w-4xl mx-auto">
                     {MY_EXPERIENCE.map((item, idx) => (
                         <div
                             key={item.title + item.company}
@@ -83,6 +84,11 @@ const Experiences = () => {
                             </div>
                         </div>
                     ))}
+
+                    {/* GitHub Contributions Heatmap Activity */}
+                    <div className="experience-item mt-4">
+                        <GitHubCalendar />
+                    </div>
                 </div>
             </div>
         </section>

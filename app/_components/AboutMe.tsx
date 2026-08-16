@@ -3,9 +3,10 @@ import SectionTitle from '@/components/SectionTitle';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { MapPin, Compass, ShieldCheck, Zap, ArrowRight, XCircle, CheckCircle2 } from 'lucide-react';
+import { MapPin, Compass, ShieldCheck, Zap } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef } from 'react';
+import SystemsArchitectureCard from '@/components/SystemsArchitectureCard';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -72,63 +73,9 @@ const AboutMe = () => {
                         </h3>
                     </div>
 
-                    {/* 2. Before -> After Transformation Bento Card - 12 cols */}
-                    <div className="about-card md:col-span-12 border border-border/40 rounded-3xl p-6 sm:p-8 bg-background-light/30 backdrop-blur-md">
-                        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
-                            The Transformation I Deliver
-                        </p>
-                        <div className="grid grid-cols-1 lg:grid-cols-11 gap-4 items-center">
-                            {/* Before Box */}
-                            <div className="lg:col-span-5 p-5 rounded-2xl bg-red-950/10 border border-red-500/20">
-                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-400 mb-3">
-                                    <XCircle size={15} />
-                                    <span>Before: Manual Friction</span>
-                                </div>
-                                <ul className="space-y-2 text-xs sm:text-sm text-foreground/80">
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-red-400" />
-                                        Paper logbooks &amp; lost receipt claim tickets
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-red-400" />
-                                        Disconnected spreadsheets &amp; manual calculations
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-red-400" />
-                                        Untracked membership renewals &amp; cash leaks
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* Center Arrow */}
-                            <div className="lg:col-span-1 flex justify-center py-2 lg:py-0">
-                                <div className="size-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary rotate-90 lg:rotate-0">
-                                    <ArrowRight size={18} />
-                                </div>
-                            </div>
-
-                            {/* After Box */}
-                            <div className="lg:col-span-5 p-5 rounded-2xl bg-emerald-950/10 border border-emerald-500/20">
-                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3">
-                                    <CheckCircle2 size={15} />
-                                    <span>After: Centralized Digital Hub</span>
-                                </div>
-                                <ul className="space-y-2 text-xs sm:text-sm text-foreground/90 font-medium">
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-emerald-400" />
-                                        One unified touch POS &amp; instant QR check-in
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-emerald-400" />
-                                        Real-time cloud database &amp; multi-branch sync
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <span className="size-1 rounded-full bg-emerald-400" />
-                                        Automated receipts, renewal alerts &amp; audit trails
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    {/* 2. Interactive Systems Architecture Card - 12 cols */}
+                    <div className="about-card md:col-span-12">
+                        <SystemsArchitectureCard />
                     </div>
 
                     {/* 3. Portrait Photo Card - 4 cols */}

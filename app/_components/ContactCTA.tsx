@@ -3,9 +3,11 @@ import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowUpRight, Check, Copy, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
+import CopyEmailButton from '@/components/CopyEmailButton';
+import TimezoneClock from '@/components/TimezoneClock';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -19,13 +21,6 @@ const PROJECT_TYPES = [
 const ContactCTA = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [selectedType, setSelectedType] = useState<string>('pos');
-    const [copied, setCopied] = useState(false);
-
-    const handleCopyEmail = () => {
-        navigator.clipboard.writeText(GENERAL_INFO.email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2500);
-    };
 
     useGSAP(
         () => {
@@ -57,12 +52,9 @@ const ContactCTA = () => {
 
             <div className="container" ref={containerRef}>
                 <div className="border border-border/40 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-md text-center max-w-4xl mx-auto relative shadow-2xl">
-                    {/* Tagline */}
-                    <div className="cta-item inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                        <span className="size-2 rounded-full bg-primary animate-pulse" />
-                        <span className="text-[11px] sm:text-xs uppercase tracking-widest text-primary font-bold">
-                            Open for New Projects &amp; Contracts
-                        </span>
+                    {/* Live Timezone & Availability Badge */}
+                    <div className="cta-item flex justify-center mb-6">
+                        <TimezoneClock />
                     </div>
 
                     {/* Headline */}
@@ -115,23 +107,8 @@ const ContactCTA = () => {
                             />
                         </a>
 
-                        <button
-                            onClick={handleCopyEmail}
-                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-sm sm:text-base transition-all bg-background-light/40 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
-                            aria-label="Copy email address"
-                        >
-                            {copied ? (
-                                <>
-                                    <Check size={16} className="text-emerald-400" />
-                                    <span className="text-emerald-400">Copied to Clipboard!</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Copy size={16} />
-                                    <span>Copy Email</span>
-                                </>
-                            )}
-                        </button>
+                        {/* 1-Click Copy Email with Instant Toast */}
+                        <CopyEmailButton />
 
                         <a
                             href="https://www.linkedin.com/in/jlsonon/"
@@ -148,7 +125,7 @@ const ContactCTA = () => {
                     <div className="cta-item flex flex-wrap items-center justify-center gap-6 sm:gap-8 mt-12 pt-8 border-t border-border/30 text-xs text-muted-foreground">
                         <div className="flex items-center gap-2 font-medium">
                             <ShieldCheck size={14} className="text-primary shrink-0" />
-                            <span>24-Hour Response Time</span>
+                            <span>24-Hour Response Guarantee</span>
                         </div>
                         <div className="flex items-center gap-2 font-medium">
                             <ShieldCheck size={14} className="text-primary shrink-0" />

@@ -98,10 +98,6 @@ const Navbar = () => {
                                 Systems &amp; Product Engineer
                             </span>
                         </div>
-                        <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-2">
-                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            Available
-                        </span>
                     </button>
 
                     {/* Right controls: Quick CTA + Hamburger toggle */}

@@ -1,6 +1,8 @@
-import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
 import Link from 'next/link';
+import CopyEmailButton from './CopyEmailButton';
+import TimezoneClock from './TimezoneClock';
 
 const Footer = () => {
     const year = new Date().getFullYear();
@@ -14,21 +16,18 @@ const Footer = () => {
                 {/* Top Quick Contact Block */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/30">
                     <div className="text-center md:text-left">
-                        <div className="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+                        <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                             <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
                             <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
-                                Available for New Engineering Projects
+                                Open for Custom Systems &amp; SaaS Contracts
                             </p>
                         </div>
-                        <a
-                            href={`mailto:${GENERAL_INFO.email}`}
-                            className="text-2xl sm:text-3xl font-anton text-foreground hover:text-primary transition-colors duration-200"
-                        >
-                            {GENERAL_INFO.email}
-                        </a>
+                        {/* 1-Click Copy Email Link */}
+                        <CopyEmailButton variant="link" />
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                        <TimezoneClock />
                         <Link
                             href="/#contact-cta"
                             className="px-6 py-3 rounded-full text-xs font-semibold bg-primary text-black hover:bg-primary-hover shadow-md hover:shadow-primary/25 transition-all duration-200 active:scale-[0.97]"
@@ -42,7 +41,7 @@ const Footer = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
                     {/* Copyright & Location */}
                     <p className="text-xs text-muted-foreground">
-                        © {year} Jericho Sonon • Full-Stack Systems & Product Engineer
+                        © {year} Jericho Sonon • Full-Stack Systems &amp; Product Engineer
                     </p>
 
                     {/* Social links */}
