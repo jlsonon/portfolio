@@ -69,7 +69,7 @@ const AboutMe = () => {
                                     </span>
                                 </div>
                                 <p className="text-xs text-primary font-medium mt-0.5">
-                                    Full-Stack Developer & AI Engineer
+                                    Full-Stack Systems & Product Engineer
                                 </p>
                             </div>
 

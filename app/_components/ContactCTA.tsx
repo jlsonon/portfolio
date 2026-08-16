@@ -85,7 +85,7 @@ const ContactCTA = () => {
                                     key={type.id}
                                     onClick={() => setSelectedType(type.id)}
                                     className={cn(
-                                        'px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200',
+                                        'px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
                                         selectedType === type.id
                                             ? 'bg-primary text-black border-primary shadow-lg shadow-primary/20'
                                             : 'bg-background/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/40'
@@ -101,7 +101,7 @@ const ContactCTA = () => {
                     <div className="cta-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6">
                         <a
                             href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-black rounded-full font-semibold text-base hover:opacity-95 hover:shadow-xl hover:shadow-primary/25 transition-all duration-200 group"
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-black rounded-full font-semibold text-base hover:opacity-95 hover:shadow-xl hover:shadow-primary/25 transition-all duration-200 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                         >
                             <span>Send Project Brief</span>
                             <ArrowUpRight
@@ -112,7 +112,7 @@ const ContactCTA = () => {
 
                         <button
                             onClick={handleCopyEmail}
-                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-base transition-all bg-background-light/40"
+                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-base transition-all bg-background-light/40 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                             aria-label="Copy email address"
                         >
                             {copied ? (
@@ -132,7 +132,7 @@ const ContactCTA = () => {
                             href="https://www.linkedin.com/in/jlsonon/"
                             target="_blank"
                             rel="noreferrer noopener"
-                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-base transition-colors"
+                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-base transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                         >
                             <span>LinkedIn</span>
                             <ArrowUpRight size={16} />

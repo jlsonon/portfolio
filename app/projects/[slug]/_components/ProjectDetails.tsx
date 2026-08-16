@@ -75,7 +75,7 @@ const ProjectDetails = ({ project }: Props) => {
                 <TransitionLink
                     back
                     href="/"
-                    className="mb-12 inline-flex gap-2 items-center group h-10 text-muted-foreground hover:text-foreground transition-colors"
+                    className="mb-12 inline-flex gap-2 items-center group h-10 text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg px-1"
                 >
                     <ArrowLeft
                         size={18}
@@ -94,8 +94,8 @@ const ProjectDetails = ({ project }: Props) => {
                                 <p className="fade-in-later text-xs font-semibold uppercase tracking-widest text-primary/70 mb-3 flex items-center gap-3">
                                     Project — {project.year}
                                     {project.status === 'ongoing' && (
-                                        <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] border border-primary/20 flex items-center gap-1.5">
-                                            <span>🚧</span> In Development
+                                        <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] border border-primary/20 flex items-center gap-1.5 font-medium">
+                                            <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In Development
                                         </span>
                                     )}
                                 </p>

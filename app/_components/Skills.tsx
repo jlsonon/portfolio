@@ -96,7 +96,7 @@ const Skills = () => {
                             >
                                 <button
                                     onClick={() => toggleCategory(key)}
-                                    className="w-full p-4 flex items-center justify-between text-left transition-colors"
+                                    className="w-full p-4 flex items-center justify-between text-left transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                                     aria-expanded={isOpen}
                                 >
                                     <div className="flex items-center gap-3">

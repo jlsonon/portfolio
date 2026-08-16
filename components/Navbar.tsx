@@ -40,7 +40,7 @@ const Navbar = () => {
                     {/* Brand / Logo */}
                     <button
                         onClick={() => router.push('/')}
-                        className="flex items-center gap-2.5 group"
+                        className="flex items-center gap-2.5 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1"
                         aria-label="Go home"
                     >   
                         <Image 
@@ -63,14 +63,14 @@ const Navbar = () => {
                     <div className="flex items-center gap-3">
                         <Link
                             href="/#contact-cta"
-                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-primary/10 hover:bg-primary text-primary hover:text-black border border-primary/30 transition-all duration-200"
+                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-primary/10 hover:bg-primary text-primary hover:text-black border border-primary/30 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                         >
                             <span>Let&apos;s Talk</span>
                             <MoveUpRight size={13} />
                         </Link>
 
                         <button
-                            className={cn('group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/50 border border-border/40 hover:border-primary/40 hover:bg-background-light transition-all')}
+                            className={cn('group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/50 border border-border/40 hover:border-primary/40 hover:bg-background-light transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none')}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                         >
