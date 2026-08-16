@@ -11,13 +11,26 @@ import Project from './Project';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const CATEGORIES = [
+    { id: 'all', label: 'All Projects', count: 5 },
+    { id: 'saas', label: 'SaaS & Web Apps', count: 2 },
+    { id: 'ai', label: 'AI & Automation', count: 1 },
+    { id: 'business', label: 'Business & POS', count: 2 },
+] as const;
+
 const ProjectList = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const projectListRef = useRef<HTMLDivElement>(null);
     const imageContainer = useRef<HTMLDivElement>(null);
+    const [activeCategory, setActiveCategory] = useState<'all' | 'saas' | 'ai' | 'business'>('all');
     const [selectedProject, setSelectedProject] = useState<string | null>(
         PROJECTS[0].slug,
     );
+
+    const filteredProjects = PROJECTS.filter((p) => {
+        if (activeCategory === 'all') return true;
+        return p.category === activeCategory;
+    });
 
     // update imageRef.current href based on the cursor hover position
     // also update image position
@@ -105,7 +118,37 @@ const ProjectList = () => {
     return (
         <section className="pb-section" id="selected-projects">
             <div className="container">
-                <SectionTitle title="SELECTED PROJECTS" />
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <SectionTitle title="SELECTED PROJECTS" />
+
+                    {/* Category Filter Pills: Desktop & Tablet Only */}
+                    <div className="hidden md:flex flex-wrap gap-2">
+                        {CATEGORIES.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={cn(
+                                    'px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 border',
+                                    activeCategory === cat.id
+                                        ? 'bg-primary text-black border-primary shadow-lg shadow-primary/20'
+                                        : 'bg-background-light/40 border-border/40 text-muted-foreground hover:text-foreground hover:border-primary/40'
+                                )}
+                            >
+                                <span>{cat.label}</span>
+                                <span
+                                    className={cn(
+                                        'size-4 rounded-full text-[10px] flex items-center justify-center font-bold',
+                                        activeCategory === cat.id
+                                            ? 'bg-black/20 text-black'
+                                            : 'bg-border/40 text-muted-foreground'
+                                    )}
+                                >
+                                    {cat.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
 
                 <div className="group/projects relative" ref={containerRef}>
                     {selectedProject !== null && (
@@ -143,7 +186,7 @@ const ProjectList = () => {
                         className="flex flex-col max-md:gap-10"
                         ref={projectListRef}
                     >
-                        {PROJECTS.map((project, index) => (
+                        {filteredProjects.map((project, index) => (
                             <Project
                                 index={index}
                                 project={project}
@@ -159,58 +202,23 @@ const ProjectList = () => {
     );
 };
 
-// Live iframe preview with image fallback
+// Crisp high-resolution static preview with zero iframe flash
 const LivePreview = ({ project, isActive }: { project: typeof PROJECTS[0]; isActive: boolean }) => {
-    const [iframeBlocked, setIframeBlocked] = React.useState(false);
-    const forceImagePreview = project.slug === 'prime-reviewer-ph';
-
-    // Scale: render at 1280px wide, shrink to fit 400px card → 400/1280 = 0.3125
-    const RENDER_WIDTH = 1280;
-    const RENDER_HEIGHT = 800;
-    const CARD_WIDTH = 400;
-    const scale = CARD_WIDTH / RENDER_WIDTH;
-    const cardHeight = Math.round(RENDER_HEIGHT * scale);
-
     return (
         <div
             className={cn(
-                'relative overflow-hidden transition-opacity duration-500',
+                'relative overflow-hidden transition-opacity duration-300 w-[280px] xl:w-[400px] aspect-[16/10]',
                 { 'opacity-0 absolute inset-0': !isActive }
             )}
-            style={{ width: CARD_WIDTH, height: cardHeight }}
         >
-            {!forceImagePreview && !iframeBlocked ? (
-                <>
-                    <iframe
-                        src={project.liveUrl}
-                        title={`${project.title} live preview`}
-                        style={{
-                            width: RENDER_WIDTH,
-                            height: RENDER_HEIGHT,
-                            transform: `scale(${scale})`,
-                            transformOrigin: 'top left',
-                            pointerEvents: 'none',
-                            border: 'none',
-                        }}
-                        loading="lazy"
-                        sandbox="allow-scripts allow-same-origin"
-                        onError={() => setIframeBlocked(true)}
-                    />
-                    {/* Invisible overlay to catch blocked iframes */}
-                    <div
-                        className="absolute inset-0"
-                        onLoad={() => {}}
-                    />
-                </>
-            ) : (
-                <Image
-                    src={project.thumbnail}
-                    alt={`${project.title} website preview`}
-                    width={CARD_WIDTH}
-                    height={cardHeight}
-                    className="w-full h-full object-cover object-top"
-                />
-            )}
+            <Image
+                src={project.thumbnail}
+                alt={`${project.title} screenshot`}
+                width={800}
+                height={500}
+                className="w-full h-full object-cover object-top"
+                priority={isActive}
+            />
         </div>
     );
 };

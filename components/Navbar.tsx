@@ -5,10 +5,13 @@ import { MoveUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const COLORS = [
     'bg-indigo-500 text-white',
     'bg-violet-500 text-white',
+    'bg-emerald-500 text-white',
     'bg-sky-500 text-white',
     'bg-fuchsia-500 text-white',
     'bg-cyan-500 text-white',
@@ -17,11 +20,13 @@ const COLORS = [
 
 const MENU_LINKS = [
     { name: 'Home', url: '/' },
+    { name: 'Projects', url: '/#selected-projects' },
     { name: 'About', url: '/#about-me' },
+    { name: 'Services', url: '/#services' },
     { name: 'Stack', url: '/#my-stack' },
     { name: 'Experience', url: '/#my-experience' },
     { name: 'Process', url: '/#my-process' },
-    { name: 'Projects', url: '/#selected-projects' },
+    { name: 'Contact', url: '/#contact-cta' },
 ];
 
 const Navbar = () => {
@@ -30,49 +35,67 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="sticky top-0 z-[4] flex items-center justify-between px-5 md:px-10 py-4">
-                {/* Brand / Logo */}
-                <button
-                    onClick={() => router.push('/')}
-                    className="flex items-center gap-2 group"
-                    aria-label="Go home"
-                >
-                    <img 
-                        src="/icon.svg" 
-                        alt="JS Logo" 
-                        className="size-9 object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <span className="font-anton text-lg tracking-wide hidden sm:block text-foreground/80 group-hover:text-primary transition-colors duration-300">
-                        jlsonon
-                    </span>
-                </button>
+            <header className="fixed top-0 left-0 right-0 z-50 w-full bg-background/90 backdrop-blur-md border-b border-border/30 transition-all duration-200">
+                <div className="flex items-center justify-between px-5 md:px-10 py-3.5 max-w-7xl mx-auto">
+                    {/* Brand / Logo */}
+                    <button
+                        onClick={() => router.push('/')}
+                        className="flex items-center gap-2.5 group"
+                        aria-label="Go home"
+                    >   
+                        <Image 
+                            src="/icon.svg" 
+                            alt="JS Logo" 
+                            width={36}
+                            height={36}
+                            className="size-9 object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <span className="font-anton text-lg tracking-wide hidden sm:block text-foreground/80 group-hover:text-primary transition-colors duration-300">
+                            jlsonon
+                        </span>
+                        <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-2">
+                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Available
+                        </span>
+                    </button>
 
-                {/* Hamburger toggle */}
-                <button
-                    className={cn('group size-12 relative z-[2]')}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <span
-                        className={cn(
-                            'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 -translate-y-[5px]',
-                            {
-                                'rotate-45 -translate-y-1/2': isMenuOpen,
-                                'md:group-hover:rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
-                    <span
-                        className={cn(
-                            'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 translate-y-[5px]',
-                            {
-                                '-rotate-45 -translate-y-1/2': isMenuOpen,
-                                'md:group-hover:-rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
-                </button>
-            </div>
+                    {/* Right controls: Quick CTA + Hamburger toggle */}
+                    <div className="flex items-center gap-3">
+                        <Link
+                            href="/#contact-cta"
+                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-primary/10 hover:bg-primary text-primary hover:text-black border border-primary/30 transition-all duration-200"
+                        >
+                            <span>Let&apos;s Talk</span>
+                            <MoveUpRight size={13} />
+                        </Link>
+
+                        <button
+                            className={cn('group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/50 border border-border/40 hover:border-primary/40 hover:bg-background-light transition-all')}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            <span
+                                className={cn(
+                                    'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 -translate-y-[5px]',
+                                    {
+                                        'rotate-45 -translate-y-1/2': isMenuOpen,
+                                        'md:group-hover:rotate-12': !isMenuOpen,
+                                    },
+                                )}
+                            ></span>
+                            <span
+                                className={cn(
+                                    'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 translate-y-[5px]',
+                                    {
+                                        '-rotate-45 -translate-y-1/2': isMenuOpen,
+                                        'md:group-hover:-rotate-12': !isMenuOpen,
+                                    },
+                                )}
+                            ></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
 
             <div
                 className={cn(
@@ -86,9 +109,12 @@ const Navbar = () => {
 
             <div
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden gap-y-14',
+                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-all duration-700 z-[3] overflow-hidden gap-y-14',
                     'flex flex-col lg:justify-center py-10',
-                    { 'translate-x-0': isMenuOpen },
+                    { 
+                        'translate-x-0 opacity-100 visible pointer-events-auto': isMenuOpen,
+                        'opacity-0 invisible pointer-events-none': !isMenuOpen,
+                    },
                 )}
             >
                 <div

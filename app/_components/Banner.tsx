@@ -1,11 +1,11 @@
 'use client';
-import ArrowAnimation from '@/components/ArrowAnimation';
 import Button from '@/components/Button';
-import { GENERAL_INFO, PROJECTS, MY_STACK } from '@/lib/data';
+import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowDown } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -30,8 +30,6 @@ const Banner = () => {
                 }
             );
 
-
-
             // Scroll indicator bounce
             gsap.to('.scroll-indicator', {
                 y: 10,
@@ -47,82 +45,95 @@ const Banner = () => {
     return (
         <section className="relative overflow-hidden" id="banner">
             <div
-                className="container h-[100svh] min-h-[580px] flex flex-col items-center justify-center text-center gap-6"
+                className="container min-h-[100svh] flex flex-col items-center justify-center text-center gap-4 sm:gap-5 py-12 sm:py-20"
                 ref={containerRef}
             >
-                {/* Role tag */}
-                <div className="hero-item flex items-center gap-2">
-                    <span className="size-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-xs font-semibold uppercase tracking-widest text-primary/80">
-                        Available for full-time & freelance
-                    </span>
+                {/* Profile Avatar & Status */}
+                <div className="hero-item flex flex-col items-center gap-2.5">
+                    <div className="relative group">
+                        <div className="size-20 sm:size-24 rounded-full overflow-hidden border-2 border-primary/40 p-1 bg-background-light shadow-xl shadow-primary/10 group-hover:border-primary transition-all duration-300">
+                            <Image
+                                src="/DSC_3489.jpg"
+                                alt="Jericho Sonon"
+                                width={96}
+                                height={96}
+                                className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
+                                priority
+                            />
+                        </div>
+                        <span className="absolute bottom-1 right-1 size-3.5 sm:size-4 rounded-full bg-emerald-500 border-2 border-background animate-pulse" />
+                    </div>
+
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                        <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-primary">
+                            Available for Q3/Q4 Projects
+                        </span>
+                    </div>
                 </div>
 
                 {/* Headline */}
-                <h1 className="hero-item font-anton leading-[.9] text-[clamp(3.5rem,10vw,8rem)] bg-gradient-to-br from-foreground via-foreground/90 to-primary bg-clip-text text-transparent">
-                    Full-Stack
-                    <br />
-                    <span className="text-primary">Developer</span>
+                <h1 className="hero-item font-anton leading-[.95] text-[clamp(2.2rem,5.2vw,5rem)] bg-gradient-to-br from-foreground via-foreground/90 to-primary bg-clip-text text-transparent">
+                    <span className="block md:whitespace-nowrap">Full-Stack Systems</span>
+                    <span className="text-primary block mt-1 md:whitespace-nowrap">&amp; Product Engineer</span>
                 </h1>
 
                 {/* Subtext */}
-                <p className="hero-item max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+                <p className="hero-item max-w-xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed px-2">
                     I&apos;m{' '}
                     <span className="font-semibold text-foreground">
                         Jericho Sonon
                     </span>
-                    , a Filipino builder crafting useful web systems for
-                    learners, businesses, and local communities.
+                    . I engineer custom software, POS platforms, and autonomous AI workflows that run real operations for commercial businesses and solo builders.
                 </p>
 
-                {/* CTA */}
-                <div className="hero-item flex items-center gap-4 mt-2">
+                {/* CTA Buttons */}
+                <div className="hero-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-2">
                     <Button
                         as="link"
-                        href={`mailto:${GENERAL_INFO.email}`}
+                        href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent("Project Inquiry: Custom Software Development")}&body=${encodeURIComponent("Hi Jericho,\n\nI'm reaching out about a software project:\n- Type of System (POS / Internal Tool / SaaS MVP / AI Automation): \n- Timeline: \n- Key Requirements: \n\nLooking forward to hearing from you!")}`}
                         variant="primary"
                     >
-                        Let&apos;s Talk
+                        Discuss a Project
                     </Button>
                     <Link
                         href="/#selected-projects"
-                        className="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+                        className="px-5 py-3 rounded-full text-sm font-semibold border border-border hover:border-primary/50 text-foreground/90 hover:text-primary transition-all duration-200 bg-background-light/30"
                     >
-                        View Projects →
+                        Explore Case Studies →
                     </Link>
                 </div>
 
-                {/* Stats */}
-                <div className="hero-item absolute bottom-10 left-0 right-0 container flex justify-center gap-12 sm:gap-20">
+                {/* Proof Stats */}
+                <div className="hero-item flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-12 mt-4 sm:mt-6 pt-4 border-t border-border/20">
                     <div className="text-center">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">{PROJECTS.length}</p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">Active Products</p>
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-anton text-primary">5</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 uppercase tracking-wider">Shipped Systems</p>
                     </div>
-                    <div className="w-px bg-border/40" />
+                    <div className="w-px bg-border/40 hidden sm:block" />
                     <div className="text-center">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">4+</p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">Years Building</p>
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-anton text-primary">3</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 uppercase tracking-wider">Gym Deployments</p>
                     </div>
-                    <div className="w-px bg-border/40" />
+                    <div className="w-px bg-border/40 hidden sm:block" />
                     <div className="text-center">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">
-                            {Object.values(MY_STACK).flat().length}+
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">Technologies</p>
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-anton text-primary">500+</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 uppercase tracking-wider">Review Students</p>
+                    </div>
+                    <div className="w-px bg-border/40 hidden sm:block" />
+                    <div className="text-center">
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-anton text-primary">4+</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 uppercase tracking-wider">Years Building</p>
                     </div>
                 </div>
 
-                {/* Arrow Animation & Scroll Indicator */}
-                <div className="hero-item absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:block opacity-20 pointer-events-none scale-75">
-                    <ArrowAnimation />
-                </div>
-                
+                {/* Scroll Indicator */}
                 <a
                     href="#about-me"
-                    className="hero-item scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-2"
+                    className="hero-item scroll-indicator text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-1 mt-2"
                 >
-                    <span className="text-xs uppercase tracking-widest font-semibold">Scroll</span>
-                    <ArrowDown size={16} />
+                    <span className="text-[10px] uppercase tracking-widest font-semibold">Scroll</span>
+                    <ArrowDown size={14} />
                 </a>
             </div>
         </section>

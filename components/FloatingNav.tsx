@@ -4,11 +4,12 @@ import { cn } from '@/lib/utils';
 
 const SECTIONS = [
     { id: 'banner', name: 'Home' },
+    { id: 'selected-projects', name: 'Projects' },
     { id: 'about-me', name: 'About' },
+    { id: 'services', name: 'Services' },
     { id: 'my-stack', name: 'Stack' },
     { id: 'my-experience', name: 'Experience' },
     { id: 'my-process', name: 'Process' },
-    { id: 'selected-projects', name: 'Projects' },
     { id: 'contact-cta', name: 'Contact' },
 ];
 
@@ -47,7 +48,7 @@ export default function FloatingNav() {
     };
 
     return (
-        <div className="fixed right-2 md:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 md:gap-4">
+        <div className="hidden sm:flex fixed right-2 md:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-3 md:gap-4">
             {SECTIONS.map((section) => (
                 <button
                     key={section.id}

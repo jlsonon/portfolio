@@ -25,6 +25,13 @@ export interface IProject {
     liveUrl?: string;
     sourceCode?: string;
     status?: 'completed' | 'ongoing';
+    category?: 'saas' | 'ai' | 'business' | 'all';
+    clientName?: string;
+    userBase?: string;
+    problem?: string;
+    solution?: string;
+    architecture?: string[];
+    outcomes?: string[];
 }
 
 export interface IExperience {
@@ -33,4 +40,25 @@ export interface IExperience {
     duration: string;
     description?: string;
 }
+
+export interface IService {
+    number: string;
+    title: string;
+    tagline: string;
+    description: string;
+    deliverables: string[];
+    timeline: string;
+    badge: string;
+}
+
+export interface IClient {
+    name: string;
+    category: string;
+    description: string;
+    badge: string;
+    location?: string;
+    projectSlug?: string;
+    metrics?: string;
+}
+
 

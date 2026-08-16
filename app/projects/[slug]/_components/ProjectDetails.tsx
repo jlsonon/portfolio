@@ -131,6 +131,21 @@ const ProjectDetails = ({ project }: Props) => {
                         </div>
 
                         <div className="max-w-[800px] space-y-10 pb-20 mx-auto">
+                            {/* Client & Deployment Context */}
+                            {project.clientName && (
+                                <div className="fade-in-later p-4 rounded-xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div>
+                                        <p className="text-[10px] uppercase font-bold tracking-widest text-primary">Client & Deployment</p>
+                                        <p className="text-sm font-semibold text-foreground">{project.clientName}</p>
+                                    </div>
+                                    {project.userBase && (
+                                        <span className="text-xs px-3 py-1 rounded-full bg-background-light border border-border text-muted-foreground self-start sm:self-auto">
+                                            {project.userBase}
+                                        </span>
+                                    )}
+                                </div>
+                            )}
+
                             <div className="fade-in-later">
                                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
                                     Tech Stack
@@ -139,25 +154,86 @@ const ProjectDetails = ({ project }: Props) => {
                                     {project.techStack.map((tech) => (
                                         <span
                                             key={tech}
-                                            className="text-xs border border-border/50 rounded-full px-3 py-1 text-foreground/70"
+                                            className="text-xs border border-border/50 rounded-full px-3.5 py-1 text-foreground/80 bg-background-light/40"
                                         >
                                             {tech}
                                         </span>
                                     ))}
                                 </div>
                             </div>
+
                             <div className="fade-in-later">
                                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                    Overview
+                                    Project Overview
                                 </p>
-                                <div className="text-lg text-muted-foreground leading-relaxed prose-xl markdown-text">
+                                <div className="text-base sm:text-lg text-muted-foreground leading-relaxed prose-xl markdown-text">
                                     {parse(project.description)}
                                 </div>
                             </div>
+
+                            {/* Structured Problem & Solution Case Study */}
+                            {project.problem && project.solution && (
+                                <div className="fade-in-later grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="p-5 rounded-2xl bg-background-light/30 border border-border/40">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-red-400/90 mb-2 flex items-center gap-1.5">
+                                            <span className="size-2 rounded-full bg-red-400" />
+                                            The Problem
+                                        </p>
+                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                            {project.problem}
+                                        </p>
+                                    </div>
+
+                                    <div className="p-5 rounded-2xl bg-background-light/30 border border-border/40">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-2 flex items-center gap-1.5">
+                                            <span className="size-2 rounded-full bg-emerald-400" />
+                                            The Engineered Solution
+                                        </p>
+                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                            {project.solution}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Architecture Decisions */}
+                            {project.architecture && project.architecture.length > 0 && (
+                                <div className="fade-in-later">
+                                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+                                        Key Architectural Decisions
+                                    </p>
+                                    <ul className="space-y-2.5">
+                                        {project.architecture.map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-foreground/80">
+                                                <span className="size-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* Verified Outcomes */}
+                            {project.outcomes && project.outcomes.length > 0 && (
+                                <div className="fade-in-later p-5 rounded-2xl bg-background-light/50 border border-primary/20">
+                                    <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
+                                        Verified Business Outcomes
+                                    </p>
+                                    <ul className="space-y-2">
+                                        {project.outcomes.map((outcome, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground">
+                                                <span className="text-primary font-bold">✓</span>
+                                                <span>{outcome}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
                             {project.role && (
                                 <div className="fade-in-later">
                                     <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                        My Role
+                                        My Role & Responsibilities
                                     </p>
                                     <div className="text-foreground/80 text-sm leading-relaxed">
                                         {parse(project.role)}

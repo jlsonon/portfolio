@@ -1,5 +1,4 @@
 import TransitionLink from '@/components/TransitionLink';
-import { cn } from '@/lib/utils';
 import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -108,58 +107,69 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
             onMouseLeave={handleMouseLeave}
         >
             {selectedProject === null && project.thumbnail && (
-                <Image
-                    src={project.thumbnail}
-                    alt={`${project.title} project screenshot`}
-                    width="300"
-                    height="200"
-                    className={cn(
-                        'w-full object-cover mb-6 aspect-[3/2] object-top',
-                    )}
-                    key={project.slug}
-                    loading="lazy"
-                />
+                <div className="w-full rounded-xl overflow-hidden border border-border/40 mb-6 aspect-[16/10] bg-background-light shadow-lg">
+                    <Image
+                        src={project.thumbnail}
+                        alt={`${project.title} project screenshot`}
+                        width={600}
+                        height={375}
+                        className="w-full h-full object-cover object-top"
+                        key={project.slug}
+                        loading="lazy"
+                    />
+                </div>
             )}
-            <div className="flex gap-2 md:gap-5">
-                <div className="font-anton text-muted-foreground">
+            <div className="flex gap-3 md:gap-5 items-start">
+                <div className="font-anton text-muted-foreground text-xl sm:text-2xl pt-1">
                     _{(index + 1).toString().padStart(2, '0')}.
                 </div>
-                <div className="">
-                    <h4 className="text-4xl xs:text-6xl flex gap-4 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
-                        {project.title}
-                        <span className="text-foreground opacity-0 group-hover:opacity-100 transition-all">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="36"
-                                height="36"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                ref={externalLinkSVGRef}
-                            >
-                                <path
-                                    id="box"
-                                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                ></path>
-                                <path id="arrow-line" d="M10 14 21 3"></path>
-                                <path id="arrow-curb" d="M15 3h6v6"></path>
-                            </svg>
-                        </span>
-                    </h4>
-                    <div className="mt-2 flex flex-wrap gap-3 text-muted-foreground text-xs">
+                <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl flex flex-wrap items-center gap-3 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left break-words">
+                            <span>{project.title}</span>
+                            <span className="text-foreground opacity-0 group-hover:opacity-100 transition-all shrink-0">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="36"
+                                    height="36"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    ref={externalLinkSVGRef}
+                                >
+                                    <path
+                                        id="box"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <path id="arrow-line" d="M10 14 21 3"></path>
+                                    <path id="arrow-curb" d="M15 3h6v6"></path>
+                                </svg>
+                            </span>
+                        </h4>
+
+                        {project.clientName && (
+                            <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-primary/10 text-primary border border-primary/20">
+                                {project.clientName}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="mt-2 flex flex-wrap items-center gap-3 text-muted-foreground text-xs">
+                        <span className="text-foreground/80 font-medium">{project.role.split('(')[0].trim()}</span>
+                        <span className="inline-block size-1 rounded-full bg-border" />
                         {project.techStack
-                            .slice(0, 3)
+                            .slice(0, 4)
                             .map((tech, idx, stackArr) => (
                                 <div
                                     className="gap-3 flex items-center"
                                     key={tech}
                                 >
-                                    <span className="">{tech}</span>
+                                    <span className="hover:text-primary transition-colors">{tech}</span>
                                     {idx !== stackArr.length - 1 && (
-                                        <span className="inline-block size-2 rounded-full bg-background-light"></span>
+                                        <span className="inline-block size-1 rounded-full bg-border"></span>
                                     )}
                                 </div>
                             ))}

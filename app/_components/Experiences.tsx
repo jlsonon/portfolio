@@ -16,19 +16,21 @@ const Experiences = () => {
             gsap.fromTo(
                 '.experience-item',
                 {
-                    x: -40,
-                    autoAlpha: 0,
+                    x: -30,
+                    opacity: 0,
                 },
                 {
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: 'top 65%',
-                        end: 'bottom 50%',
-                        scrub: 0.8,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
                     },
                     x: 0,
-                    autoAlpha: 1,
-                    stagger: 0.25,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.18,
+                    ease: 'power2.out',
+                    clearProps: 'all',
                 }
             );
         },

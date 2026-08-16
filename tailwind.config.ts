@@ -66,7 +66,7 @@ export default {
                 'roboto-flex': ['var(--font-inter)'], // aliased so existing usages still work
             },
             padding: {
-                section: '250px',
+                section: 'clamp(60px, 10vw, 140px)',
             },
             container: {
                 center: true,

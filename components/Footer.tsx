@@ -25,7 +25,7 @@ const Footer = () => {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         {/* Copyright */}
                         <p className="text-xs text-muted-foreground">
-                            © {year} Jericho Sonon. Designed &amp; built by me.
+                            © {year} Jericho Sonon. All rights reserved.
                         </p>
 
                         {/* Social links */}

@@ -9,7 +9,9 @@ const CustomCursor = () => {
     const svgRef = useRef<SVGSVGElement>(null);
 
     useGSAP((context, contextSafe) => {
-        if (window.innerWidth < 768) return;
+        if (typeof window === 'undefined') return;
+        const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+        if (!isFinePointer || window.innerWidth < 768) return;
 
         const handleMouseMove = contextSafe?.((e: MouseEvent) => {
             if (!svgRef.current) return;
@@ -20,7 +22,7 @@ const CustomCursor = () => {
                 x: clientX,
                 y: clientY,
                 ease: 'power2.out',
-                duration: 0.25,
+                duration: 0.2,
                 opacity: 1,
             });
         }) as any;
