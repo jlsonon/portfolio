@@ -17,12 +17,37 @@ typography:
     fontWeight: 700
     lineHeight: 0.95
     letterSpacing: "-0.02em"
+  headline:
+    fontFamily: "Space Grotesk, sans-serif"
+    fontSize: "2.5rem"
+    fontWeight: 700
+    lineHeight: 1.1
+  title:
+    fontFamily: "Space Grotesk, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    lineHeight: 1.3
   body:
     fontFamily: "Inter, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
+  label:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+    lineHeight: 1.4
+  caption:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "11px"
+    fontWeight: 500
+    lineHeight: 1.4
+  micro:
+    fontFamily: "Inter, sans-serif"
+    fontSize: "10px"
+    fontWeight: 600
+    lineHeight: 1.2
 rounded:
   sm: "8px"
   md: "12px"

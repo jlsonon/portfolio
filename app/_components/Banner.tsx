@@ -73,7 +73,7 @@ const Banner = () => {
                 </div>
 
                 {/* Headline */}
-                <h1 className="hero-item font-anton leading-[.95] text-[clamp(2.2rem,5.2vw,5rem)] bg-gradient-to-br from-foreground via-foreground/90 to-primary bg-clip-text text-transparent">
+                <h1 className="hero-item font-anton leading-[.95] text-[clamp(2.2rem,5.2vw,5rem)] text-foreground">
                     <span className="block md:whitespace-nowrap">Full-Stack Systems</span>
                     <span className="text-primary block mt-1 md:whitespace-nowrap">&amp; Product Engineer</span>
                 </h1>

@@ -125,9 +125,9 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                 </div>
                 <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-3">
-                        <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl flex flex-wrap items-center gap-3 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left break-words">
+                        <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl flex flex-wrap items-center gap-3 font-anton transition-colors duration-300 text-foreground group-hover:text-primary break-words">
                             <span>{project.title}</span>
-                            <span className="text-foreground opacity-0 group-hover:opacity-100 transition-all shrink-0">
+                            <span className="text-primary opacity-0 group-hover:opacity-100 transition-all shrink-0">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="36"
