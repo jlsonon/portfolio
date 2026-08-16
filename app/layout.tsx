@@ -26,25 +26,35 @@ const inter = Inter({
 export const metadata: Metadata = {
     metadataBase: new URL('https://jlsonon-portfolio.vercel.app'),
     title: {
-        default: 'Jericho Sonon — Full-Stack Systems & Product Engineer',
+        default: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         template: '%s | Jericho Sonon',
     },
     description:
-        'Jericho Sonon is a Full-Stack Systems & Product Engineer building custom business operations platforms, POS systems, and production web applications from Quezon City, Philippines.',
+        'Full-Stack & AI Systems Engineer based in Quezon City, Philippines. I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
+    keywords: [
+        'Jericho Sonon',
+        'Full-Stack Developer Philippines',
+        'Custom Business Systems',
+        'POS Systems Developer',
+        'Gym Management SaaS',
+        'Laundry POS',
+        'Civil Service Reviewer',
+        'Next.js React Developer Quezon City',
+    ],
     openGraph: {
         type: 'website',
         locale: 'en_US',
         url: 'https://jlsonon-portfolio.vercel.app',
-        siteName: 'Jericho Sonon Portfolio',
-        title: 'Jericho Sonon — Full-Stack Systems & Product Engineer',
+        siteName: 'Jericho Sonon — Software & AI Systems Engineer',
+        title: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         description:
-            'Engineering production-ready business systems, POS platforms, and full-stack applications.',
+            'I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Jericho Sonon — Full-Stack Systems & Product Engineer',
+        title: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         description:
-            'Engineering production-ready business systems, POS platforms, and full-stack applications.',
+            'I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
         creator: '@jlsonon',
     },
 };

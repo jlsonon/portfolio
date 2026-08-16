@@ -1,7 +1,6 @@
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
-import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface Props {
     index: number;
@@ -17,20 +16,7 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
             onMouseEnter={() => onMouseEnter(project.slug)}
             onFocus={() => onMouseEnter(project.slug)}
         >
-            {/* Mobile & Tablet Card View (Shown under 1024px) */}
-            <div className="lg:hidden rounded-2xl overflow-hidden border border-border/50 bg-background-light/50 shadow-lg mb-4">
-                <div className="relative w-full aspect-[16/10] overflow-hidden bg-background">
-                    <Image
-                        src={project.thumbnail}
-                        alt={`${project.title} screenshot`}
-                        fill
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
-
-            {/* Desktop Row & Content */}
+            {/* Desktop & Mobile Row Content */}
             <div className="flex gap-4 sm:gap-6 items-start">
                 <div className="font-anton text-muted-foreground/60 text-lg sm:text-2xl pt-1 tracking-wider shrink-0">
                     {String(index + 1).padStart(2, '0')}.
@@ -58,6 +44,24 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                             View Case Study →
                         </span>
                     </div>
+
+                    {/* Problem -> Outcome Micro Summary */}
+                    {project.problem && project.outcomes && project.outcomes.length > 0 && (
+                        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground/90 bg-background-light/30 rounded-xl p-3 border border-border/30">
+                            <div className="flex items-start gap-1.5">
+                                <AlertCircle size={13} className="text-amber-400/80 shrink-0 mt-0.5" />
+                                <span className="line-clamp-1 sm:line-clamp-2">
+                                    <strong className="text-foreground/90">Problem:</strong> {project.problem}
+                                </span>
+                            </div>
+                            <div className="flex items-start gap-1.5">
+                                <CheckCircle2 size={13} className="text-emerald-400 shrink-0 mt-0.5" />
+                                <span className="line-clamp-1 sm:line-clamp-2">
+                                    <strong className="text-foreground/90">Outcome:</strong> {project.outcomes[0]}
+                                </span>
+                            </div>
+                        </div>
+                    )}
 
                     <div className="mt-2.5 flex flex-wrap items-center gap-2 sm:gap-3 text-muted-foreground text-xs">
                         <span className="text-foreground/90 font-medium">

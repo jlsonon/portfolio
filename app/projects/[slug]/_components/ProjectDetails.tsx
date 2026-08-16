@@ -7,7 +7,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLenis } from 'lenis/react';
 import Image from 'next/image';
 
 interface Props {
@@ -18,8 +19,17 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ProjectDetails = ({ project }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const lenis = useLenis();
     const [iframeBlocked, setIframeBlocked] = useState(false);
     const forceImagePreview = project.slug === 'prime-reviewer-ph';
+
+    // Immediately reset scroll to top on project mount
+    useEffect(() => {
+        if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo(0, 0);
+    }, [project.slug, lenis]);
 
     const currentIndex = PROJECTS.findIndex((p) => p.slug === project.slug);
     const prevProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null;
@@ -120,6 +130,21 @@ const ProjectDetails = ({ project }: Props) => {
                                         {project.userBase}
                                     </span>
                                 )}
+                            </div>
+                        )}
+
+                        {/* Key Operational Impact Metric */}
+                        {project.highlightMetric && (
+                            <div className="fade-in-later p-6 rounded-2xl bg-primary/10 border border-primary/30 flex items-start gap-3.5 shadow-md">
+                                <TrendingUp size={22} className="text-primary shrink-0 mt-0.5" />
+                                <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                                        Key Operational Impact
+                                    </p>
+                                    <p className="text-sm sm:text-base font-bold text-foreground mt-1 leading-snug">
+                                        {project.highlightMetric}
+                                    </p>
+                                </div>
                             </div>
                         )}
 

@@ -4,7 +4,7 @@ import { MY_STACK } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -12,21 +12,18 @@ import { cn } from '@/lib/utils';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const CATEGORY_NAMES: Record<string, string> = {
-    ai_engineering: 'AI Engineering & Agents',
-    business_solutions: 'Commercial & POS Solutions',
-    frontend: 'Frontend Engineering',
-    backend: 'Backend & APIs',
-    database: 'Databases & Storage',
-    tools: 'DevOps, Cloud & Tooling',
+    frontend: 'Frontend & UI Architecture',
+    backend: 'Backend Services & APIs',
+    database: 'Data & Real-Time Storage',
+    infrastructure: 'Cloud, Containers & Deployment',
 };
 
 const Skills = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({
-        ai_engineering: true,
-        business_solutions: true,
+        frontend: true,
+        backend: true,
     });
-    const totalSkills = Object.values(MY_STACK).flat().length;
 
     const toggleCategory = (categoryKey: string) => {
         setOpenCategories((prev) => ({
@@ -61,12 +58,18 @@ const Skills = () => {
     return (
         <section id="my-stack" ref={containerRef} className="pb-section pt-10">
             <div className="container">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border/30 mb-10">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border/30 mb-8">
                     <SectionTitle title="Technical Stack & Architecture" />
-                    <span className="text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20 self-start sm:self-auto">
-                        {totalSkills}+ Verified Tools & Frameworks
-                    </span>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-primary px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 self-start sm:self-auto">
+                        <ShieldCheck size={14} />
+                        <span>Chosen for Reliability, Not Trends</span>
+                    </div>
                 </div>
+
+                {/* Grounded Philosophy Subhead */}
+                <p className="text-sm sm:text-base text-muted-foreground max-w-3xl mb-10 leading-relaxed">
+                    I pick battle-tested tools with proven production stability, strong type safety, and active ecosystems. Every technology in this stack has been deployed in real client applications.
+                </p>
 
                 {/* 1. Mobile-Only: Collapsible Accordion List */}
                 <div className="sm:hidden space-y-3">
@@ -156,7 +159,7 @@ const Skills = () => {
                                             {displayName}
                                         </p>
                                         <p className="text-xs text-muted-foreground mt-1">
-                                            {value.length} production technologies
+                                            {value.length} core technologies
                                         </p>
                                     </div>
                                 </div>

@@ -2,12 +2,24 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useRef } from 'react';
+import { useLenis } from 'lenis/react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
 export default function Template({ children }: { children: React.ReactNode }) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const lenis = useLenis();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        // Reset scroll to top on route transition
+        if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo(0, 0);
+    }, [pathname, lenis]);
 
     useGSAP(
         () => {

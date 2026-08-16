@@ -3,7 +3,7 @@ import SectionTitle from '@/components/SectionTitle';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { Search, PenTool, Code2, Rocket, TrendingUp } from 'lucide-react';
+import { Search, PenTool, Code2, Rocket, RefreshCw } from 'lucide-react';
 import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -11,33 +11,33 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const STEPS = [
     {
         number: '01',
-        title: 'Discover & Scope',
-        description: 'Audit requirements, study actual staff/client bottlenecks, and architect the pragmatic solution.',
+        title: 'Map Physical Workflow',
+        description: 'Study how your business operates today: paper slips, logbooks, cash handling, and where staff lose time.',
         icon: Search,
     },
     {
         number: '02',
-        title: 'Design & Schema',
-        description: 'Wireframe core flows, design normalized database schemas, and establish the visual system.',
+        title: 'Design Schema & UI',
+        description: 'Design normalized database schemas, staff role permissions, and fast, touch-friendly screen wireframes.',
         icon: PenTool,
     },
     {
         number: '03',
         title: 'Full-Stack Build',
-        description: 'Engineer high-performance frontend interfaces, secure backend endpoints, and autonomous pipelines.',
+        description: 'Engineer responsive frontend interfaces, real-time cloud data sync, automated receipt engines, and secure APIs.',
         icon: Code2,
     },
     {
         number: '04',
         title: 'Deploy & Verify',
-        description: 'Launch on cloud infrastructure with zero-downtime, verify real transactions, and train operators.',
+        description: 'Launch on cloud infrastructure, verify real transactions and receipts, and ensure seamless staff onboarding.',
         icon: Rocket,
     },
     {
         number: '05',
-        title: 'Optimize & Scale',
-        description: 'Monitor real-world usage telemetry, iterate based on feedback, and add automated workflows.',
-        icon: TrendingUp,
+        title: 'Iterate & Automate',
+        description: 'Monitor daily operations telemetry, refine based on staff feedback, and automate remaining manual steps.',
+        icon: RefreshCw,
     },
 ];
 
@@ -73,7 +73,7 @@ const MyProcess = () => {
     return (
         <section className="py-section" id="my-process">
             <div className="container" ref={containerRef}>
-                <SectionTitle title="Engineering Process & Execution Roadmap" />
+                <SectionTitle title="How I Build Systems" />
 
                 <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
                     {STEPS.map((step, idx) => {

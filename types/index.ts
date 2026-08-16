@@ -31,6 +31,7 @@ export interface IProject {
     solution?: string;
     architecture?: string[];
     outcomes?: string[];
+    highlightMetric?: string;
 }
 
 export interface IExperience {

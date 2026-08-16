@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
-import { MoveUpRight, Layers } from 'lucide-react';
+import { MoveUpRight, Layers, X } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
@@ -95,7 +95,7 @@ const Navbar = () => {
                                 Jericho Sonon
                             </span>
                             <span className="text-[10px] text-muted-foreground -mt-1 hidden sm:block tracking-wider font-medium">
-                                Systems & Product Engineer
+                                Systems &amp; Product Engineer
                             </span>
                         </div>
                         <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-2">
@@ -161,14 +161,25 @@ const Navbar = () => {
                 )}
             >
                 <div>
+                    {/* Drawer Header */}
                     <div className="flex items-center justify-between pb-6 border-b border-border/30 mb-8">
                         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
                             <Layers size={14} />
                             <span>Navigation</span>
                         </div>
-                        <span className="text-xs text-muted-foreground font-mono">
-                            Jericho Sonon
-                        </span>
+                        <div className="flex items-center gap-3">
+                            <span className="text-xs text-muted-foreground font-mono">
+                                Jericho Sonon
+                            </span>
+                            {/* Mobile Only Sleek Circular Close Button */}
+                            <button
+                                onClick={() => setIsMenuOpen(false)}
+                                className="sm:hidden size-8 rounded-full bg-background border border-border/60 hover:border-primary/50 text-foreground hover:text-primary flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-sm"
+                                aria-label="Collapse drawer menu"
+                            >
+                                <X size={15} className="text-primary" />
+                            </button>
+                        </div>
                     </div>
 
                     <ul className="space-y-2">
@@ -200,7 +211,7 @@ const Navbar = () => {
                 <div className="pt-8 border-t border-border/30 mt-8 space-y-6">
                     <div>
                         <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
-                            Connect & Social
+                            Connect &amp; Social
                         </p>
                         <ul className="flex flex-wrap gap-2.5">
                             {SOCIAL_LINKS.map((link) => (

@@ -2,6 +2,7 @@ import AboutMe from './_components/AboutMe';
 import Banner from './_components/Banner';
 import Clients from './_components/Clients';
 import Services from './_components/Services';
+import WhoIBuildFor from './_components/WhoIBuildFor';
 import Experiences from './_components/Experiences';
 import Skills from './_components/Skills';
 import ProjectList from './_components/ProjectList';
@@ -16,6 +17,7 @@ export default function Home() {
             <ProjectList />
             <AboutMe />
             <Services />
+            <WhoIBuildFor />
             <Skills />
             <Experiences />
             <MyProcess />

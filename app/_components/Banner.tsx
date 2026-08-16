@@ -42,7 +42,7 @@ const Banner = () => {
     );
 
     const mailtoSubject = 'Project Inquiry: Custom Software Development';
-    const mailtoBody = "Hi Jericho,\n\nI'm reaching out about a software project:\n- Project Type (POS / Internal Tool / SaaS MVP / AI Automation): \n- Estimated Timeline: \n- Key Requirements & Goals: \n\nLooking forward to hearing from you!";
+    const mailtoBody = "Hi Jericho,\n\nI'm reaching out about a software project:\n- What we are currently doing manually: \n- What we want the system to do: \n- Target Timeline: \n\nLooking forward to speaking with you!";
 
     return (
         <section
@@ -73,9 +73,9 @@ const Banner = () => {
                     </div>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm">
-                        <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                        <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-primary">
-                            Available for Q3/Q4 Projects
+                            Software &amp; AI Systems Engineer
                         </span>
                     </div>
                 </div>
@@ -83,19 +83,22 @@ const Banner = () => {
                 {/* Headline: Strict 2-line Wide Typography */}
                 <div className="hero-item max-w-5xl mx-auto">
                     <h1 className="font-anton leading-[0.96] text-[clamp(2.5rem,5.8vw,5.5rem)] text-foreground tracking-tight">
-                        <span className="block">Full-Stack Systems</span>
-                        <span className="text-primary block mt-1.5">&amp; Product Engineer</span>
+                        <span className="block">Custom Business Systems</span>
+                        <span className="text-primary block mt-1.5">That Replace Manual Work.</span>
                     </h1>
                 </div>
 
                 {/* Subtext */}
                 <p className="hero-item max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed px-4">
-                    I&apos;m{' '}
-                    <span className="font-bold text-foreground">
-                        Jericho Sonon
-                    </span>
-                    . I engineer high-reliability business software, Point of Sale platforms, and autonomous AI pipelines that run real operations for commercial hubs and solo builders.
+                    I&apos;m <span className="font-bold text-foreground">Jericho Sonon</span>. I design and deploy software end-to-end: custom POS platforms, AI workflows, and web applications that replace the paper logbooks and messy spreadsheets your business currently runs on.
                 </p>
+
+                {/* Opinionated Builder Quote Pill */}
+                <div className="hero-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-light/60 border border-border/50 text-xs sm:text-sm text-foreground/80 font-medium italic">
+                    <span className="text-primary font-bold">“</span>
+                    Working software for real users, not portfolio-only mockups.
+                    <span className="text-primary font-bold">”</span>
+                </div>
 
                 {/* CTA Buttons */}
                 <div className="hero-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-2">
@@ -105,7 +108,7 @@ const Banner = () => {
                         variant="primary"
                         className="shadow-xl shadow-primary/20"
                     >
-                        <span>Discuss a Project</span>
+                        <span>Start a Project</span>
                         <ArrowUpRight size={16} />
                     </Button>
 
@@ -113,16 +116,16 @@ const Banner = () => {
                         href="/#selected-projects"
                         className="h-12 px-7 rounded-full text-sm font-semibold border border-border/60 hover:border-primary/50 text-foreground hover:text-primary transition-all duration-200 bg-background-light/40 flex items-center gap-2 active:scale-[0.97]"
                     >
-                        <span>Explore Case Studies</span>
-                        <span className="text-primary">→</span>
+                        <span>View Live Systems</span>
+                        <span className="text-primary">↓</span>
                     </Link>
                 </div>
 
                 {/* Authority Proof Bar */}
                 <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 border-t border-border/30 bg-background-light/20 sm:bg-transparent rounded-2xl sm:rounded-none p-4 sm:p-0">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">15+</p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Shipped Systems</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">5</p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Flagship Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary">10+</p>
@@ -133,8 +136,8 @@ const Banner = () => {
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Active Examinees</p>
                     </div>
                     <div className="text-center px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">4+</p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Years Building</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">100%</p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Solo Ownership</p>
                     </div>
                 </div>
 

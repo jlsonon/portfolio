@@ -2,10 +2,8 @@ import { IProject, IExperience, IService, IClient } from '@/types';
 
 export const GENERAL_INFO = {
     email: 'jlsonon12@gmail.com',
-
-    emailSubject: "Let's Build Something Useful",
-    emailBody: 'Send the project context, timeline, and the problem you want solved.',
-
+    emailSubject: "Let's Build a Custom System",
+    emailBody: 'Tell me what your business is currently doing manually, what isn\'t working, and your target timeline.',
     oldPortfolio: '',
     upworkProfile: '',
 };
@@ -17,29 +15,60 @@ export const SOCIAL_LINKS = [
     { name: 'facebook', url: 'https://www.facebook.com/jlsonon' },
 ];
 
+export const WHO_I_BUILD_FOR = [
+    {
+        icon: 'Dumbbell',
+        title: 'Gyms & Fitness Clubs',
+        tagline: 'Memberships, POS & Front-Desk Kiosks',
+        description: 'Sub-second QR athlete check-ins, automated subscription renewals, staff PIN security, and multi-branch revenue tracking.',
+        example: 'FitLocker (3 Deployed Branches)',
+    },
+    {
+        icon: 'Shirt',
+        title: 'Laundromats & Commercial Hubs',
+        tagline: 'Job Queues & Thermal QR Receipts',
+        description: 'Touch-friendly POS order entry, digital claim ticket lookup, thermal receipt generation, and end-of-day revenue reconciliation.',
+        example: 'Laundry POS (Commercial SaaS)',
+    },
+    {
+        icon: 'GraduationCap',
+        title: 'EdTech & Review Centers',
+        tagline: 'Timed Testing & Diagnostics',
+        description: 'Interactive licensure simulation engines, timed mock examinations, subject-specific weakness tracking, and student progress dashboards.',
+        example: 'Prime Reviewer PH (500+ Students)',
+    },
+    {
+        icon: 'Building2',
+        title: 'Founders & Growing Businesses',
+        tagline: 'Custom Portals & Full-Stack MVPs',
+        description: 'Bespoke customer portals, subscription billing, document clearance pipelines, and automated business workflows built around your team.',
+        example: 'BarangayConnect & MochiMoney',
+    },
+];
+
 export const CLIENTS: IClient[] = [
     {
         name: 'Playground Fitness',
-        category: 'Fitness & Athletic Facility',
-        description: 'Gym operations, membership tracking, and daily athlete workflow automation.',
+        category: 'Athletic Facility & Gym',
+        description: 'Front-desk operations, automated QR check-in kiosks, and membership subscription tracking.',
         badge: 'Commercial Client',
         location: 'Philippines',
         projectSlug: 'fitlocker',
-        metrics: 'Full Facility Operations Digitize',
+        metrics: 'Full Facility Operations Digitized',
     },
     {
         name: 'TrainFitness (Kamuning & Visayas)',
         category: 'Multi-Branch Fitness Club',
-        description: 'Multi-location branch administration, subscription billing, and member scheduling hub.',
+        description: 'Multi-location branch administration, subscription renewals, and front-desk collection audit trails.',
         badge: '2 Branches Deployed',
         location: 'Quezon City, Metro Manila',
         projectSlug: 'fitlocker',
-        metrics: 'Multi-Branch Synchronized',
+        metrics: '2 Branches Synchronized',
     },
     {
         name: 'BarangayConnect Communities',
         category: 'Digital Governance & Citizen Portal',
-        description: 'Citizen service portal, online clearances, and automated municipal incident tracking.',
+        description: 'Online clearance processing, automated incident ticketing, and community appointment scheduling.',
         badge: 'Citizen Portal',
         location: 'Philippines',
         projectSlug: 'barangayconnect',
@@ -49,55 +78,40 @@ export const CLIENTS: IClient[] = [
         name: 'Civil Service Exam Reviewers',
         category: 'EdTech & Licensure Prep',
         description: 'Nationwide examinee test simulator with diagnostic prediction and intelligent progress tracking.',
-        badge: '500+ Students',
+        badge: '500+ Active Examinees',
         location: 'Philippines',
         projectSlug: 'prime-reviewer-ph',
-        metrics: '500+ Active Aspirants',
+        metrics: '500+ Active Students',
     },
 ];
 
 export const MY_STACK = {
-    ai_engineering: [
-        { name: 'Codex', icon: '/icons/codex.svg' },
-        { name: 'Claude', icon: '/icons/claude.svg' },
-        { name: 'Antigravity', icon: '/icons/antigravity.svg' },
-    ],
-    business_solutions: [
-        { name: 'POS Systems', icon: '/icons/pos.svg' },
-        { name: 'SaaS Platforms', icon: '/icons/saas.svg' },
-        { name: 'Workflow Automation', icon: '/icons/automation.svg' },
-        { name: 'CRM & Ops Hubs', icon: '/icons/crm.svg' },
-    ],
     frontend: [
         { name: 'React', icon: '/icons/react.svg' },
         { name: 'Next.js', icon: '/icons/next-js.svg' },
         { name: 'Tailwind CSS', icon: '/icons/tailwind-css.svg' },
-        { name: 'Material UI', icon: '/icons/material-ui.svg' },
-        { name: 'Shadcn', icon: '/icons/shadcn.png' },
-        { name: 'Zod', icon: '/icons/zod.svg' },
-        { name: 'HTML5', icon: '/icons/html5.svg' },
-        { name: 'CSS3', icon: '/icons/css3.svg' },
         { name: 'Zustand', icon: '/icons/zustand.svg' },
+        { name: 'Shadcn UI', icon: '/icons/shadcn.png' },
+        { name: 'Zod', icon: '/icons/zod.svg' },
     ],
     backend: [
         { name: 'Node.js', icon: '/icons/node-js.svg' },
         { name: 'Express.js', icon: '/icons/express-js.svg' },
-        { name: 'Django', icon: '/icons/django.svg' },
         { name: 'FastAPI', icon: '/icons/fastapi.svg' },
+        { name: 'Django', icon: '/icons/django.svg' },
         { name: 'Firebase', icon: '/icons/firebase.svg' },
     ],
     database: [
         { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
+        { name: 'Cloud Firestore', icon: '/icons/firestore.svg' },
         { name: 'MongoDB', icon: '/icons/mongodb.svg' },
-        { name: 'MySQL', icon: '/icons/mysql.svg' },
         { name: 'Redis', icon: '/icons/redis.svg' },
-        { name: 'Firestore', icon: '/icons/firestore.svg' },
     ],
-    tools: [
-        { name: 'Git', icon: '/icons/git.svg' },
+    infrastructure: [
         { name: 'Docker', icon: '/icons/docker.svg' },
-        { name: 'Vercel', icon: '/icons/vercel.png' },
         { name: 'Google Cloud', icon: '/icons/google-cloud.svg' },
+        { name: 'Vercel', icon: '/icons/vercel.png' },
+        { name: 'Git', icon: '/icons/git.svg' },
     ],
 };
 
@@ -108,18 +122,26 @@ export const PROJECTS: IProject[] = [
         liveUrl: 'https://primereviewerph.online',
         year: 2026,
         category: 'saas',
-        clientName: '500+ Civil Service Review Students',
-        userBase: '500+ Examinees',
-        description: 'A comprehensive digital licensure examination platform engineered for Filipino students. Features dynamic mock diagnostic exams, step-by-step logic explanations, pass probability predictors, and individual analytics dashboards.',
+        clientName: 'Civil Service Review Students',
+        userBase: '500+ Active Examinees',
+        description: 'A comprehensive digital licensure examination platform engineered for Filipino students. Features timed diagnostic mock exams, subject-specific weakness tracking, passing probability predictors, and individual analytics dashboards.',
         role: 'Full-Stack Developer & Product Designer (Solo Builder)',
         techStack: ['Next.js', 'React', 'Tailwind CSS', 'PostgreSQL'],
         thumbnail: '/prime_reviewer.png',
         longThumbnail: '/prime_reviewer.png',
         images: ['/prime_reviewer.png'],
-        problem: 'Traditional civil service reviewers in the Philippines relied on physical paper booklets with outdated answer keys and no performance analytics to identify weak subject areas.',
-        solution: 'Built an interactive examination engine with timed diagnostic modes, category-based weakness tracking, and instant algorithmic score calculations.',
-        architecture: ['Next.js App Router for zero-latency static rendering', 'PostgreSQL for secure question banks and student response logs', 'Tailwind CSS with responsive mobile examination interface'],
-        outcomes: ['Trusted by 500+ active students preparing for nationwide civil service exams', 'Average student engagement of 45+ minutes per study session'],
+        problem: 'Civil Service examinees relied on paper booklets with outdated answer keys and no diagnostic analytics to identify weak subject areas before test day.',
+        solution: 'Engineered an interactive testing engine with timed simulation modes, category-based weakness tracking, and instant score calculations.',
+        highlightMetric: 'Engineered a timed testing engine adopted by 500+ Civil Service examinees with 99.9% uptime.',
+        architecture: [
+            'Next.js App Router for zero-latency static rendering and responsive mobile test taking',
+            'PostgreSQL for secure question banks and detailed student response logs',
+            'Tailwind CSS with high-contrast examination view and distraction-free testing layout'
+        ],
+        outcomes: [
+            'Adopted by 500+ active students preparing for nationwide Civil Service examinations',
+            'Average student engagement of 45+ minutes per practice session with real-time feedback'
+        ],
     },
     {
         title: 'Laundry POS',
@@ -128,17 +150,25 @@ export const PROJECTS: IProject[] = [
         year: 2026,
         category: 'business',
         clientName: 'Commercial Laundromat Hubs',
-        userBase: 'Multi-Branch Staff & Owners',
-        description: 'A multi-branch Point of Sale (POS) and operations management SaaS engineered for commercial laundromats. Features real-time revenue analytics, automated job queues, dynamic QR claim tickets, and customer CRM.',
+        userBase: 'Cashiers, Operators & Shop Owners',
+        description: 'A Point of Sale (POS) and operations management SaaS engineered for commercial laundromats. Features real-time multi-device order queues, dynamic QR claim tickets, customer CRM, and end-of-day revenue reconciliation.',
         role: 'Full-Stack Developer & Product Designer (Solo Builder)',
-        techStack: ['Next.js', 'React', 'Firebase', 'Tailwind CSS', 'Framer Motion', 'jsPDF'],
+        techStack: ['Next.js', 'React', 'Firebase', 'Tailwind CSS', 'jsPDF'],
         thumbnail: '/laundry_pos.png',
         longThumbnail: '/laundry_pos.png',
         images: ['/laundry_pos.png'],
-        problem: 'Commercial laundry shops struggled with manual paper receipts, lost claim tickets, untracked unpaid balances, and zero cross-branch revenue visibility.',
-        solution: 'Created an all-in-one POS dashboard with real-time Firebase order sync, automatic PDF receipt generation with dynamic QR tracking codes, and multi-branch management.',
-        architecture: ['Next.js & React for high-speed cashier terminal interface', 'Firebase Firestore for sub-second multi-device order synchronization', 'jsPDF & QR engine for instant thermal and PDF receipt generation'],
-        outcomes: ['Eliminated lost order slips with digital QR verification', 'Consolidated daily gross revenue, unpaid balances, and branch analytics in real time'],
+        problem: 'Commercial laundry shops struggled with lost paper claim tickets, untracked unpaid balances, and manual end-of-day cash reconciliation.',
+        solution: 'Built a high-speed touch POS with real-time Firebase order sync, instant thermal & PDF receipt generation with dynamic QR tracking codes, and multi-branch management.',
+        highlightMetric: 'Replaced paper receipt books with 2-second thermal QR receipts and automated end-of-day revenue reconciliation.',
+        architecture: [
+            'Next.js & React for high-speed touch-friendly cashier terminal interface',
+            'Firebase Firestore for sub-second multi-device order queue synchronization',
+            'jsPDF & QR engine for instant thermal and PDF receipt generation'
+        ],
+        outcomes: [
+            'Eliminated lost order slips with digital QR verification and instant customer search',
+            'Automated end-of-day gross revenue, unpaid balance tracking, and cash audit trails'
+        ],
     },
     {
         title: 'MochiMoney',
@@ -148,16 +178,24 @@ export const PROJECTS: IProject[] = [
         category: 'ai',
         clientName: 'Personal Finance Users',
         userBase: 'Active Web App Users',
-        description: 'A cozy, intelligent personal finance and smart budgeting companion app. Features on-device AI receipt scanning and automated expense categorization, interactive financial analytics, goal budgeting, and real-time cloud synchronization.',
+        description: 'An intelligent personal finance and smart budgeting companion app. Features on-device OCR receipt scanning, automated expense categorization, goal budgeting, and real-time cloud synchronization.',
         role: 'Full-Stack Developer & Product Designer (Solo Builder)',
         techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Firebase', 'Vite'],
         thumbnail: '/mochimoney.png',
         longThumbnail: '/mochimoney.png',
         images: ['/mochimoney.png'],
-        problem: 'Most budgeting applications are tedious to maintain, requiring cumbersome manual text entry for every daily purchase.',
-        solution: 'Integrated intelligent OCR receipt ingestion to extract totals, dates, and merchant names automatically, pairing it with delightful visual budgeting analytics.',
-        architecture: ['Client-side OCR processing for instant privacy-first receipt scanning', 'Zustand lightweight state store for zero-delay UI transitions', 'Firebase Cloud backend for cross-device synchronization'],
-        outcomes: ['Reduces receipt logging time from 45 seconds to under 4 seconds', 'Complete real-time monthly budget vs spend analytics'],
+        problem: 'Manual expense logging is tedious, causing most users to abandon personal budgeting apps within their first two weeks.',
+        solution: 'Integrated intelligent OCR receipt ingestion to extract merchant names, totals, and transaction dates in seconds, paired with clear visual spending analytics.',
+        highlightMetric: 'Reduced manual receipt logging time from 45 seconds to under 4 seconds with on-device OCR.',
+        architecture: [
+            'Client-side OCR processing for instant privacy-first receipt scanning',
+            'Zustand lightweight state store for zero-delay UI transitions',
+            'Firebase Cloud backend for cross-device synchronization'
+        ],
+        outcomes: [
+            'Cuts receipt logging time from 45 seconds to under 4 seconds',
+            'Complete real-time monthly budget vs spend analytics with zero data loss'
+        ],
     },
     {
         title: 'FitLocker',
@@ -167,14 +205,15 @@ export const PROJECTS: IProject[] = [
         category: 'business',
         clientName: 'Playground Fitness & TrainFitness (Kamuning & Visayas)',
         userBase: 'Gym Owners, Coaches, Front-Desk Staff & Members',
-        description: 'Gym operations command center engineered for commercial fitness facilities and multi-branch clubs. Brings real-time QR & PIN kiosk check-ins, automated member billing, coach shifts, lead funnels, and owner financial reports into one controlled workspace.',
+        description: 'Gym operations platform engineered for commercial athletic facilities and multi-branch clubs. Brings sub-second QR kiosk check-ins, automated membership renewal alerts, coach shift management, and cash collection audit trails into one controlled workspace.',
         role: 'Full-Stack Developer & Product Designer (Solo Builder)',
         techStack: ['React', 'Firebase', 'Tailwind CSS', 'Node.js', 'Cloud Firestore'],
         thumbnail: '/fitlocker.png',
         longThumbnail: '/fitlocker.png',
         images: ['/fitlocker.png'],
-        problem: 'Commercial gym operators like Playground Fitness and TrainFitness struggled with fragmented paper logbooks, untracked membership expirations, unauthorized facility access, and cash collection discrepancies at the front desk.',
-        solution: 'Architected FitLocker as a high-security gym operations hub featuring sub-second QR kiosk athlete check-ins, automated subscription renewal pipelines, staff PIN audit trails, and multi-branch revenue analytics.',
+        problem: 'Commercial gym operators struggled with paper logbooks, untracked membership expirations, unauthorized entry, and collection discrepancies at the front desk.',
+        solution: 'Architected FitLocker as a centralized gym operations hub with sub-second QR kiosk check-ins, automated subscription renewal pipelines, staff PIN audit trails, and multi-branch revenue analytics.',
+        highlightMetric: 'Synchronized member records, subscriptions, and QR check-ins across 3 commercial gym locations with 0 lost logs.',
         architecture: [
             'Real-time Firebase Firestore database for sub-second front-desk kiosk check-ins',
             'Role-based PIN security ensuring staff audit logs for all cash collections and discounts',
@@ -194,18 +233,19 @@ export const PROJECTS: IProject[] = [
         category: 'saas',
         clientName: 'Local Barangay Communities & Residents',
         userBase: 'Barangay Officials & Community Residents',
-        description: 'Digital governance platform that streamlines community services and brings government processes online. Enables residents to request clearances and permits with real-time tracking, file incident reports with resolution ticketing, book municipal appointments, and receive emergency broadcast notices.',
+        description: 'Digital governance platform that streamlines community services and brings municipal processes online. Enables residents to request clearances with real-time status tracking, submit incident tickets, book appointments, and receive public safety broadcasts.',
         role: 'Full-Stack Developer & Product Designer (Solo Builder)',
         techStack: ['React', 'Firebase', 'Tailwind CSS', 'Cloud Firestore', 'Vite'],
         thumbnail: '/barangayconnect.png',
         longThumbnail: '/barangayconnect.png',
         images: ['/barangayconnect.png'],
-        problem: 'Community residents faced long physical queues, paper bottlenecks, and multi-day waiting periods for basic barangay clearances, residency certificates, complaint submissions, and official notices.',
-        solution: 'Engineered an accessible digital governance web platform featuring online document requests, automated queue tracking, community incident ticketing, municipal appointment scheduling, and administrative analytics.',
+        problem: 'Community residents faced long physical queues and multi-day waiting periods for basic barangay clearances, residency certificates, and complaint submissions.',
+        solution: 'Engineered an accessible digital governance platform featuring online document requests, automated queue tracking, incident resolution ticketing, and municipal appointment scheduling.',
+        highlightMetric: 'Digitized community document clearances, reducing resident physical queue times from days to minutes.',
         architecture: [
             'React single-page architecture for fast and responsive mobile & desktop resident access',
             'Firebase Cloud Firestore for sub-second document queue workflows and instant status dispatch',
-            'Role-based administrative dashboard for barangay officers to review, approve, and track service turnaround times'
+            'Role-based administrative dashboard for barangay officers to review, approve, and track turnaround times'
         ],
         outcomes: [
             'Live web platform for community document processing, appointment booking, and incident reports',
@@ -217,46 +257,45 @@ export const PROJECTS: IProject[] = [
 
 export const MY_EXPERIENCE: IExperience[] = [
     {
-        title: 'Full-Stack & AI Solutions Consultant',
-        company: 'Freelance & Consulting',
+        title: 'Software & AI Systems Engineer',
+        company: 'Freelance & Independent Consulting',
         duration: '2021 - Present',
-        description: 'Architecting production-ready SaaS platforms, autonomous AI agent workflows (Codex, Claude, Antigravity), and custom business systems (POS, multi-branch operations, real-time analytics) for clients including Playground Fitness and TrainFitness.',
+        description: 'Architecting custom business platforms, POS systems, multi-branch operations dashboards, and web SaaS applications for commercial clients including Playground Fitness, TrainFitness, and laundromat hubs.',
     },
     {
         title: 'Product Engineer & Solo Builder',
         company: 'Independent SaaS Products',
         duration: '2023 - Present',
-        description: 'Engineered and shipped 15+ production systems and modules (including Laundry POS, MochiMoney, Prime Reviewer PH, FitLocker, BarangayConnect) with 10+ commercial deployments serving 500+ active examinees, multi-branch fitness facilities, and business owners.',
+        description: 'Engineered and shipped 5 flagship production systems with 10+ commercial deployments serving 500+ active examinees, fitness facilities, and business owners.',
     },
 ];
 
 export const SERVICES: IService[] = [
     {
         number: '01',
-        title: 'Full-Stack SaaS & MVP Development',
-        tagline: 'From Idea to Production in Weeks',
-        description: 'End-to-end design, frontend, backend, auth, database, and cloud deployment. Engineered with Next.js, React, and scalable architectures so your product is fast, secure, and ready for paying users.',
-        deliverables: ['Custom Next.js/React App', 'REST/GraphQL API & Database', 'Auth & Stripe/GCash Billing', 'Vercel/Cloud Deployment'],
+        title: 'Custom Business Systems & POS',
+        tagline: 'Replace Spreadsheets & Paper Logbooks',
+        description: 'Tailored Point of Sale, inventory management, multi-branch revenue analytics, and staff operation portals designed around how your business actually runs.',
+        deliverables: ['Custom Touch POS / Operations Hub', 'Multi-Branch Revenue Sync', 'Dynamic QR & PDF Receipts', 'Staff PIN Security & Cash Audit Trails'],
+        timeline: '2 – 4 Weeks',
+        badge: 'Core Focus',
+    },
+    {
+        number: '02',
+        title: 'SaaS Platforms & Web Applications',
+        tagline: 'From Problem to Production in Weeks',
+        description: 'End-to-end design, frontend UX, backend APIs, auth, database, and cloud deployment. Fast, secure web applications ready for real paying customers.',
+        deliverables: ['Custom Next.js/React Platform', 'Database & API Architecture', 'Auth & Stripe/GCash Billing', 'Vercel / Cloud Infrastructure'],
         timeline: '2 – 4 Weeks',
         badge: 'High Velocity',
     },
     {
-        number: '02',
-        title: 'AI Engineering & Autonomous Workflows',
-        tagline: 'Intelligent Systems That Save Hours',
-        description: 'Integration of LLMs, agent pipelines (Codex, Claude, Antigravity), on-device ML/OCR models, and custom data processing to automate complex business workflows and deliver AI-first user experiences.',
-        deliverables: ['LLM & Agent Pipelines', 'Document OCR & Parsing', 'Custom Knowledge Chatbots', 'Automated Business Logic'],
-        timeline: '1 – 3 Weeks',
-        badge: 'AI-First',
-    },
-    {
         number: '03',
-        title: 'Business Systems, POS & Internal Tools',
-        tagline: 'Custom Operations Built Around Your Flow',
-        description: 'Tailored Point of Sale, inventory management, multi-branch revenue analytics, and CRM portals that replace fragmented spreadsheets with automated, reliable digital hubs.',
-        deliverables: ['Multi-Branch POS / CRM', 'Real-Time Revenue Analytics', 'Dynamic QR & PDF Receipts', 'Role-Based Access Control'],
-        timeline: '2 – 5 Weeks',
-        badge: 'Enterprise Grade',
+        title: 'Workflow Automation & AI Systems',
+        tagline: 'Intelligent Workflows That Save Hours',
+        description: 'Automated document processing, OCR scanning pipelines, appointment queues, and custom business logic that eliminate repetitive manual data entry.',
+        deliverables: ['OCR & Document Parsing', 'Automated Renewal / Alert Pipelines', 'Customer CRM & Queue Systems', 'Third-Party API Integrations'],
+        timeline: '1 – 3 Weeks',
+        badge: 'High Impact',
     },
 ];
-

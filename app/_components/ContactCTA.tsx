@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PROJECT_TYPES = [
-    { id: 'pos', label: 'Commercial POS & Hub System' },
-    { id: 'saas', label: 'Full-Stack SaaS MVP' },
-    { id: 'ai', label: 'Autonomous AI Workflows' },
-    { id: 'internal', label: 'Custom Operations Portal' },
+    { id: 'pos', label: 'Custom Business System / POS' },
+    { id: 'saas', label: 'Full-Stack SaaS Platform / MVP' },
+    { id: 'internal', label: 'Operations Dashboard / Portal' },
+    { id: 'automation', label: 'Workflow Automation & AI' },
 ];
 
 const ContactCTA = () => {
@@ -48,7 +48,7 @@ const ContactCTA = () => {
 
     const activeTypeObj = PROJECT_TYPES.find((t) => t.id === selectedType) || PROJECT_TYPES[0];
     const mailtoSubject = `Project Inquiry: ${activeTypeObj.label}`;
-    const mailtoBody = `Hi Jericho,\n\nI'm reaching out regarding a project:\n- Project Domain: ${activeTypeObj.label}\n- Estimated Timeline: 2 – 6 Weeks\n- Overview / Key Requirements: \n\nLooking forward to discussing!`;
+    const mailtoBody = `Hi Jericho,\n\nI'm reaching out about building a software system:\n- Project Type: ${activeTypeObj.label}\n- What we are currently doing manually: \n- What we want the system to do: \n- Target Timeline: \n\nLooking forward to hearing your thoughts!`;
 
     return (
         <section className="py-section relative overflow-hidden" id="contact-cta">
@@ -61,28 +61,28 @@ const ContactCTA = () => {
                     <div className="cta-item inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
                         <span className="size-2 rounded-full bg-primary animate-pulse" />
                         <span className="text-[11px] sm:text-xs uppercase tracking-widest text-primary font-bold">
-                            Accepting New Engineering Projects & Consultations
+                            Open for New Projects &amp; Contracts
                         </span>
                     </div>
 
                     {/* Headline */}
                     <h2 className="cta-item text-3xl sm:text-5xl md:text-6xl font-anton leading-tight text-foreground tracking-tight">
-                        Have a system to engineer or
+                        Have a manual business process
                         <br />
                         <span className="text-primary">
-                            an operation to automate?
+                            worth turning into software?
                         </span>
                     </h2>
 
                     {/* Description */}
                     <p className="cta-item text-muted-foreground mt-4 max-w-xl mx-auto leading-relaxed text-sm sm:text-base">
-                        Select your project category below to formulate an executive brief, or connect directly. I will review and respond with a clear technical roadmap within 24 hours.
+                        Tell me what your business is currently doing manually, what isn&apos;t working, and your target timeline. I will review and respond with an honest assessment and actionable roadmap within 24 hours.
                     </p>
 
                     {/* Interactive Project Type Selector */}
                     <div className="cta-item mt-8 mb-8">
                         <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
-                            Select What You&apos;re Building:
+                            Select Your Project Focus:
                         </p>
                         <div className="flex flex-wrap justify-center gap-2">
                             {PROJECT_TYPES.map((type) => (
@@ -108,7 +108,7 @@ const ContactCTA = () => {
                             href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
                             className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary text-black rounded-full font-bold text-sm sm:text-base hover:bg-primary-hover shadow-xl shadow-primary/20 transition-all duration-200 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
                         >
-                            <span>Send Project Brief</span>
+                            <span>Start a Project</span>
                             <ArrowUpRight
                                 size={18}
                                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
@@ -148,15 +148,15 @@ const ContactCTA = () => {
                     <div className="cta-item flex flex-wrap items-center justify-center gap-6 sm:gap-8 mt-12 pt-8 border-t border-border/30 text-xs text-muted-foreground">
                         <div className="flex items-center gap-2 font-medium">
                             <ShieldCheck size={14} className="text-primary shrink-0" />
-                            <span>24-Hour Response Guarantee</span>
+                            <span>24-Hour Response Time</span>
                         </div>
                         <div className="flex items-center gap-2 font-medium">
                             <ShieldCheck size={14} className="text-primary shrink-0" />
-                            <span>Milestone-Driven Production Delivery</span>
+                            <span>Milestone-Driven Delivery</span>
                         </div>
                         <div className="flex items-center gap-2 font-medium">
                             <ShieldCheck size={14} className="text-primary shrink-0" />
-                            <span>100% Architecture & Source Ownership</span>
+                            <span>100% Architecture &amp; Code Ownership</span>
                         </div>
                     </div>
                 </div>
