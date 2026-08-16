@@ -1,22 +1,22 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
-import { MoveUpRight, Sparkles } from 'lucide-react';
+import { MoveUpRight, Layers } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const COLORS = [
-    'bg-amber-500 text-black',
-    'bg-indigo-500 text-white',
-    'bg-emerald-500 text-white',
-    'bg-violet-500 text-white',
-    'bg-sky-500 text-white',
-    'bg-fuchsia-500 text-white',
-    'bg-cyan-500 text-white',
-    'bg-rose-500 text-white',
+const RAINBOW_COLORS = [
+    'bg-amber-500',
+    'bg-indigo-500',
+    'bg-emerald-500',
+    'bg-violet-500',
+    'bg-sky-500',
+    'bg-fuchsia-500',
+    'bg-cyan-500',
+    'bg-rose-500',
 ];
 
 const MENU_LINKS = [
@@ -163,10 +163,10 @@ const Navbar = () => {
                 <div>
                     <div className="flex items-center justify-between pb-6 border-b border-border/30 mb-8">
                         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
-                            <Sparkles size={14} />
-                            Navigation
+                            <Layers size={14} />
+                            <span>Navigation</span>
                         </div>
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs text-muted-foreground font-mono">
                             Jericho Sonon
                         </span>
                     </div>
@@ -176,13 +176,13 @@ const Navbar = () => {
                             <li key={link.name}>
                                 <button
                                     onClick={() => handleNavClick(link.url)}
-                                    className="w-full group text-left text-xl sm:text-2xl font-anton tracking-wide py-2.5 px-3 rounded-xl flex items-center justify-between hover:bg-background/80 transition-all text-foreground/90 hover:text-primary cursor-pointer active:scale-[0.98]"
+                                    className="w-full group text-left text-xl sm:text-2xl font-anton tracking-wide py-2.5 px-3.5 rounded-xl flex items-center justify-between hover:bg-background/80 transition-all text-foreground/90 hover:text-primary cursor-pointer active:scale-[0.98]"
                                 >
-                                    <span className="flex items-center gap-3">
+                                    <span className="flex items-center gap-3.5">
                                         <span
                                             className={cn(
-                                                'size-2.5 rounded-full transition-all duration-300 group-hover:scale-150',
-                                                COLORS[idx % COLORS.length]
+                                                'size-2.5 rounded-full transition-all duration-300 group-hover:scale-150 shadow-sm shrink-0',
+                                                RAINBOW_COLORS[idx % RAINBOW_COLORS.length]
                                             )}
                                         />
                                         <span>{link.name}</span>

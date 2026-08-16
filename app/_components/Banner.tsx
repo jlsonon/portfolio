@@ -121,12 +121,12 @@ const Banner = () => {
                 {/* Authority Proof Bar */}
                 <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 border-t border-border/30 bg-background-light/20 sm:bg-transparent rounded-2xl sm:rounded-none p-4 sm:p-0">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">5</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">15+</p>
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Shipped Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">3</p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Gym Deployments</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">10+</p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Commercial Deployments</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary">500+</p>

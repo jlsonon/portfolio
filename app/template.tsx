@@ -2,33 +2,30 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useRef } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
 export default function Template({ children }: { children: React.ReactNode }) {
-    useGSAP(() => {
-        const tl = gsap.timeline();
+    const containerRef = useRef<HTMLDivElement>(null);
 
-        tl.to('.page-transition--inner', {
-            yPercent: 0,
-            duration: 0.2,
-        })
-            .to('.page-transition--inner', {
-                yPercent: -100,
-                duration: 0.2,
-            })
-            .to('.page-transition', {
-                yPercent: -100,
-            });
-    });
-
-    return (
-        <div>
-            <div className="page-transition fixed inset-0 bg-background-light z-[50] pointer-events-none">
-                <div className="page-transition--inner fixed inset-0 bg-primary z-[50] translate-y-full pointer-events-none"></div>
-            </div>
-
-            {children}
-        </div>
+    useGSAP(
+        () => {
+            if (!containerRef.current) return;
+            gsap.fromTo(
+                containerRef.current,
+                { opacity: 0.94, y: 8 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    clearProps: 'all',
+                }
+            );
+        },
+        { scope: containerRef }
     );
+
+    return <div ref={containerRef}>{children}</div>;
 }

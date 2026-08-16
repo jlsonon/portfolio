@@ -6,7 +6,7 @@ import { PROJECTS } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, Sparkles, Terminal } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal } from 'lucide-react';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 
@@ -197,7 +197,7 @@ const ProjectDetails = ({ project }: Props) => {
                         {project.outcomes && project.outcomes.length > 0 && (
                             <div className="fade-in-later p-7 rounded-3xl bg-background-light/60 border border-primary/25 shadow-md">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
-                                    <Sparkles size={15} />
+                                    <TrendingUp size={15} />
                                     <span>Verified Production Outcomes</span>
                                 </div>
                                 <ul className="space-y-2.5">

@@ -3,7 +3,7 @@ import SectionTitle from '@/components/SectionTitle';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { MapPin, Sparkles, Terminal, ShieldCheck, Zap } from 'lucide-react';
+import { MapPin, Compass, Terminal, ShieldCheck, Zap } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 
@@ -11,9 +11,9 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const QUICK_FACTS = [
     { label: 'Years Building', value: '4+', sub: 'Production software' },
-    { label: 'Shipped Systems', value: '5', sub: 'Live web & POS apps' },
+    { label: 'Shipped Systems', value: '15+', sub: 'Live web & POS apps' },
     { label: 'Active Examinees', value: '500+', sub: 'Civil Service review' },
-    { label: 'Commercial Deployments', value: '3+', sub: 'Gyms & Laundromat hubs' },
+    { label: 'Commercial Deployments', value: '10+', sub: 'Businesses, Gyms & Hubs' },
 ];
 
 const SPECIALIZATIONS = [
@@ -112,7 +112,7 @@ const AboutMe = () => {
                     <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-6">
                         <div>
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
-                                <Sparkles size={14} />
+                                <Compass size={14} />
                                 <span>Who I Am</span>
                             </div>
                             <p className="text-sm sm:text-base text-foreground/90 leading-relaxed">

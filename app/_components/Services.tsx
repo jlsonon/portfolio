@@ -4,12 +4,12 @@ import { GENERAL_INFO, SERVICES } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { CheckCircle2, Clock, ArrowUpRight, Sparkles, Layers, Cpu } from 'lucide-react';
+import { CheckCircle2, Clock, ArrowUpRight, Layers, Cpu, Boxes } from 'lucide-react';
 import React, { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const ICONS = [Layers, Cpu, Sparkles];
+const ICONS = [Layers, Cpu, Boxes];
 
 const Services = () => {
     const containerRef = useRef<HTMLDivElement>(null);

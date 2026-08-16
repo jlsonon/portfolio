@@ -226,7 +226,7 @@ export const MY_EXPERIENCE: IExperience[] = [
         title: 'Product Engineer & Solo Builder',
         company: 'Independent SaaS Products',
         duration: '2023 - Present',
-        description: 'Engineered and shipped 5 complete digital products (Laundry POS, MochiMoney, Prime Reviewer PH, FitLocker, BarangayConnect) serving 500+ active students, multi-branch fitness facilities, and commercial business owners.',
+        description: 'Engineered and shipped 15+ production systems and modules (including Laundry POS, MochiMoney, Prime Reviewer PH, FitLocker, BarangayConnect) with 10+ commercial deployments serving 500+ active examinees, multi-branch fitness facilities, and business owners.',
     },
 ];
 
