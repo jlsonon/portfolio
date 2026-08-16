@@ -1,21 +1,22 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
-import { MoveUpRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { MoveUpRight, Sparkles } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const COLORS = [
+    'bg-amber-500 text-black',
     'bg-indigo-500 text-white',
-    'bg-violet-500 text-white',
     'bg-emerald-500 text-white',
+    'bg-violet-500 text-white',
     'bg-sky-500 text-white',
     'bg-fuchsia-500 text-white',
     'bg-cyan-500 text-white',
-    'bg-amber-500 text-white',
+    'bg-rose-500 text-white',
 ];
 
 const MENU_LINKS = [
@@ -31,30 +32,74 @@ const MENU_LINKS = [
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const router = useRouter();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Close menu on route change
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
+
+    const handleNavClick = (url: string) => {
+        setIsMenuOpen(false);
+        if (url.startsWith('/#')) {
+            if (pathname === '/') {
+                const targetId = url.replace('/#', '');
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+            }
+        }
+        router.push(url);
+    };
 
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-50 w-full bg-background/90 backdrop-blur-md border-b border-border/30 transition-all duration-200">
-                <div className="flex items-center justify-between px-5 md:px-10 py-3.5 max-w-7xl mx-auto">
+            <header
+                className={cn(
+                    'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300',
+                    isScrolled
+                        ? 'bg-background/85 backdrop-blur-xl border-b border-border/40 py-3 shadow-lg shadow-black/20'
+                        : 'bg-background/50 backdrop-blur-md border-b border-transparent py-4'
+                )}
+            >
+                <div className="flex items-center justify-between px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
                     {/* Brand / Logo */}
                     <button
                         onClick={() => router.push('/')}
-                        className="flex items-center gap-2.5 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1"
+                        className="flex items-center gap-3 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl p-1"
                         aria-label="Go home"
-                    >   
-                        <Image 
-                            src="/icon.svg" 
-                            alt="JS Logo" 
-                            width={36}
-                            height={36}
-                            className="size-9 object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
-                        />
-                        <span className="font-anton text-lg tracking-wide hidden sm:block text-foreground/80 group-hover:text-primary transition-colors duration-300">
-                            jlsonon
-                        </span>
-                        <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-2">
-                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    >
+                        <div className="relative size-9 rounded-xl overflow-hidden border border-border/60 bg-background-light p-1 group-hover:border-primary/60 transition-colors">
+                            <Image
+                                src="/icon.svg"
+                                alt="JS Logo"
+                                width={32}
+                                height={32}
+                                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="flex flex-col text-left">
+                            <span className="font-anton text-lg tracking-wide text-foreground group-hover:text-primary transition-colors duration-200">
+                                Jericho Sonon
+                            </span>
+                            <span className="text-[10px] text-muted-foreground -mt-1 hidden sm:block tracking-wider font-medium">
+                                Systems & Product Engineer
+                            </span>
+                        </div>
+                        <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-2">
+                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             Available
                         </span>
                     </button>
@@ -63,135 +108,130 @@ const Navbar = () => {
                     <div className="flex items-center gap-3">
                         <Link
                             href="/#contact-cta"
-                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-primary/10 hover:bg-primary text-primary hover:text-black border border-primary/30 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-primary text-black hover:bg-primary-hover shadow-sm hover:shadow-md hover:shadow-primary/20 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
                         >
                             <span>Let&apos;s Talk</span>
                             <MoveUpRight size={13} />
                         </Link>
 
                         <button
-                            className={cn('group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/50 border border-border/40 hover:border-primary/40 hover:bg-background-light transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none')}
+                            className={cn(
+                                'group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/60 border border-border/50 hover:border-primary/50 hover:bg-background-light transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]'
+                            )}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
+                            aria-expanded={isMenuOpen}
                         >
                             <span
                                 className={cn(
-                                    'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 -translate-y-[5px]',
+                                    'inline-block w-5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 -translate-y-[4px]',
                                     {
-                                        'rotate-45 -translate-y-1/2': isMenuOpen,
-                                        'md:group-hover:rotate-12': !isMenuOpen,
-                                    },
+                                        'rotate-45 -translate-y-1/2 bg-primary': isMenuOpen,
+                                    }
                                 )}
-                            ></span>
+                            />
                             <span
                                 className={cn(
-                                    'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 translate-y-[5px]',
+                                    'inline-block w-5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 translate-y-[4px]',
                                     {
-                                        '-rotate-45 -translate-y-1/2': isMenuOpen,
-                                        'md:group-hover:-rotate-12': !isMenuOpen,
-                                    },
+                                        '-rotate-45 -translate-y-1/2 bg-primary': isMenuOpen,
+                                    }
                                 )}
-                            ></span>
+                            />
                         </button>
                     </div>
                 </div>
             </header>
 
+            {/* Backdrop overlay */}
             <div
                 className={cn(
-                    'overlay fixed inset-0 z-[2] bg-black/70 transition-all duration-150',
-                    {
-                        'opacity-0 invisible pointer-events-none': !isMenuOpen,
-                    },
+                    'fixed inset-0 z-[55] bg-black/70 backdrop-blur-sm transition-opacity duration-300',
+                    isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
                 )}
                 onClick={() => setIsMenuOpen(false)}
-            ></div>
+            />
 
-            <div
+            {/* Slide-out Drawer */}
+            <aside
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-all duration-700 z-[3] overflow-hidden gap-y-14',
-                    'flex flex-col lg:justify-center py-10',
-                    { 
-                        'translate-x-0 opacity-100 visible pointer-events-auto': isMenuOpen,
-                        'opacity-0 invisible pointer-events-none': !isMenuOpen,
-                    },
+                    'fixed top-0 right-0 h-[100dvh] w-[420px] max-w-[calc(100vw-2rem)] transform transition-transform duration-500 ease-out z-[60] overflow-y-auto',
+                    'bg-background-light/95 backdrop-blur-2xl border-l border-border/50 shadow-2xl p-6 sm:p-10 flex flex-col justify-between',
+                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 )}
             >
-                <div
-                    className={cn(
-                        'fixed inset-0 scale-150 translate-x-1/2 rounded-[50%] bg-background-light duration-700 delay-150 z-[-1] border-l border-primary/20',
-                        {
-                            'translate-x-0': isMenuOpen,
-                        },
-                    )}
-                ></div>
+                <div>
+                    <div className="flex items-center justify-between pb-6 border-b border-border/30 mb-8">
+                        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
+                            <Sparkles size={14} />
+                            Navigation
+                        </div>
+                        <span className="text-xs text-muted-foreground">
+                            Jericho Sonon
+                        </span>
+                    </div>
 
-                <div className="grow flex md:items-center w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <div className="flex gap-10 lg:justify-between max-lg:flex-col w-full">
-                        <div className="max-lg:order-2">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
-                                SOCIAL
-                            </p>
-                            <ul className="space-y-3">
-                                {SOCIAL_LINKS.map((link) => (
-                                    <li key={link.name}>
-                                        <a
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="text-lg capitalize hover:underline flex items-center gap-3 group/link"
-                                        >
-                                            <SocialIcon name={link.name} size={20} className="text-muted-foreground group-hover/link:text-foreground transition-colors" />
-                                            {link.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
-                                MENU
-                            </p>
-                            <ul className="space-y-3">
-                                {MENU_LINKS.map((link, idx) => (
-                                    <li key={link.name}>
-                                        <button
-                                            onClick={() => {
-                                                router.push(link.url);
-                                                setIsMenuOpen(false);
-                                            }}
-                                            className="group text-xl flex items-center gap-3"
-                                        >
-                                            <span
-                                                className={cn(
-                                                    'size-3.5 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-[200%] transition-all',
-                                                    COLORS[idx],
-                                                )}
-                                            >
-                                                <MoveUpRight
-                                                    size={8}
-                                                    className="scale-0 group-hover:scale-100 transition-all"
-                                                />
-                                            </span>
-                                            {link.name}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <ul className="space-y-2">
+                        {MENU_LINKS.map((link, idx) => (
+                            <li key={link.name}>
+                                <button
+                                    onClick={() => handleNavClick(link.url)}
+                                    className="w-full group text-left text-xl sm:text-2xl font-anton tracking-wide py-2.5 px-3 rounded-xl flex items-center justify-between hover:bg-background/80 transition-all text-foreground/90 hover:text-primary cursor-pointer active:scale-[0.98]"
+                                >
+                                    <span className="flex items-center gap-3">
+                                        <span
+                                            className={cn(
+                                                'size-2.5 rounded-full transition-all duration-300 group-hover:scale-150',
+                                                COLORS[idx % COLORS.length]
+                                            )}
+                                        />
+                                        <span>{link.name}</span>
+                                    </span>
+                                    <MoveUpRight
+                                        size={16}
+                                        className="text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary transition-all"
+                                    />
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="pt-8 border-t border-border/30 mt-8 space-y-6">
+                    <div>
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                            Connect & Social
+                        </p>
+                        <ul className="flex flex-wrap gap-2.5">
+                            {SOCIAL_LINKS.map((link) => (
+                                <li key={link.name}>
+                                    <a
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="px-3 py-1.5 rounded-lg bg-background/60 border border-border/40 hover:border-primary/40 text-xs text-muted-foreground hover:text-primary transition-all flex items-center gap-2"
+                                    >
+                                        <SocialIcon name={link.name} size={14} />
+                                        <span className="capitalize">{link.name}</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
+                            Direct Inquiry
+                        </p>
+                        <a
+                            href={`mailto:${GENERAL_INFO.email}`}
+                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors block truncate"
+                        >
+                            {GENERAL_INFO.email}
+                        </a>
                     </div>
                 </div>
-
-                <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Get in Touch</p>
-                    <a
-                        href={`mailto:${GENERAL_INFO.email}`}
-                        className="text-foreground hover:text-primary transition-colors duration-200"
-                    >
-                        {GENERAL_INFO.email}
-                    </a>
-                </div>
-            </div>
+            </aside>
         </>
     );
 };

@@ -1,42 +1,44 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, ArrowLeft } from 'lucide-react';
+import { Home, ArrowUpRight } from 'lucide-react';
 
 export default function NotFound() {
     return (
-        <div className="min-h-[100svh] flex flex-col items-center justify-center text-center px-6 gap-8">
-            {/* Big 404 */}
-            <p className="text-[clamp(6rem,20vw,14rem)] font-anton leading-none text-primary/20 select-none">
+        <main className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative overflow-hidden">
+            {/* Ambient gold glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/[0.07] blur-[120px] rounded-full pointer-events-none -z-10" />
+
+            {/* Big 404 Display */}
+            <p className="text-[clamp(6rem,22vw,15rem)] font-anton leading-none text-primary/15 select-none tracking-tighter">
                 404
             </p>
 
-            <div className="space-y-3 -mt-6">
-                <h1 className="text-3xl sm:text-4xl font-anton text-foreground">
-                    Page not found
+            <div className="space-y-3 -mt-8 max-w-md mx-auto">
+                <h1 className="text-3xl sm:text-5xl font-anton text-foreground tracking-tight">
+                    Page Not Found
                 </h1>
-                <p className="text-muted-foreground max-w-sm mx-auto text-base">
-                    This URL doesn&apos;t exist. You might have mistyped it, or
-                    the page may have been moved.
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                    The route or system resource you requested could not be located. It may have been relocated or updated.
                 </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-3.5 justify-center mt-2">
                 <Link
                     href="/"
-                    className="h-11 px-6 bg-primary text-primary-foreground rounded-full text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
+                    className="h-12 px-7 bg-primary text-black rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-primary-hover shadow-xl shadow-primary/20 transition-all duration-200 active:scale-[0.97]"
                 >
                     <Home size={16} />
-                    Back to Home
+                    <span>Return to Home</span>
                 </Link>
                 <Link
                     href="/#selected-projects"
-                    className="h-11 px-6 border border-border/50 rounded-full text-sm font-medium flex items-center gap-2 hover:border-primary hover:text-primary transition-colors"
+                    className="h-12 px-7 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 bg-background-light/40 transition-all duration-200 active:scale-[0.97]"
                 >
-                    <ArrowLeft size={16} />
-                    View Projects
+                    <span>View Projects</span>
+                    <ArrowUpRight size={16} />
                 </Link>
             </div>
-        </div>
+        </main>
     );
 }

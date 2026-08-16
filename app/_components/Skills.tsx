@@ -12,19 +12,19 @@ import { cn } from '@/lib/utils';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const CATEGORY_NAMES: Record<string, string> = {
-    ai_engineering: 'AI Engineering',
-    business_solutions: 'Business Solutions',
-    frontend: 'Frontend',
-    backend: 'Backend',
-    database: 'Database',
-    tools: 'Tools & DevOps',
+    ai_engineering: 'AI Engineering & Agents',
+    business_solutions: 'Commercial & POS Solutions',
+    frontend: 'Frontend Engineering',
+    backend: 'Backend & APIs',
+    database: 'Databases & Storage',
+    tools: 'DevOps, Cloud & Tooling',
 };
 
 const Skills = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    // On mobile: default AI Engineering open, others collapsible
     const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({
         ai_engineering: true,
+        business_solutions: true,
     });
     const totalSkills = Object.values(MY_STACK).flat().length;
 
@@ -37,49 +37,39 @@ const Skills = () => {
 
     useGSAP(
         () => {
-            const slideUpEl =
-                containerRef.current?.querySelectorAll('.slide-up');
-
-            if (!slideUpEl?.length) return;
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',
-                    end: 'bottom 80%',
-                    scrub: 0.5,
-                },
-            });
-
-            tl.fromTo(
-                '.slide-up',
+            gsap.fromTo(
+                '.skill-block',
+                { y: 30, opacity: 0 },
                 {
-                    autoAlpha: 0,
-                    y: 40,
-                },
-                {
-                    autoAlpha: 1,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
                     y: 0,
-                    ease: 'none',
-                    stagger: 0.4,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    clearProps: 'all',
                 }
             );
         },
-        { scope: containerRef },
+        { scope: containerRef }
     );
 
     return (
         <section id="my-stack" ref={containerRef} className="pb-section pt-10">
             <div className="container">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                    <SectionTitle title="My Stack" />
-                    <span className="text-xs text-muted-foreground hidden sm:block">
-                        {totalSkills}+ Technologies & Frameworks
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border/30 mb-10">
+                    <SectionTitle title="Technical Stack & Architecture" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20 self-start sm:self-auto">
+                        {totalSkills}+ Verified Tools & Frameworks
                     </span>
                 </div>
 
-                {/* 1. Mobile-Only: Vertical Collapsible Accordion List */}
-                <div className="sm:hidden mt-8 space-y-3">
+                {/* 1. Mobile-Only: Collapsible Accordion List */}
+                <div className="sm:hidden space-y-3">
                     {Object.entries(MY_STACK).map(([key, items]) => {
                         const isOpen = !!openCategories[key];
                         const categoryName = CATEGORY_NAMES[key] || key.replace(/_/g, ' ');
@@ -90,13 +80,13 @@ const Skills = () => {
                                 className={cn(
                                     'rounded-2xl border transition-all duration-200 overflow-hidden',
                                     isOpen
-                                        ? 'border-primary/40 bg-background-light/70 shadow-sm'
+                                        ? 'border-primary/40 bg-background-light/80 shadow-md'
                                         : 'border-border/40 bg-background-light/40 hover:border-border/70'
                                 )}
                             >
                                 <button
                                     onClick={() => toggleCategory(key)}
-                                    className="w-full p-4 flex items-center justify-between text-left transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                                    className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.99]"
                                     aria-expanded={isOpen}
                                 >
                                     <div className="flex items-center gap-3">
@@ -106,16 +96,16 @@ const Skills = () => {
                                                 isOpen ? 'bg-primary' : 'bg-muted-foreground/40'
                                             )}
                                         />
-                                        <span className="text-base font-semibold text-foreground">
+                                        <span className="text-sm font-bold text-foreground">
                                             {categoryName}
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2.5">
-                                        <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-background border border-border/40 text-muted-foreground font-medium">
+                                        <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-background border border-border/40 text-muted-foreground font-semibold">
                                             {items.length} tools
                                         </span>
                                         <ChevronDown
-                                            size={16}
+                                            size={15}
                                             className={cn(
                                                 'text-muted-foreground transition-transform duration-200',
                                                 isOpen && 'rotate-180 text-primary'
@@ -141,7 +131,7 @@ const Skills = () => {
                                                             className="size-6 object-contain"
                                                         />
                                                     </div>
-                                                    <span className="text-xs font-medium text-foreground/90 leading-tight">
+                                                    <span className="text-xs font-semibold text-foreground/90 leading-tight">
                                                         {item.name}
                                                     </span>
                                                 </div>
@@ -154,38 +144,46 @@ const Skills = () => {
                     })}
                 </div>
 
-                {/* 2. Desktop & Tablet: Full Category Grid */}
-                <div className="hidden sm:block space-y-20 mt-16">
-                    {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12 relative" key={key}>
-                            <div className="sm:col-span-4 relative">
-                                <p className="slide-up text-3xl sm:text-4xl md:text-5xl font-anton leading-tight text-muted-foreground uppercase sm:sticky sm:top-28 mb-4 sm:mb-0 break-words">
-                                    {key.replace(/_/g, ' ')}
-                                </p>
-                            </div>
-                            <div className="sm:col-span-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {value.map((item) => (
-                                    <div
-                                        className="slide-up group flex flex-col justify-center items-center gap-3 p-5 rounded-2xl bg-background-light border border-border/40 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:-translate-y-1 text-center"
-                                        key={item.name}
-                                    >
-                                        <div className="p-3 bg-background rounded-xl border border-border/30 group-hover:shadow-sm transition-all duration-300 flex items-center justify-center size-14 md:size-16">
-                                            <Image
-                                                src={item.icon}
-                                                alt={item.name}
-                                                width={40}
-                                                height={40}
-                                                className="size-8 md:size-10 object-contain group-hover:scale-110 transition-transform duration-300"
-                                            />
-                                        </div>
-                                        <span className="text-sm md:text-base font-medium text-foreground/80 group-hover:text-primary transition-colors duration-300">
-                                            {item.name}
-                                        </span>
+                {/* 2. Desktop & Tablet: Sticky Category Layout */}
+                <div className="hidden sm:block space-y-16">
+                    {Object.entries(MY_STACK).map(([key, value]) => {
+                        const displayName = CATEGORY_NAMES[key] || key.replace(/_/g, ' ');
+                        return (
+                            <div className="skill-block grid sm:grid-cols-12 relative gap-6 pt-4" key={key}>
+                                <div className="sm:col-span-4 relative">
+                                    <div className="sm:sticky sm:top-28">
+                                        <p className="text-2xl lg:text-3xl font-anton leading-tight text-foreground tracking-tight break-words">
+                                            {displayName}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                            {value.length} production technologies
+                                        </p>
                                     </div>
-                                ))}
+                                </div>
+                                <div className="sm:col-span-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+                                    {value.map((item) => (
+                                        <div
+                                            className="group flex flex-col justify-center items-center gap-2.5 p-4 rounded-2xl bg-background-light/50 border border-border/40 hover:border-primary/50 hover:bg-background-light/90 transition-all duration-200 hover:-translate-y-1 text-center cursor-default active:scale-95 shadow-sm"
+                                            key={item.name}
+                                        >
+                                            <div className="p-2.5 bg-background rounded-xl border border-border/30 group-hover:border-primary/40 group-hover:shadow-sm transition-all duration-200 flex items-center justify-center size-12 md:size-14">
+                                                <Image
+                                                    src={item.icon}
+                                                    alt={item.name}
+                                                    width={36}
+                                                    height={36}
+                                                    className="size-7 md:size-8 object-contain group-hover:scale-105 transition-transform duration-200"
+                                                />
+                                            </div>
+                                            <span className="text-xs md:text-sm font-semibold text-foreground/85 group-hover:text-primary transition-colors">
+                                                {item.name}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

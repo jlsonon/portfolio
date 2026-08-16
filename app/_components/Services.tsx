@@ -1,10 +1,10 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
-import { SERVICES } from '@/lib/data';
+import { GENERAL_INFO, SERVICES } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { CheckCircle2, Clock, ArrowRight, Sparkles, Layers, Cpu } from 'lucide-react';
+import { CheckCircle2, Clock, ArrowUpRight, Sparkles, Layers, Cpu } from 'lucide-react';
 import React, { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -19,7 +19,7 @@ const Services = () => {
             gsap.fromTo(
                 '.service-card',
                 {
-                    y: 40,
+                    y: 35,
                     opacity: 0,
                 },
                 {
@@ -31,48 +31,51 @@ const Services = () => {
                     y: 0,
                     opacity: 1,
                     duration: 0.6,
-                    stagger: 0.15,
-                    ease: 'power2.out',
+                    stagger: 0.12,
+                    ease: 'power3.out',
                     clearProps: 'all',
                 }
             );
         },
-        { scope: containerRef },
+        { scope: containerRef }
     );
 
     return (
         <section className="py-section" id="services" ref={containerRef}>
             <div className="container">
-                <SectionTitle title="What I Build" />
+                <SectionTitle title="Core Capabilities & What I Build" />
 
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {SERVICES.map((service, idx) => {
                         const ServiceIcon = ICONS[idx % ICONS.length];
+                        const mailtoSubject = `Inquiry: ${service.title}`;
+                        const mailtoBody = `Hi Jericho,\n\nI'm interested in working together on:\n- Service: ${service.title} (${service.tagline})\n- Target Timeline: ${service.timeline}\n- Key Features Needed:\n\nLet's connect!`;
+
                         return (
                             <div
                                 key={service.number}
-                                className="service-card group relative flex flex-col justify-between p-8 rounded-2xl border border-border/40 bg-background-light/40 backdrop-blur-sm hover:border-primary/50 hover:bg-primary/[0.03] transition-all duration-300 hover:-translate-y-1.5"
+                                className="service-card group relative flex flex-col justify-between p-8 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/5"
                             >
                                 {/* Header */}
                                 <div>
                                     <div className="flex items-center justify-between gap-4 mb-6">
                                         <div className="flex items-center gap-3">
-                                            <div className="size-11 rounded-xl bg-background border border-border/40 flex items-center justify-center text-primary group-hover:scale-110 group-hover:border-primary/40 transition-all duration-300">
+                                            <div className="size-12 rounded-2xl bg-background border border-border/40 flex items-center justify-center text-primary group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300 shadow-sm">
                                                 <ServiceIcon size={22} />
                                             </div>
-                                            <span className="font-anton text-muted-foreground/60 text-lg">
+                                            <span className="font-anton text-muted-foreground/50 text-xl">
                                                 {service.number}
                                             </span>
                                         </div>
-                                        <span className="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary">
                                             {service.badge}
                                         </span>
                                     </div>
 
-                                    <h3 className="text-2xl font-anton leading-tight text-foreground group-hover:text-primary transition-colors duration-300">
+                                    <h3 className="text-2xl sm:text-3xl font-anton leading-tight text-foreground group-hover:text-primary transition-colors duration-200">
                                         {service.title}
                                     </h3>
-                                    <p className="text-xs text-primary/80 font-medium tracking-wide mt-1.5 uppercase">
+                                    <p className="text-xs text-primary font-semibold tracking-wider mt-1.5 uppercase">
                                         {service.tagline}
                                     </p>
 
@@ -82,11 +85,11 @@ const Services = () => {
 
                                     {/* Deliverables List */}
                                     <div className="mt-6 pt-6 border-t border-border/30 space-y-2.5">
-                                        <p className="text-xs uppercase tracking-widest text-foreground/60 font-semibold mb-3">
-                                            Key Deliverables
+                                        <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold mb-3">
+                                            Production Deliverables
                                         </p>
                                         {service.deliverables.map((item) => (
-                                            <div key={item} className="flex items-center gap-2.5 text-xs text-foreground/80">
+                                            <div key={item} className="flex items-center gap-2.5 text-xs text-foreground/85">
                                                 <CheckCircle2 size={14} className="text-primary shrink-0" />
                                                 <span>{item}</span>
                                             </div>
@@ -97,15 +100,15 @@ const Services = () => {
                                 {/* Footer Timeline & Action */}
                                 <div className="mt-8 pt-6 border-t border-border/30 flex items-center justify-between gap-4">
                                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                        <Clock size={14} className="text-primary/70" />
-                                        <span>Est. {service.timeline}</span>
+                                        <Clock size={14} className="text-primary/80" />
+                                        <span className="font-medium">Est. {service.timeline}</span>
                                     </div>
                                     <a
-                                        href="#contact-cta"
-                                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground group-hover:text-primary transition-colors"
+                                        href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
+                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-background border border-border/50 text-xs font-bold text-foreground group-hover:border-primary group-hover:text-primary group-hover:bg-primary/5 transition-all duration-200 active:scale-95"
                                     >
                                         <span>Inquire</span>
-                                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                        <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                     </a>
                                 </div>
                             </div>

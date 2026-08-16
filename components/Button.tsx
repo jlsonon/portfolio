@@ -3,10 +3,10 @@ import React, { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
 import { Variant } from '@/types';
 import { cn } from '@/lib/utils';
 
-const Child = ({ icon }: any) => (
-    <span className="flex items-center justify-center gap-3">
+const Spinner = ({ icon }: { icon?: boolean }) => (
+    <span className="inline-flex items-center justify-center gap-2">
         <svg
-            className="animate-spin h-5 w-5 text-white"
+            className="animate-spin size-4 text-current"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -18,14 +18,14 @@ const Child = ({ icon }: any) => (
                 r="10"
                 stroke="currentColor"
                 strokeWidth="4"
-            ></circle>
+            />
             <path
                 className="opacity-75"
                 fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
+            />
         </svg>
-        {!icon && 'Processing...'}
+        {!icon && <span className="text-xs font-semibold uppercase tracking-wider">Processing...</span>}
     </span>
 );
 
@@ -37,12 +37,12 @@ type Props = {
     icon?: boolean;
     children: ReactNode | ReactNode[];
     className?: string;
-    variant?: Variant;
+    variant?: Variant | 'outline' | 'ghost';
 } & (ComponentProps<typeof Link> | ButtonProps);
 
 const Button = ({
     loading,
-    variant,
+    variant = 'primary',
     className,
     children,
     as = 'link',
@@ -50,27 +50,24 @@ const Button = ({
     ...rest
 }: Props) => {
     const variantClasses = {
-        primary: `bg-primary text-primary-foreground  hover:bg-primary-hover`,
-        secondary: `bg-secondary text-secondary-foreground hover:bg-secondary-hover`,
-        success: `bg-green-500 text-white hover:bg-green-600`,
-        warning: `bg-orange-500 text-white hover:bg-orange-600`,
-        danger: `bg-destructive text-destructive-foreground hover:bg-destructive/70`,
-        info: `bg-blue-500 text-white hover:bg-blue-600`,
-        light: `bg-background-active text-foreground hover:bg-background-active`,
-        dark: `bg-foreground text-background hover:bg-foreground/80`,
-        link: `text-foreground hover:text-primary`,
+        primary: 'bg-primary text-black hover:bg-primary-hover shadow-lg shadow-primary/20 border border-primary/30',
+        secondary: 'bg-secondary text-black hover:bg-secondary-hover shadow-lg shadow-secondary/20 border border-secondary/30',
+        outline: 'bg-background-light/40 text-foreground border border-border/60 hover:border-primary/50 hover:text-primary hover:bg-background-light',
+        ghost: 'bg-transparent text-foreground hover:text-primary hover:bg-background-light/40',
+        success: 'bg-emerald-500 text-black hover:bg-emerald-400 shadow-lg shadow-emerald-500/20',
+        warning: 'bg-orange-500 text-white hover:bg-orange-400',
+        danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/80',
+        info: 'bg-sky-500 text-white hover:bg-sky-400',
+        light: 'bg-foreground text-background hover:bg-foreground/90',
+        dark: 'bg-background-light text-foreground border border-border/50 hover:border-primary/40',
+        link: 'text-foreground hover:text-primary underline-offset-4 hover:underline p-0 h-auto bg-transparent',
         'no-color': '',
-    }[variant || 'primary'];
+    }[variant] || 'bg-primary text-black hover:bg-primary-hover';
 
-    const iconClasses = cn(
-        'min-w-9 aspect-square text-xl p-0 inline-flex items-center justify-center rounded-md',
+    const baseClasses = cn(
+        'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 ease-out cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]',
+        icon ? 'size-11 p-0' : 'h-12 px-7 text-sm',
         variantClasses,
-    );
-
-    const buttonClasses = cn(
-        `group h-12 px-8 inline-flex justify-center items-center gap-2 text-lg uppercase font-anton tracking-widest outline-none transition-colors relative overflow-hidden`,
-        variantClasses,
-        { [iconClasses]: icon },
         className,
     );
 
@@ -80,44 +77,28 @@ const Button = ({
         if (props.target === '_blank') {
             return (
                 <a
-                    className={buttonClasses}
+                    className={baseClasses}
                     {...props}
                     href={props.href.toString() || '#'}
                 >
-                    {variant !== 'link' && (
-                        <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                    )}
-                    <span className="z-[1]">
-                        {loading ? <Child icon={icon} /> : children}
-                    </span>
+                    {loading ? <Spinner icon={icon} /> : children}
                 </a>
             );
         }
 
         return (
-            <Link className={buttonClasses} {...props} href={props.href || '#'}>
-                {variant !== 'link' && (
-                    <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                )}
-                <span className="z-[1]">
-                    {loading ? <Child icon={icon} /> : children}
-                </span>
+            <Link className={baseClasses} {...props} href={props.href || '#'}>
+                {loading ? <Spinner icon={icon} /> : children}
             </Link>
         );
-    } else if (as === 'button') {
-        const props = rest as ButtonProps;
-
-        return (
-            <button className={buttonClasses} {...props}>
-                {variant !== 'link' && (
-                    <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                )}
-                <span className="z-[1]">
-                    {loading ? <Child icon={icon} /> : children}
-                </span>
-            </button>
-        );
     }
+
+    const props = rest as ButtonProps;
+    return (
+        <button className={baseClasses} disabled={loading || props.disabled} {...props}>
+            {loading ? <Spinner icon={icon} /> : children}
+        </button>
+    );
 };
 
 export default Button;

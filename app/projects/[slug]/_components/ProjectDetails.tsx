@@ -1,13 +1,12 @@
 'use client';
 import parse from 'html-react-parser';
-import ArrowAnimation from '@/components/ArrowAnimation';
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
 import { PROJECTS } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, Sparkles, Terminal } from 'lucide-react';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 
@@ -32,231 +31,212 @@ const ProjectDetails = ({ project }: Props) => {
 
             gsap.set('.fade-in-later', {
                 autoAlpha: 0,
-                y: 30,
+                y: 25,
             });
             const tl = gsap.timeline({
-                delay: 0.5,
+                delay: 0.3,
             });
 
             tl.to('.fade-in-later', {
                 autoAlpha: 1,
                 y: 0,
-                stagger: 0.1,
+                stagger: 0.08,
+                duration: 0.6,
+                ease: 'power3.out',
+                clearProps: 'all',
             });
         },
-        { scope: containerRef },
-    );
-
-    // blur info div and make it smaller on scroll
-    useGSAP(
-        () => {
-            if (window.innerWidth < 992) return;
-
-            gsap.to('#info', {
-                filter: 'blur(3px)',
-                autoAlpha: 0,
-                scale: 0.9,
-                scrollTrigger: {
-                    trigger: '#info',
-                    start: 'bottom bottom',
-                    end: 'bottom top',
-                    pin: true,
-                    pinSpacing: false,
-                    scrub: 0.5,
-                },
-            });
-        },
-        { scope: containerRef },
+        { scope: containerRef }
     );
 
     return (
-        <section className="pt-5 pb-20">
+        <section className="pt-6 pb-24 relative overflow-hidden">
+            {/* Ambient radial wash */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-primary/[0.05] blur-[120px] rounded-full pointer-events-none -z-10" />
+
             <div className="container" ref={containerRef}>
+                {/* Back to Home Breadcrumb */}
                 <TransitionLink
                     back
                     href="/"
-                    className="mb-12 inline-flex gap-2 items-center group h-10 text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg px-1"
+                    className="mb-8 inline-flex items-center gap-2 group h-10 text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg px-1 active:scale-95"
                 >
                     <ArrowLeft
-                        size={18}
-                        className="group-hover:-translate-x-1 transition-transform duration-300"
+                        size={16}
+                        className="group-hover:-translate-x-1 transition-transform duration-200 text-primary"
                     />
-                    <span className="text-sm">Back to home</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider">Back to All Systems</span>
                 </TransitionLink>
 
-                <div
-                    className="top-0 min-h-[calc(100svh-100px)] flex"
-                    id="info"
-                >
-                    <div className="relative w-full">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 max-w-[800px] mx-auto border-b border-border/40 pb-8">
-                            <div>
-                                <p className="fade-in-later text-xs font-semibold uppercase tracking-widest text-primary/70 mb-3 flex items-center gap-3">
-                                    Project — {project.year}
-                                    {project.status === 'ongoing' && (
-                                        <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] border border-primary/20 flex items-center gap-1.5 font-medium">
-                                            <span className="size-1.5 rounded-full bg-primary animate-pulse" /> In Development
-                                        </span>
-                                    )}
-                                </p>
-                                <h1 className="fade-in-later text-4xl md:text-6xl font-anton leading-none">
-                                    {project.title}
-                                </h1>
+                <div className="max-w-4xl mx-auto">
+                    {/* Header Block */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-8 border-b border-border/40">
+                        <div>
+                            <div className="fade-in-later flex items-center gap-3 mb-3">
+                                <span className="text-xs font-bold uppercase tracking-widest text-primary">
+                                    Case Study — {project.year}
+                                </span>
+                                {project.status === 'ongoing' && (
+                                    <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-[10px] border border-primary/25 flex items-center gap-1.5 font-bold">
+                                        <span className="size-1.5 rounded-full bg-primary animate-pulse" /> Active Development
+                                    </span>
+                                )}
                             </div>
+                            <h1 className="fade-in-later text-4xl sm:text-5xl md:text-6xl font-anton leading-tight text-foreground tracking-tight">
+                                {project.title}
+                            </h1>
+                        </div>
 
-                            <div className="fade-in-later flex gap-3 shrink-0 mt-2">
-                                {project.sourceCode && (
-                                    <a
-                                        href={project.sourceCode}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="h-10 px-5 border border-border/50 rounded-full flex items-center justify-center gap-2 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-sm font-medium"
-                                    >
-                                        <Github size={18} />
-                                        <span className="hidden sm:inline">Source Code</span>
-                                    </a>
+                        <div className="fade-in-later flex flex-wrap gap-3 shrink-0">
+                            {project.liveUrl && project.liveUrl !== '#' && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="h-11 px-6 bg-primary text-black rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
+                                >
+                                    <span>Visit Live App</span>
+                                    <ArrowUpRight size={16} />
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Main Content Sections */}
+                    <div className="space-y-10 pb-16">
+                        {/* Client & Production Deployment Context */}
+                        {project.clientName && (
+                            <div className="fade-in-later p-5 rounded-2xl bg-background-light/50 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                                <div>
+                                    <p className="text-[10px] uppercase font-bold tracking-widest text-primary">
+                                        Commercial Deployment & Client
+                                    </p>
+                                    <p className="text-base font-bold text-foreground mt-0.5">
+                                        {project.clientName}
+                                    </p>
+                                </div>
+                                {project.userBase && (
+                                    <span className="text-xs px-3.5 py-1 rounded-full bg-background border border-border/50 text-foreground/90 font-semibold self-start sm:self-auto">
+                                        {project.userBase}
+                                    </span>
                                 )}
-                                {project.liveUrl && project.liveUrl !== '#' && (
-                                    <a
-                                        href={project.liveUrl}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="h-10 px-6 border border-border/50 rounded-full flex items-center justify-center gap-2 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-sm font-medium"
+                            </div>
+                        )}
+
+                        {/* Tech Stack Matrix */}
+                        <div className="fade-in-later">
+                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                                Technology Stack & Libraries
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                {project.techStack.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="text-xs font-semibold border border-border/50 rounded-xl px-3.5 py-1.5 text-foreground/90 bg-background-light/60 hover:border-primary/40 transition-colors"
                                     >
-                                        <span>Visit Site</span>
-                                        <ExternalLink size={18} />
-                                    </a>
-                                )}
+                                        {tech}
+                                    </span>
+                                ))}
                             </div>
                         </div>
 
-                        <div className="max-w-[800px] space-y-10 pb-20 mx-auto">
-                            {/* Client & Deployment Context */}
-                            {project.clientName && (
-                                <div className="fade-in-later p-4 rounded-xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                    <div>
-                                        <p className="text-[10px] uppercase font-bold tracking-widest text-primary">Client & Deployment</p>
-                                        <p className="text-sm font-semibold text-foreground">{project.clientName}</p>
-                                    </div>
-                                    {project.userBase && (
-                                        <span className="text-xs px-3 py-1 rounded-full bg-background-light border border-border text-muted-foreground self-start sm:self-auto">
-                                            {project.userBase}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
+                        {/* Project Overview */}
+                        <div className="fade-in-later">
+                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                                Executive Overview
+                            </p>
+                            <div className="text-base sm:text-lg text-muted-foreground leading-relaxed prose-invert markdown-text">
+                                {parse(project.description)}
+                            </div>
+                        </div>
 
-                            <div className="fade-in-later">
-                                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                    Tech Stack
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.techStack.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="text-xs border border-border/50 rounded-full px-3.5 py-1 text-foreground/80 bg-background-light/40"
-                                        >
-                                            {tech}
-                                        </span>
+                        {/* Structured Problem & Solution Case Study */}
+                        {project.problem && project.solution && (
+                            <div className="fade-in-later grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div className="p-6 rounded-3xl bg-background-light/40 border border-red-500/20 shadow-sm">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-red-400 mb-2.5 flex items-center gap-2">
+                                        <ShieldAlert size={15} className="text-red-400 shrink-0" />
+                                        <span>The Operational Problem</span>
+                                    </p>
+                                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                        {project.problem}
+                                    </p>
+                                </div>
+
+                                <div className="p-6 rounded-3xl bg-background-light/40 border border-emerald-500/20 shadow-sm">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2.5 flex items-center gap-2">
+                                        <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+                                        <span>The Engineered Solution</span>
+                                    </p>
+                                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                        {project.solution}
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Architecture Decisions */}
+                        {project.architecture && project.architecture.length > 0 && (
+                            <div className="fade-in-later p-7 rounded-3xl bg-background-light/40 border border-border/40 shadow-sm">
+                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                                    <Terminal size={15} />
+                                    <span>Key Architectural Decisions</span>
+                                </div>
+                                <ul className="space-y-3">
+                                    {project.architecture.map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-foreground/90">
+                                            <span className="size-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                                            <span className="leading-relaxed">{item}</span>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
+                        )}
 
+                        {/* Verified Outcomes */}
+                        {project.outcomes && project.outcomes.length > 0 && (
+                            <div className="fade-in-later p-7 rounded-3xl bg-background-light/60 border border-primary/25 shadow-md">
+                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                                    <Sparkles size={15} />
+                                    <span>Verified Production Outcomes</span>
+                                </div>
+                                <ul className="space-y-2.5">
+                                    {project.outcomes.map((outcome, idx) => (
+                                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground font-medium">
+                                            <CheckCircle2 size={15} className="text-primary shrink-0 mt-0.5" />
+                                            <span className="leading-relaxed">{outcome}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Role & Responsibilities */}
+                        {project.role && (
                             <div className="fade-in-later">
-                                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                    Project Overview
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                                    Engineering Scope & Role
                                 </p>
-                                <div className="text-base sm:text-lg text-muted-foreground leading-relaxed prose-xl markdown-text">
-                                    {parse(project.description)}
+                                <div className="text-foreground/85 text-sm leading-relaxed">
+                                    {parse(project.role)}
                                 </div>
                             </div>
-
-                            {/* Structured Problem & Solution Case Study */}
-                            {project.problem && project.solution && (
-                                <div className="fade-in-later grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="p-5 rounded-2xl bg-background-light/30 border border-border/40">
-                                        <p className="text-xs font-bold uppercase tracking-wider text-red-400/90 mb-2 flex items-center gap-1.5">
-                                            <span className="size-2 rounded-full bg-red-400" />
-                                            The Problem
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                                            {project.problem}
-                                        </p>
-                                    </div>
-
-                                    <div className="p-5 rounded-2xl bg-background-light/30 border border-border/40">
-                                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-2 flex items-center gap-1.5">
-                                            <span className="size-2 rounded-full bg-emerald-400" />
-                                            The Engineered Solution
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                                            {project.solution}
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Architecture Decisions */}
-                            {project.architecture && project.architecture.length > 0 && (
-                                <div className="fade-in-later">
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                        Key Architectural Decisions
-                                    </p>
-                                    <ul className="space-y-2.5">
-                                        {project.architecture.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-foreground/80">
-                                                <span className="size-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {/* Verified Outcomes */}
-                            {project.outcomes && project.outcomes.length > 0 && (
-                                <div className="fade-in-later p-5 rounded-2xl bg-background-light/50 border border-primary/20">
-                                    <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
-                                        Verified Business Outcomes
-                                    </p>
-                                    <ul className="space-y-2">
-                                        {project.outcomes.map((outcome, idx) => (
-                                            <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground">
-                                                <span className="text-primary font-bold">✓</span>
-                                                <span>{outcome}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {project.role && (
-                                <div className="fade-in-later">
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                        My Role & Responsibilities
-                                    </p>
-                                    <div className="text-foreground/80 text-sm leading-relaxed">
-                                        {parse(project.role)}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        <ArrowAnimation />
+                        )}
                     </div>
                 </div>
 
+                {/* High-Fidelity Browser Mockup Frame */}
                 <div
-                    className="fade-in-later relative flex flex-col max-w-[1280px] mx-auto w-full aspect-[16/10] overflow-hidden rounded-xl border border-border/60 bg-background-light shadow-2xl"
+                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-2xl border border-border/60 bg-background-light/95 shadow-2xl mt-4"
                     id="images"
                 >
                     {/* Browser chrome frame */}
                     <div className="flex items-center gap-2 px-4 py-3 bg-background border-b border-border/40 shrink-0">
-                        <span className="size-3 rounded-full bg-red-500/70" />
-                        <span className="size-3 rounded-full bg-yellow-500/70" />
-                        <span className="size-3 rounded-full bg-green-500/70" />
-                        <div className="flex-1 mx-4 bg-background-light rounded-md px-4 py-1.5 flex items-center justify-center">
-                            <p className="text-xs text-muted-foreground truncate font-medium tracking-wide">
+                        <span className="size-3 rounded-full bg-red-500/80" />
+                        <span className="size-3 rounded-full bg-yellow-500/80" />
+                        <span className="size-3 rounded-full bg-green-500/80" />
+                        <div className="flex-1 mx-4 bg-background-light rounded-md px-4 py-1 flex items-center justify-center">
+                            <p className="text-xs text-muted-foreground truncate font-mono">
                                 {project.liveUrl?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
                             </p>
                         </div>
@@ -264,20 +244,18 @@ const ProjectDetails = ({ project }: Props) => {
 
                     <div className="relative flex-1 w-full bg-background overflow-hidden">
                         {project.liveUrl && !forceImagePreview && !iframeBlocked ? (
-                            <>
-                                <iframe
-                                    src={project.liveUrl}
-                                    title={`${project.title} live preview`}
-                                    className="w-full h-full border-none bg-white absolute inset-0"
-                                    loading="lazy"
-                                    sandbox="allow-scripts allow-same-origin"
-                                    onError={() => setIframeBlocked(true)}
-                                />
-                            </>
+                            <iframe
+                                src={project.liveUrl}
+                                title={`${project.title} live preview`}
+                                className="w-full h-full border-none bg-white absolute inset-0"
+                                loading="lazy"
+                                sandbox="allow-scripts allow-same-origin"
+                                onError={() => setIframeBlocked(true)}
+                            />
                         ) : project.images.length > 0 || project.thumbnail ? (
                             <Image
                                 src={project.images[0] || project.thumbnail}
-                                alt={`${project.title} website preview`}
+                                alt={`${project.title} interface preview`}
                                 fill
                                 className="object-cover object-top"
                                 unoptimized
@@ -291,18 +269,18 @@ const ProjectDetails = ({ project }: Props) => {
                 </div>
             </div>
 
-            {/* Previous / Next navigation */}
+            {/* Previous / Next Navigation Rail */}
             <div className="border-t border-border/30 mt-20">
                 <div className="container py-10 flex items-center justify-between gap-6">
                     {prevProject ? (
                         <TransitionLink
                             href={`/projects/${prevProject.slug}`}
-                            className="group flex flex-col gap-1 text-left"
+                            className="group flex flex-col gap-1 text-left active:scale-95"
                         >
-                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">
-                                ← Previous
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors flex items-center gap-1">
+                                <ChevronLeft size={14} /> Previous Case Study
                             </span>
-                            <span className="font-anton text-xl group-hover:text-primary transition-colors">
+                            <span className="font-anton text-xl sm:text-2xl text-foreground group-hover:text-primary transition-colors">
                                 {prevProject.title}
                             </span>
                         </TransitionLink>
@@ -313,12 +291,12 @@ const ProjectDetails = ({ project }: Props) => {
                     {nextProject ? (
                         <TransitionLink
                             href={`/projects/${nextProject.slug}`}
-                            className="group flex flex-col gap-1 text-right"
+                            className="group flex flex-col gap-1 text-right active:scale-95"
                         >
-                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">
-                                Next →
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors flex items-center justify-end gap-1">
+                                Next Case Study <ChevronRight size={14} />
                             </span>
-                            <span className="font-anton text-xl group-hover:text-primary transition-colors">
+                            <span className="font-anton text-xl sm:text-2xl text-foreground group-hover:text-primary transition-colors">
                                 {nextProject.title}
                             </span>
                         </TransitionLink>

@@ -144,7 +144,6 @@ export const PROJECTS: IProject[] = [
         title: 'MochiMoney',
         slug: 'mochimoney',
         liveUrl: 'https://mochimoney.online',
-        sourceCode: 'https://github.com/jlsonon/budget',
         year: 2026,
         category: 'ai',
         clientName: 'Personal Finance Users',

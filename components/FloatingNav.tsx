@@ -1,81 +1,216 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { useLenis } from 'lenis/react';
 import { cn } from '@/lib/utils';
 
-const SECTIONS = [
-    { id: 'banner', name: 'Home' },
-    { id: 'selected-projects', name: 'Projects' },
-    { id: 'about-me', name: 'About' },
-    { id: 'services', name: 'Services' },
-    { id: 'my-stack', name: 'Stack' },
-    { id: 'my-experience', name: 'Experience' },
-    { id: 'my-process', name: 'Process' },
-    { id: 'contact-cta', name: 'Contact' },
+interface SectionItem {
+    id: string;
+    name: string;
+    shortName: string;
+    number: string;
+}
+
+const SECTIONS: SectionItem[] = [
+    { id: 'banner', name: 'Overview', shortName: 'Hero', number: '01' },
+    { id: 'trusted-by', name: 'Deployments', shortName: 'Clients', number: '02' },
+    { id: 'selected-projects', name: 'Selected Systems', shortName: 'Projects', number: '03' },
+    { id: 'about-me', name: 'Engineering Philosophy', shortName: 'About', number: '04' },
+    { id: 'services', name: 'Services & Scope', shortName: 'Services', number: '05' },
+    { id: 'my-stack', name: 'Technical Stack', shortName: 'Stack', number: '06' },
+    { id: 'my-experience', name: 'Track Record', shortName: 'Experience', number: '07' },
+    { id: 'my-process', name: 'Engineering Roadmap', shortName: 'Process', number: '08' },
+    { id: 'contact-cta', name: 'Start Consultation', shortName: 'Contact', number: '09' },
 ];
 
+const BUTTON_HEIGHT = 38; // px per section slot
+const PADDING_OFFSET = 8; // container padding top
+
 export default function FloatingNav() {
-    const [activeSection, setActiveSection] = useState('banner');
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [isDynamicLabelVisible, setIsDynamicLabelVisible] = useState(false);
+    const lenis = useLenis();
+    const isClickingRef = useRef(false);
+    const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const dynamicFadeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Trigger dynamic fade when entering a new section
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-                });
-            },
-            { rootMargin: '-40% 0px -40% 0px' }
-        );
+        setIsDynamicLabelVisible(true);
+        if (dynamicFadeTimerRef.current) clearTimeout(dynamicFadeTimerRef.current);
 
-        SECTIONS.forEach((section) => {
-            const element = document.getElementById(section.id);
-            if (element) observer.observe(element);
-        });
+        dynamicFadeTimerRef.current = setTimeout(() => {
+            setIsDynamicLabelVisible(false);
+        }, 1800);
 
-        return () => observer.disconnect();
+        return () => {
+            if (dynamicFadeTimerRef.current) clearTimeout(dynamicFadeTimerRef.current);
+        };
+    }, [activeIndex]);
+
+    const handleScroll = useCallback(() => {
+        if (isClickingRef.current) return;
+
+        // 1. Precise page scroll progress
+        const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalScrollable > 0) {
+            const progress = (window.scrollY / totalScrollable) * 100;
+            setScrollProgress(Math.min(100, Math.max(0, progress)));
+        }
+
+        // 2. Near page bottom: lock to final Contact section
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+            setActiveIndex(SECTIONS.length - 1);
+            return;
+        }
+
+        // 3. Natural eye-level reading focus line (36% from viewport top)
+        const readingFocusLine = window.innerHeight * 0.36;
+        let detectedIndex = 0;
+
+        for (let i = 0; i < SECTIONS.length; i++) {
+            const el = document.getElementById(SECTIONS[i].id);
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= readingFocusLine) {
+                    detectedIndex = i;
+                }
+            }
+        }
+
+        setActiveIndex(detectedIndex);
     }, []);
 
-    const scrollTo = (id: string) => {
+    useEffect(() => {
+        handleScroll();
+
+        let ticking = false;
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+            if (dynamicFadeTimerRef.current) clearTimeout(dynamicFadeTimerRef.current);
+        };
+    }, [handleScroll]);
+
+    const scrollToSection = (id: string, index: number) => {
+        setActiveIndex(index);
+        isClickingRef.current = true;
+
+        if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+        clickTimeoutRef.current = setTimeout(() => {
+            isClickingRef.current = false;
+        }, 1100);
+
         const element = document.getElementById(id);
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop,
-                behavior: 'smooth'
+        if (!element) return;
+
+        if (lenis) {
+            lenis.scrollTo(element, {
+                offset: -65,
+                duration: 1.1,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
-            window.history.pushState(null, '', `#${id}`);
+        } else {
+            const navOffset = 65;
+            const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         }
+
+        window.history.pushState(null, '', `#${id}`);
     };
 
     return (
-        <div className="hidden sm:flex fixed right-2 md:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-3 md:gap-4">
-            {SECTIONS.map((section) => (
-                <button
-                    key={section.id}
-                    onClick={() => scrollTo(section.id)}
-                    className="group relative flex items-center justify-end w-10 h-10 md:w-8 md:h-8"
-                    aria-label={`Scroll to ${section.name}`}
-                >
-                    <span
-                        className={cn(
-                            "absolute right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[10px] font-bold tracking-widest uppercase font-anton",
-                            activeSection === section.id
-                                ? "text-primary translate-x-0"
-                                : "text-muted-foreground translate-x-2 group-hover:translate-x-0"
-                        )}
-                    >
-                        {section.name}
-                    </span>
+        <aside
+            aria-label="Section shortcuts"
+            className="hidden lg:flex fixed right-4 xl:right-7 top-1/2 -translate-y-1/2 z-40 flex-col items-center"
+        >
+            {/* Main Frosted Glass Capsule */}
+            <div className="relative p-2 rounded-full bg-[#0c0c0e]/75 backdrop-blur-2xl border border-white/[0.08] shadow-[0_16px_40px_rgba(0,0,0,0.5),0_1px_0_rgba(255,255,255,0.06)_inset] flex flex-col items-center gap-0">
+                {/* Background Reading Progress Spine */}
+                <div className="absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-white/[0.06] rounded-full overflow-hidden pointer-events-none -z-10">
                     <div
-                        className={cn(
-                            "rounded-full transition-all duration-300 ml-auto",
-                            activeSection === section.id
-                                ? "w-1.5 h-6 bg-primary"
-                                : "w-1.5 h-1.5 bg-border hover:bg-primary/50 group-hover:h-3"
-                        )}
+                        className="w-full bg-gradient-to-b from-primary/60 via-primary to-primary transition-all duration-200 ease-out rounded-full shadow-[0_0_8px_rgba(235,160,33,0.4)]"
+                        style={{ height: `${scrollProgress}%` }}
                     />
-                </button>
-            ))}
-        </div>
+                </div>
+
+                {/* Fluid Sliding Active Indicator Capsule */}
+                <div
+                    aria-hidden="true"
+                    className="absolute left-2 right-2 h-[26px] rounded-full bg-primary shadow-[0_0_18px_rgba(235,160,33,0.38),0_1px_2px_rgba(0,0,0,0.3)_inset] pointer-events-none transition-all duration-300"
+                    style={{
+                        top: `${PADDING_OFFSET + activeIndex * BUTTON_HEIGHT + 6}px`,
+                        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                />
+
+                {/* Section Navigation Buttons */}
+                {SECTIONS.map((section, idx) => {
+                    const isActive = activeIndex === idx;
+                    const isHovered = hoveredIndex === idx;
+                    const shouldShowLabel = isHovered || (isActive && isDynamicLabelVisible);
+
+                    return (
+                        <button
+                            key={section.id}
+                            onClick={() => scrollToSection(section.id, idx)}
+                            onMouseEnter={() => setHoveredIndex(idx)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            className="group relative flex items-center justify-center w-8 h-[38px] rounded-full cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-transform duration-200 active:scale-[0.88] select-none"
+                            aria-label={`Jump to ${section.name}`}
+                            aria-current={isActive ? 'true' : undefined}
+                        >
+                            {/* Emil Kowalski Dynamic Fade Flyout Tooltip */}
+                            <div
+                                className={cn(
+                                    'absolute right-12 px-3.5 py-2 rounded-2xl text-xs font-semibold pointer-events-none shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex items-center gap-2.5 border whitespace-nowrap bg-[#121216]/95 backdrop-blur-2xl transition-all duration-250 ease-out',
+                                    shouldShowLabel
+                                        ? 'opacity-100 translate-x-0 scale-100 border-primary/40 text-foreground'
+                                        : 'opacity-0 translate-x-2 scale-95 border-white/[0.08] text-muted-foreground'
+                                )}
+                            >
+                                <span className="text-[10px] font-mono font-bold text-primary px-1.5 py-0.5 rounded-md bg-primary/10 border border-primary/20">
+                                    {section.number}
+                                </span>
+                                <span className="font-anton tracking-tight text-foreground/95 text-xs">
+                                    {section.name}
+                                </span>
+                                {isActive && (
+                                    <span className="flex items-center gap-1 text-[10px] font-mono text-primary font-normal pl-1 border-l border-white/10">
+                                        <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                                        Reading
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Center Dot Pip */}
+                            <span
+                                className={cn(
+                                    'rounded-full transition-all duration-200 ease-out relative z-10',
+                                    isActive
+                                        ? 'size-1.5 bg-black shadow-sm'
+                                        : 'size-1.5 bg-white/25 group-hover:bg-primary group-hover:scale-150 group-hover:shadow-[0_0_8px_rgba(235,160,33,0.6)]'
+                                )}
+                            />
+                        </button>
+                    );
+                })}
+            </div>
+        </aside>
     );
 }

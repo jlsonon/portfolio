@@ -11,32 +11,32 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const STEPS = [
     {
         number: '01',
-        title: 'Discover',
-        description: 'Research the problem, talk to users, define scope.',
+        title: 'Discover & Scope',
+        description: 'Audit requirements, study actual staff/client bottlenecks, and architect the pragmatic solution.',
         icon: Search,
     },
     {
         number: '02',
-        title: 'Design',
-        description: 'Wireframe key flows, choose the right stack.',
+        title: 'Design & Schema',
+        description: 'Wireframe core flows, design normalized database schemas, and establish the visual system.',
         icon: PenTool,
     },
     {
         number: '03',
-        title: 'Build',
-        description: 'Ship fast with clean architecture, iterate weekly.',
+        title: 'Full-Stack Build',
+        description: 'Engineer high-performance frontend interfaces, secure backend endpoints, and autonomous pipelines.',
         icon: Code2,
     },
     {
         number: '04',
-        title: 'Launch',
-        description: 'Deploy, monitor, fix real-user issues day one.',
+        title: 'Deploy & Verify',
+        description: 'Launch on cloud infrastructure with zero-downtime, verify real transactions, and train operators.',
         icon: Rocket,
     },
     {
         number: '05',
-        title: 'Grow',
-        description: 'Analyze usage, improve based on data.',
+        title: 'Optimize & Scale',
+        description: 'Monitor real-world usage telemetry, iterate based on feedback, and add automated workflows.',
         icon: TrendingUp,
     },
 ];
@@ -49,67 +49,63 @@ const MyProcess = () => {
             gsap.fromTo(
                 '.process-step',
                 {
-                    y: 50,
-                    autoAlpha: 0,
+                    y: 35,
+                    opacity: 0,
                 },
                 {
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: 'top 70%',
-                        end: 'bottom 60%',
-                        scrub: 0.6,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
                     },
                     y: 0,
-                    autoAlpha: 1,
-                    stagger: 0.15,
+                    opacity: 1,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: 'power3.out',
+                    clearProps: 'all',
                 }
             );
         },
-        { scope: containerRef },
+        { scope: containerRef }
     );
 
     return (
         <section className="py-section" id="my-process">
             <div className="container" ref={containerRef}>
-                <SectionTitle title="My Process" />
+                <SectionTitle title="Engineering Process & Execution Roadmap" />
 
-                {/* Desktop: horizontal grid | Mobile: vertical stack */}
                 <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
                     {STEPS.map((step, idx) => {
                         const Icon = step.icon;
                         return (
                             <div
                                 key={step.number}
-                                className="process-step group relative flex flex-col gap-5 p-6 rounded-2xl border border-border/40 bg-background-light/40 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                                className="process-step group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
                             >
-                                {/* Number + connector line */}
-                                <div className="flex items-center gap-3">
-                                    <span className="size-10 rounded-full border border-primary/40 flex items-center justify-center text-primary text-sm font-bold font-anton group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                                        {step.number}
-                                    </span>
-
-                                    {/* Connector line — hidden on last item and on mobile */}
-                                    {idx < STEPS.length - 1 && (
-                                        <span className="hidden lg:block flex-1 h-px bg-border/40 group-hover:bg-primary/30 transition-colors duration-300" />
-                                    )}
-                                </div>
-
-                                {/* Icon */}
-                                <div className="p-3 bg-background rounded-xl border border-border/30 w-fit group-hover:border-primary/30 transition-all duration-300">
-                                    <Icon
-                                        size={22}
-                                        className="text-muted-foreground group-hover:text-primary transition-colors duration-300"
-                                    />
-                                </div>
-
-                                {/* Text */}
                                 <div>
-                                    <h3 className="text-xl font-anton text-foreground group-hover:text-primary transition-colors duration-300">
+                                    {/* Number & Icon Header */}
+                                    <div className="flex items-center justify-between gap-3 mb-6">
+                                        <span className="size-10 rounded-2xl border border-primary/40 bg-background flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-black transition-all duration-200 shadow-sm">
+                                            {step.number}
+                                        </span>
+
+                                        <div className="p-2.5 bg-background rounded-xl border border-border/40 text-muted-foreground group-hover:text-primary group-hover:border-primary/40 transition-colors">
+                                            <Icon size={18} />
+                                        </div>
+                                    </div>
+
+                                    {/* Step Title & Description */}
+                                    <h3 className="text-xl font-anton text-foreground group-hover:text-primary transition-colors duration-200">
                                         {step.title}
                                     </h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+                                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-2.5">
                                         {step.description}
                                     </p>
+                                </div>
+
+                                <div className="mt-6 pt-4 border-t border-border/20 text-[10px] uppercase font-bold tracking-widest text-primary/80">
+                                    Step {idx + 1} of 5
                                 </div>
                             </div>
                         );

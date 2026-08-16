@@ -26,10 +26,12 @@ export default {
                 },
                 primary: {
                     DEFAULT: 'hsl(var(--primary))',
+                    hover: 'hsl(var(--primary-hover))',
                     foreground: 'hsl(var(--primary-foreground))',
                 },
                 secondary: {
                     DEFAULT: 'hsl(var(--secondary))',
+                    hover: 'hsl(var(--secondary-hover))',
                     foreground: 'hsl(var(--secondary-foreground))',
                 },
                 muted: {
@@ -47,13 +49,6 @@ export default {
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',
                 ring: 'hsl(var(--ring))',
-                chart: {
-                    '1': 'hsl(var(--chart-1))',
-                    '2': 'hsl(var(--chart-2))',
-                    '3': 'hsl(var(--chart-3))',
-                    '4': 'hsl(var(--chart-4))',
-                    '5': 'hsl(var(--chart-5))',
-                },
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -62,22 +57,30 @@ export default {
             },
             fontFamily: {
                 anton: ['var(--font-anton)'],
-                'inter': ['var(--font-inter)'],
-                'roboto-flex': ['var(--font-inter)'], // aliased so existing usages still work
+                grotesk: ['var(--font-anton)'],
+                inter: ['var(--font-inter)'],
+                'roboto-flex': ['var(--font-inter)'],
+            },
+            transitionTimingFunction: {
+                spring: 'cubic-bezier(0.23, 1, 0.32, 1)',
+                'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+                'in-out-smooth': 'cubic-bezier(0.77, 0, 0.175, 1)',
+                drawer: 'cubic-bezier(0.32, 0.72, 0, 1)',
             },
             padding: {
-                section: 'clamp(60px, 10vw, 140px)',
+                section: 'clamp(60px, 8vw, 120px)',
             },
             container: {
                 center: true,
-                padding: '1rem',
-                screens: {
-                    xl: '1148px',
-                    '2xl': '1148px',
+                padding: {
+                    DEFAULT: '1rem',
+                    sm: '1.5rem',
+                    lg: '2rem',
                 },
-            },
-            transitionDuration: {
-                '7000': '7s',
+                screens: {
+                    xl: '1280px',
+                    '2xl': '1280px',
+                },
             },
             screens: {
                 xs: '420px',
