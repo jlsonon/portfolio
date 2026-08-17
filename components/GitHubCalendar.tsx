@@ -18,9 +18,11 @@ interface ApiResponse {
     contributions: DayData[];
 }
 
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 export default function GitHubCalendar() {
     const [daysData, setDaysData] = useState<DayData[]>([]);
-    const [totalCommits, setTotalCommits] = useState<number>(268);
+    const [totalCommits, setTotalCommits] = useState<number>(273);
     const [hoveredDay, setHoveredDay] = useState<DayData | null>(null);
     const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -38,22 +40,20 @@ export default function GitHubCalendar() {
                     return;
                 }
             } catch {
-                // Fallback to last known live data
-            }
-
-            if (isMounted) {
-                // Fallback realistic year dataset
-                const fallbackDays: DayData[] = [];
-                const now = new Date();
-                for (let i = 364; i >= 0; i--) {
-                    const d = new Date(now);
-                    d.setDate(d.getDate() - i);
-                    const dateStr = d.toISOString().split('T')[0];
-                    fallbackDays.push({ date: dateStr, count: 0, level: 0 });
-                }
-                setDaysData(fallbackDays);
+                // Fallback will remain active
             }
         }
+
+        // Initialize with realistic rolling year data starting from 365 days ago to today
+        const initialDays: DayData[] = [];
+        const today = new Date();
+        for (let i = 365; i >= 0; i--) {
+            const d = new Date(today);
+            d.setDate(d.getDate() - i);
+            const dateStr = d.toISOString().split('T')[0];
+            initialDays.push({ date: dateStr, count: 0, level: 0 });
+        }
+        setDaysData(initialDays);
 
         fetchGitHubData();
         return () => {
@@ -61,13 +61,53 @@ export default function GitHubCalendar() {
         };
     }, []);
 
-    // Split into 52 columns of 7 days
-    const weeks = useMemo(() => {
-        const cols: DayData[][] = [];
-        for (let i = 0; i < daysData.length; i += 7) {
-            cols.push(daysData.slice(i, i + 7));
+    // Structure days into authentic 7-day Sunday-Saturday week columns
+    const { weeks, monthLabels } = useMemo(() => {
+        if (!daysData.length) return { weeks: [], monthLabels: [] };
+
+        const cols: (DayData | null)[][] = [];
+        let currentWeek: (DayData | null)[] = [];
+
+        // Pad first week if day 0 does not start on Sunday
+        const firstDate = new Date(daysData[0].date);
+        const startDayOfWeek = firstDate.getUTCDay(); // 0 is Sunday
+
+        for (let p = 0; p < startDayOfWeek; p++) {
+            currentWeek.push(null);
         }
-        return cols;
+
+        daysData.forEach((day) => {
+            currentWeek.push(day);
+            if (currentWeek.length === 7) {
+                cols.push(currentWeek);
+                currentWeek = [];
+            }
+        });
+
+        if (currentWeek.length > 0) {
+            while (currentWeek.length < 7) {
+                currentWeek.push(null);
+            }
+            cols.push(currentWeek);
+        }
+
+        // Compute authentic Month label positions aligned to week columns
+        const labels: { name: string; colIndex: number }[] = [];
+        let lastMonth = -1;
+
+        cols.forEach((week, colIdx) => {
+            // Check the first valid day in the column
+            const validDay = week.find((d) => d !== null);
+            if (validDay) {
+                const month = new Date(validDay.date).getUTCMonth();
+                if (month !== lastMonth) {
+                    labels.push({ name: MONTH_NAMES[month], colIndex: colIdx });
+                    lastMonth = month;
+                }
+            }
+        });
+
+        return { weeks: cols, monthLabels: labels };
     }, [daysData]);
 
     const activeStreak = useMemo(() => {
@@ -108,7 +148,7 @@ export default function GitHubCalendar() {
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
                     <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-border/40 text-xs font-semibold text-foreground">
                         <Flame size={13} className="text-primary" />
-                        <span>{totalCommits} Contributions in 2025–2026</span>
+                        <span>{totalCommits} Contributions in the Last Year</span>
                     </div>
 
                     {activeStreak > 0 && (
@@ -129,23 +169,20 @@ export default function GitHubCalendar() {
                 </div>
             </div>
 
-            {/* Heatmap Grid Wrapper */}
+            {/* Heatmap Grid Wrapper with horizontal scroll on mobile */}
             <div className="overflow-x-auto pb-2 scrollbar-thin">
-                <div className="min-w-[680px]">
-                    {/* Month Labels */}
-                    <div className="flex text-[10px] font-mono text-muted-foreground/70 mb-2 pl-7 justify-between pr-2">
-                        <span>Jan</span>
-                        <span>Feb</span>
-                        <span>Mar</span>
-                        <span>Apr</span>
-                        <span>May</span>
-                        <span>Jun</span>
-                        <span>Jul</span>
-                        <span>Aug</span>
-                        <span>Sep</span>
-                        <span>Oct</span>
-                        <span>Nov</span>
-                        <span>Dec</span>
+                <div className="min-w-[700px]">
+                    {/* Dynamic Month Labels Aligned to Actual Week Columns */}
+                    <div className="relative h-4 mb-2 pl-7 text-[10px] font-mono text-muted-foreground/70">
+                        {monthLabels.map((lbl, idx) => (
+                            <span
+                                key={`${lbl.name}-${idx}`}
+                                className="absolute"
+                                style={{ left: `calc(1.75rem + ${lbl.colIndex * 13.5}px)` }}
+                            >
+                                {lbl.name}
+                            </span>
+                        ))}
                     </div>
 
                     {/* Day Rows + Heatmap Matrix */}
@@ -165,21 +202,28 @@ export default function GitHubCalendar() {
                         <div className="flex flex-1 gap-[3.5px]">
                             {weeks.map((week, wIdx) => (
                                 <div key={wIdx} className="flex flex-col gap-[3.5px]">
-                                    {week.map((day, dIdx) => (
-                                        <div
-                                            key={`${wIdx}-${dIdx}`}
-                                            onMouseEnter={(e) => handleMouseEnter(day, e)}
-                                            onMouseLeave={() => setHoveredDay(null)}
-                                            className={cn(
-                                                'size-2.5 rounded-[2.5px] transition-all duration-150 cursor-pointer',
-                                                day.level === 0 && 'bg-background border border-border/40 hover:border-primary/40',
-                                                day.level === 1 && 'bg-primary/30 border border-primary/40 hover:scale-125',
-                                                day.level === 2 && 'bg-primary/55 border border-primary/60 hover:scale-125',
-                                                day.level === 3 && 'bg-primary/80 border border-primary/85 hover:scale-125 shadow-sm shadow-primary/20',
-                                                day.level === 4 && 'bg-primary border border-primary hover:scale-125 shadow-md shadow-primary/40'
-                                            )}
-                                        />
-                                    ))}
+                                    {week.map((day, dIdx) =>
+                                        day ? (
+                                            <div
+                                                key={`${wIdx}-${dIdx}`}
+                                                onMouseEnter={(e) => handleMouseEnter(day, e)}
+                                                onMouseLeave={() => setHoveredDay(null)}
+                                                className={cn(
+                                                    'size-2.5 rounded-[2.5px] transition-all duration-150 cursor-pointer',
+                                                    day.level === 0 && 'bg-background border border-border/40 hover:border-primary/40',
+                                                    day.level === 1 && 'bg-primary/30 border border-primary/40 hover:scale-125',
+                                                    day.level === 2 && 'bg-primary/55 border border-primary/60 hover:scale-125',
+                                                    day.level === 3 && 'bg-primary/80 border border-primary/85 hover:scale-125 shadow-sm shadow-primary/20',
+                                                    day.level === 4 && 'bg-primary border border-primary hover:scale-125 shadow-md shadow-primary/40'
+                                                )}
+                                            />
+                                        ) : (
+                                            <div
+                                                key={`${wIdx}-${dIdx}`}
+                                                className="size-2.5 opacity-0 pointer-events-none"
+                                            />
+                                        )
+                                    )}
                                 </div>
                             ))}
                         </div>
