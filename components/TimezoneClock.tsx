@@ -44,7 +44,7 @@ export default function TimezoneClock({ className }: { className?: string }) {
         >
             <div className="flex items-center gap-1.5 text-foreground font-mono font-medium">
                 <Globe size={13} className="text-primary shrink-0" />
-                <span className="font-sans font-semibold">🇵🇭 Manila, PH:</span>
+                <span className="font-sans font-semibold">Manila, PH:</span>
                 <span className="text-primary font-bold">{timeStr || 'Loading...'}</span>
                 <span className="text-[10px] text-muted-foreground">(GMT+8)</span>
             </div>
