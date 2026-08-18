@@ -49,6 +49,18 @@ const Navbar = () => {
         setIsMenuOpen(false);
     }, [pathname]);
 
+    // Lock background scroll when mobile drawer menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMenuOpen]);
+
     const handleNavClick = (url: string) => {
         setIsMenuOpen(false);
         if (url.startsWith('/#')) {

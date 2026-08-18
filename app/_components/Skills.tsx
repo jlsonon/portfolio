@@ -88,9 +88,11 @@ const Skills = () => {
                                 )}
                             >
                                 <button
+                                    id={`skills-category-${key}`}
                                     onClick={() => toggleCategory(key)}
                                     className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.99]"
                                     aria-expanded={isOpen}
+                                    aria-controls={`skills-panel-${key}`}
                                 >
                                     <div className="flex items-center gap-3">
                                         <span
@@ -118,7 +120,12 @@ const Skills = () => {
                                 </button>
 
                                 {isOpen && (
-                                    <div className="px-4 pb-4 pt-1 border-t border-border/20 animate-in fade-in-50 duration-200">
+                                    <div
+                                        id={`skills-panel-${key}`}
+                                        role="region"
+                                        aria-labelledby={`skills-category-${key}`}
+                                        className="px-4 pb-4 pt-1 border-t border-border/20 animate-in fade-in-50 duration-200"
+                                    >
                                         <div className="grid grid-cols-2 gap-2.5 pt-3">
                                             {items.map((item) => (
                                                 <div

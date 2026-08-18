@@ -59,21 +59,20 @@ const Banner = () => {
                 {/* Profile Avatar & Status Pill */}
                 <div className="hero-item flex flex-col items-center gap-3">
                     <div className="relative group cursor-pointer">
-                        <div className="size-20 sm:size-24 rounded-full overflow-hidden border-2 border-primary/50 p-1 bg-background-light shadow-xl shadow-primary/10 group-hover:border-primary group-hover:shadow-primary/20 transition-all duration-300">
+                        <div className="size-28 sm:size-32 rounded-full overflow-hidden border-2 border-primary/50 p-1 bg-background-light shadow-xl shadow-primary/10 group-hover:border-primary group-hover:shadow-primary/20 transition-all duration-300">
                             <Image
-                                src="/DSC_3489.jpg"
+                                src="/banner.jpg"
                                 alt="Jericho Sonon"
-                                width={96}
-                                height={96}
-                                className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
+                                width={128}
+                                height={128}
+                                className="w-full h-full object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-300"
                                 priority
                             />
                         </div>
-                        <span className="absolute bottom-1 right-1 size-3.5 sm:size-4 rounded-full bg-emerald-400 border-2 border-background animate-pulse shadow-sm shadow-emerald-500/50" />
+                        <span className="absolute bottom-1.5 right-1.5 size-3.5 sm:size-4 rounded-full bg-emerald-400 border-2 border-background animate-pulse shadow-sm shadow-emerald-500/50" />
                     </div>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm">
-                        <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-primary">
                             Software &amp; AI Systems Engineer
                         </span>

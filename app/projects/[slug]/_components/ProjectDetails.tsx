@@ -274,7 +274,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 title={`${project.title} live preview`}
                                 className="w-full h-full border-none bg-white absolute inset-0"
                                 loading="lazy"
-                                sandbox="allow-scripts allow-same-origin"
+                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                                 onError={() => setIframeBlocked(true)}
                             />
                         ) : project.images.length > 0 || project.thumbnail ? (
