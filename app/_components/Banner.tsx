@@ -74,7 +74,7 @@ const Banner = () => {
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm">
                         <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-primary">
-                            Software &amp; AI Systems Engineer
+                            Software &amp; Solutions Engineer
                         </span>
                     </div>
                 </div>

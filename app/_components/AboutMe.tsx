@@ -103,7 +103,7 @@ const AboutMe = () => {
                                     </span>
                                 </div>
                                 <p className="text-xs text-primary font-semibold mt-1">
-                                    Software &amp; AI Systems Engineer
+                                    Software &amp; Solutions Engineer
                                 </p>
                             </div>
 

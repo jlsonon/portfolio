@@ -257,7 +257,7 @@ export const PROJECTS: IProject[] = [
 
 export const MY_EXPERIENCE: IExperience[] = [
     {
-        title: 'Software & AI Systems Engineer',
+        title: 'Software & Solutions Engineer',
         company: 'Freelance & Independent Consulting',
         duration: '2024 - Present',
         description: 'Architecting custom business platforms, POS systems, multi-branch operations dashboards, and web SaaS applications for commercial clients including Playground Fitness, TrainFitness, and laundromat hubs.',

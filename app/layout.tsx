@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         template: '%s | Jericho Sonon',
     },
     description:
-        'Full-Stack & AI Systems Engineer based in Quezon City, Philippines. I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
+        'Software & Solutions Engineer based in Quezon City, Philippines. I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
     keywords: [
         'Jericho Sonon',
         'Full-Stack Developer Philippines',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'en_US',
         url: 'https://jlsonon-portfolio.vercel.app',
-        siteName: 'Jericho Sonon — Software & AI Systems Engineer',
+        siteName: 'Jericho Sonon — Software & Solutions Engineer',
         title: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         description:
             'I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
