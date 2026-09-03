@@ -1,4 +1,4 @@
-import { IProject, IExperience, IService, IClient } from '@/types';
+import { IProject, IExperience, IService, IClient, ITestimonial } from '@/types';
 
 export const GENERAL_INFO = {
     email: 'jlsonon12@gmail.com',
@@ -269,6 +269,25 @@ export const MY_EXPERIENCE: IExperience[] = [
     },
 ];
 
+export const TESTIMONIALS: ITestimonial[] = [
+    {
+        author: 'Claire Castro',
+        role: 'Operations & Front Desk',
+        company: 'Playground Fitness',
+        badge: '3 Commercial Branches Deployed',
+        quote: 'Jericho eliminated our front-desk logbook bottlenecks and synced our member records across locations. The QR kiosk check-in has run with zero downtime since day one.',
+        highlight: 'Zero Downtime QR Kiosks',
+    },
+    {
+        author: 'Miguel Tarnate',
+        role: 'Operations & Front Desk',
+        company: 'Playground Fitness',
+        badge: 'Verified Production Client',
+        quote: 'Member check-ins and coach shift tracking used to cause daily front-desk chaos. Jericho built a system that our entire staff adopted in one day with zero training needed.',
+        highlight: 'Instant Staff Adoption',
+    },
+];
+
 export const SERVICES: IService[] = [
     {
         number: '01',
@@ -278,6 +297,11 @@ export const SERVICES: IService[] = [
         deliverables: ['Custom Touch POS / Operations Hub', 'Multi-Branch Revenue Sync', 'Dynamic QR & PDF Receipts', 'Staff PIN Security & Cash Audit Trails'],
         timeline: '2 – 4 Weeks',
         badge: 'Core Focus',
+        niches: ['Gyms & Fitness Clubs', 'Laundromats & Commercial Hubs', 'Front-Desk Operations'],
+        exampleProject: {
+            name: 'FitLocker (3 Branches Deployed)',
+            slug: 'fitlocker',
+        },
     },
     {
         number: '02',
@@ -287,6 +311,11 @@ export const SERVICES: IService[] = [
         deliverables: ['Custom Next.js/React Platform', 'Database & API Architecture', 'Auth & Stripe/GCash Billing', 'Vercel / Cloud Infrastructure'],
         timeline: '2 – 4 Weeks',
         badge: 'High Velocity',
+        niches: ['EdTech & Review Centers', 'Community Portals', 'Founders & B2B Startups'],
+        exampleProject: {
+            name: 'Prime Reviewer PH (500+ Students)',
+            slug: 'prime-reviewer-ph',
+        },
     },
     {
         number: '03',
@@ -296,5 +325,10 @@ export const SERVICES: IService[] = [
         deliverables: ['OCR & Document Parsing', 'Automated Renewal / Alert Pipelines', 'Customer CRM & Queue Systems', 'Third-Party API Integrations'],
         timeline: '1 – 3 Weeks',
         badge: 'High Impact',
+        niches: ['Receipt OCR & Expense Audits', 'Citizen Municipal Requests', 'Automated Task Queues'],
+        exampleProject: {
+            name: 'MochiMoney & BarangayConnect',
+            slug: 'mochimoney',
+        },
     },
 ];

@@ -65,7 +65,7 @@ const Clients = () => {
                                             {client.badge}
                                         </span>
                                         {client.location && (
-                                            <span className="text-muted-foreground/80 text-[10px] truncate max-w-[110px]">
+                                            <span className="text-muted-foreground/80 text-[11px] truncate max-w-[110px]">
                                                 {client.location}
                                             </span>
                                         )}

@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { CheckCircle2, Clock, ArrowUpRight, Layers, Cpu, Boxes } from 'lucide-react';
+import Link from 'next/link';
 import React, { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -45,9 +46,14 @@ const Services = () => {
     return (
         <section className="py-section" id="services" ref={containerRef}>
             <div className="container">
-                <SectionTitle title="Core Capabilities & What I Build" />
+                <div className="flex flex-row items-center justify-between gap-3 sm:gap-4 pb-6 border-b border-border/30 mb-10 flex-wrap sm:flex-nowrap">
+                    <SectionTitle title="Systems I Deliver & Core Capabilities" className="mb-0 sm:mb-0" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary px-3 sm:px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 shrink-0">
+                        Bespoke Production Software
+                    </span>
+                </div>
 
-                <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {SERVICES.map((service, idx) => {
                         const ServiceIcon = ICONS[idx % ICONS.length];
                         const mailtoSubject = `Inquiry: ${service.title}`;
@@ -69,7 +75,7 @@ const Services = () => {
                                                 {service.number}
                                             </span>
                                         </div>
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary">
+                                        <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary">
                                             {service.badge}
                                         </span>
                                     </div>
@@ -97,6 +103,39 @@ const Services = () => {
                                             </div>
                                         ))}
                                     </div>
+
+                                    {/* Target Business Niches */}
+                                    {service.niches && (
+                                        <div className="mt-6 pt-4 border-t border-border/25">
+                                            <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold mb-2.5">
+                                                Target Business Niches
+                                            </p>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {service.niches.map((niche) => (
+                                                    <span
+                                                        key={niche}
+                                                        className="text-[11px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
+                                                    >
+                                                        {niche}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Live Case Study Reference */}
+                                    {service.exampleProject && (
+                                        <div className="mt-4 pt-3 border-t border-border/20 flex items-center justify-between text-xs">
+                                            <span className="text-muted-foreground text-[11px] font-medium">Live System:</span>
+                                            <Link
+                                                href={`/projects/${service.exampleProject.slug}`}
+                                                className="inline-flex items-center gap-1 font-bold text-primary hover:underline text-xs"
+                                            >
+                                                <span>{service.exampleProject.name}</span>
+                                                <ArrowUpRight size={12} />
+                                            </Link>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Footer Timeline & Action */}

@@ -49,6 +49,11 @@ export interface IService {
     deliverables: string[];
     timeline: string;
     badge: string;
+    niches?: string[];
+    exampleProject?: {
+        name: string;
+        slug: string;
+    };
 }
 
 export interface IClient {
@@ -59,6 +64,15 @@ export interface IClient {
     location?: string;
     projectSlug?: string;
     metrics?: string;
+}
+
+export interface ITestimonial {
+    quote: string;
+    author: string;
+    role: string;
+    company: string;
+    badge: string;
+    highlight: string;
 }
 
 

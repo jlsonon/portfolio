@@ -85,7 +85,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     Case Study — {project.year}
                                 </span>
                                 {project.status === 'ongoing' && (
-                                    <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-[10px] border border-primary/25 flex items-center gap-1.5 font-bold">
+                                    <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-[11px] border border-primary/25 flex items-center gap-1.5 font-bold">
                                         <span className="size-1.5 rounded-full bg-primary animate-pulse" /> Active Development
                                     </span>
                                 )}
@@ -116,7 +116,7 @@ const ProjectDetails = ({ project }: Props) => {
                         {project.clientName && (
                             <div className="fade-in-later p-5 rounded-2xl bg-background-light/50 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
                                 <div>
-                                    <p className="text-[10px] uppercase font-bold tracking-widest text-primary">
+                                    <p className="text-[11px] uppercase font-bold tracking-widest text-primary">
                                         Commercial Deployment & Client
                                     </p>
                                     <p className="text-base font-bold text-foreground mt-0.5">
@@ -136,7 +136,7 @@ const ProjectDetails = ({ project }: Props) => {
                             <div className="fade-in-later p-6 rounded-2xl bg-primary/10 border border-primary/30 flex items-start gap-3.5 shadow-md">
                                 <TrendingUp size={22} className="text-primary shrink-0 mt-0.5" />
                                 <div>
-                                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                                    <p className="text-[11px] font-bold uppercase tracking-widest text-primary">
                                         Key Operational Impact
                                     </p>
                                     <p className="text-sm sm:text-base font-bold text-foreground mt-1 leading-snug">

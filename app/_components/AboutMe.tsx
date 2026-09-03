@@ -5,13 +5,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { MapPin, Compass, ShieldCheck, Quote, Award } from 'lucide-react';
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import SystemsArchitectureCard from '@/components/SystemsArchitectureCard';
+import { TESTIMONIALS } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const AboutMe = () => {
     const container = useRef<HTMLDivElement>(null);
+    const [activeTestimonial, setActiveTestimonial] = useState(0);
 
     useGSAP(
         () => {
@@ -78,7 +81,7 @@ const AboutMe = () => {
                                     <h3 className="font-anton text-2xl text-foreground">
                                         Jericho Sonon
                                     </h3>
-                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">
+                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold">
                                         <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                         Available
                                     </span>
@@ -125,28 +128,58 @@ const AboutMe = () => {
                     <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-5 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/[0.04] blur-2xl rounded-full pointer-events-none" />
                         <div>
-                            <div className="flex items-center justify-between gap-2 mb-4">
+                            <div className="flex items-center justify-between gap-2 mb-3">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
                                     <Quote size={14} />
                                     <span>Client Endorsement</span>
                                 </div>
-                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary">
-                                    <Award size={11} />
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[11px] font-bold text-primary">
+                                    <Award size={12} />
                                     <span>Verified</span>
                                 </span>
                             </div>
 
-                            <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed border-l-2 border-primary/40 pl-3.5 my-3">
-                                &ldquo;Jericho eliminated our front-desk logbook bottlenecks and synced our member records across locations. The system has run with zero downtime since day one.&rdquo;
+                            {/* Staff Member Toggle (Claire Castro & Miguel Tarnate) */}
+                            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-background/80 border border-border/40 my-3">
+                                {TESTIMONIALS.map((item, idx) => (
+                                    <button
+                                        key={item.author}
+                                        type="button"
+                                        onClick={() => setActiveTestimonial(idx)}
+                                        className={cn(
+                                            'flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all text-center cursor-pointer',
+                                            activeTestimonial === idx
+                                                ? 'bg-primary text-black shadow-sm'
+                                                : 'text-muted-foreground hover:text-foreground'
+                                        )}
+                                    >
+                                        {item.author}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed border-l-2 border-primary/40 pl-3.5 my-3 min-h-[72px]">
+                                &ldquo;{TESTIMONIALS[activeTestimonial].quote}&rdquo;
                             </p>
 
-                            <div className="mt-4">
-                                <p className="text-xs font-bold text-foreground">Operations &amp; Management</p>
-                                <p className="text-[11px] text-muted-foreground">Playground Fitness &amp; TrainFitness</p>
+                            <div className="mt-4 pt-3 border-t border-border/25">
+                                <div className="flex items-center justify-between gap-2">
+                                    <div>
+                                        <p className="text-xs font-bold text-foreground">
+                                            {TESTIMONIALS[activeTestimonial].author}
+                                        </p>
+                                        <p className="text-[11px] text-muted-foreground">
+                                            {TESTIMONIALS[activeTestimonial].role}, {TESTIMONIALS[activeTestimonial].company}
+                                        </p>
+                                    </div>
+                                    <span className="text-[11px] font-semibold text-primary/90 px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
+                                        {TESTIMONIALS[activeTestimonial].highlight}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="pt-4 border-t border-border/30">
+                        <div className="pt-3 border-t border-border/30">
                             <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
                                 Production Standards
                             </p>
@@ -154,7 +187,7 @@ const AboutMe = () => {
                                 {['Zero Downtime Architecture', 'Rapid 2-4 Week Delivery', 'Direct Founder Ownership'].map((tag) => (
                                     <span
                                         key={tag}
-                                        className="text-[10px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
+                                        className="text-[11px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
                                     >
                                         {tag}
                                     </span>

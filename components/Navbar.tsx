@@ -106,7 +106,7 @@ const Navbar = () => {
                             <span className="font-anton text-lg tracking-wide text-foreground group-hover:text-primary transition-colors duration-200">
                                 Jericho Sonon
                             </span>
-                            <span className="text-[10px] text-muted-foreground -mt-1 hidden sm:block tracking-wider font-medium">
+                            <span className="text-[11px] text-muted-foreground -mt-1 hidden sm:block tracking-wider font-medium">
                                 Systems &amp; Product Engineer
                             </span>
                         </div>
@@ -247,7 +247,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">
                             Direct Inquiry
                         </p>
                         <a

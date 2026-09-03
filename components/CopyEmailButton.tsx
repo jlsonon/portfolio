@@ -89,13 +89,13 @@ export default function CopyEmailButton({
                         <span className="text-xs font-bold text-foreground">
                             {GENERAL_INFO.email}
                         </span>
-                        <span className="text-[10px] text-muted-foreground">
+                        <span className="text-[11px] text-muted-foreground">
                             Copied to clipboard • Ready to paste
                         </span>
                     </div>
                     <a
                         href={`mailto:${GENERAL_INFO.email}`}
-                        className="ml-2 px-2.5 py-1 rounded-full bg-primary text-black text-[10px] font-bold hover:bg-primary-hover transition-colors inline-flex items-center gap-1 shrink-0"
+                        className="ml-2 px-2.5 py-1 rounded-full bg-primary text-black text-[11px] font-bold hover:bg-primary-hover transition-colors inline-flex items-center gap-1 shrink-0"
                     >
                         <span>Open Mail</span>
                         <ArrowUpRight size={11} />

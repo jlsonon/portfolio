@@ -80,7 +80,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <Smartphone size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                                <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                                     &lt; 50ms Input
                                 </span>
                             </div>
@@ -106,7 +106,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <Database size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                                <span className="text-[11px] font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
                                     Next.js 15 + Postgres
                                 </span>
                             </div>
@@ -132,7 +132,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <TrendingUp size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                                <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                                     Live Sync
                                 </span>
                             </div>
@@ -148,25 +148,25 @@ export default function SystemsArchitectureCard() {
                     {/* Operational KPIs Row */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-border/20">
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[10px] uppercase font-bold text-muted-foreground block">System Latency</span>
+                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">System Latency</span>
                             <span className="text-lg font-anton text-emerald-400">
                                 <AnimatedNumber value={180} prefix="< " suffix="ms" />
                             </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[10px] uppercase font-bold text-muted-foreground block">Manual Time Saved</span>
+                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Manual Time Saved</span>
                             <span className="text-lg font-anton text-primary">
                                 <AnimatedNumber value={15} suffix="+ hrs/week" />
                             </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[10px] uppercase font-bold text-muted-foreground block">Double-Entry Error</span>
+                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Double-Entry Error</span>
                             <span className="text-lg font-anton text-emerald-400">
                                 <AnimatedNumber value={0} decimals={2} suffix="%" />
                             </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[10px] uppercase font-bold text-muted-foreground block">Uptime Reliability</span>
+                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Uptime Reliability</span>
                             <span className="text-lg font-anton text-primary">
                                 <AnimatedNumber value={99.9} decimals={1} suffix="% Cloud" />
                             </span>
@@ -183,7 +183,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <Receipt size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     High Risk
                                 </span>
                             </div>
@@ -201,7 +201,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <FileSpreadsheet size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     48hr Delay
                                 </span>
                             </div>
@@ -219,7 +219,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <FileWarning size={16} />
                                 </div>
-                                <span className="text-[10px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     Blind Spots
                                 </span>
                             </div>

@@ -15,12 +15,11 @@ const SECTIONS: SectionItem[] = [
     { id: 'trusted-by', name: 'Commercial Deployments', shortName: 'Deployments', number: '02' },
     { id: 'selected-projects', name: 'Flagship Systems', shortName: 'Systems', number: '03' },
     { id: 'about-me', name: 'About & How I Work', shortName: 'About', number: '04' },
-    { id: 'services', name: 'Commercial Capabilities', shortName: 'Services', number: '05' },
-    { id: 'who-i-build-for', name: 'Who I Build For', shortName: 'Niches', number: '06' },
-    { id: 'my-stack', name: 'Core Production Stack', shortName: 'Stack', number: '07' },
-    { id: 'my-experience', name: 'Experience & History', shortName: 'Experience', number: '08' },
-    { id: 'my-process', name: 'How I Build Systems', shortName: 'Process', number: '09' },
-    { id: 'contact-cta', name: 'Start a Project', shortName: 'Contact', number: '10' },
+    { id: 'services', name: 'Systems & Capabilities', shortName: 'Services', number: '05' },
+    { id: 'my-stack', name: 'Core Production Stack', shortName: 'Stack', number: '06' },
+    { id: 'my-experience', name: 'Experience & History', shortName: 'Experience', number: '07' },
+    { id: 'my-process', name: 'How I Build Systems', shortName: 'Process', number: '08' },
+    { id: 'contact-cta', name: 'Start a Project', shortName: 'Contact', number: '09' },
 ];
 
 const BUTTON_HEIGHT = 38; // px per section slot

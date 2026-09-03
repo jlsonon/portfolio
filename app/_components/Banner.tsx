@@ -154,7 +154,7 @@ const Banner = () => {
                     className="hero-item scroll-indicator text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-1.5 mt-4"
                     aria-label="Scroll down to content"
                 >
-                    <span className="text-[10px] uppercase tracking-widest font-bold">Scroll Down</span>
+                    <span className="text-[11px] uppercase tracking-widest font-bold">Scroll Down</span>
                     <ArrowDown size={14} className="text-primary" />
                 </a>
             </div>

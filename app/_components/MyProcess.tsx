@@ -105,7 +105,7 @@ const MyProcess = () => {
                                     </p>
                                 </div>
 
-                                <div className="mt-6 pt-4 border-t border-border/20 text-[10px] uppercase font-bold tracking-widest text-primary/80">
+                                <div className="mt-6 pt-4 border-t border-border/20 text-[11px] uppercase font-bold tracking-widest text-primary/80">
                                     Step {idx + 1} of 5
                                 </div>
                             </SpotlightCard>
