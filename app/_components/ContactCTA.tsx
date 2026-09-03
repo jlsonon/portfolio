@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/all';
 import { ArrowUpRight, ShieldCheck, Calendar } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import CopyEmailButton from '@/components/CopyEmailButton';
 import TimezoneClock from '@/components/TimezoneClock';
 import { FamilyButton } from '@/components/ui/family-button';
 
@@ -97,39 +96,25 @@ const ContactCTA = () => {
 
                     {/* Action Buttons */}
                     <div className="cta-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6">
+                        {GENERAL_INFO.calendarUrl && (
+                            <FamilyButton
+                                href={GENERAL_INFO.calendarUrl}
+                                variant="primary"
+                                icon={<Calendar size={18} className="text-black" />}
+                                className="h-14 px-8 text-sm sm:text-base font-bold shadow-xl shadow-primary/20"
+                            >
+                                Book 15-Min Call
+                            </FamilyButton>
+                        )}
+
                         <FamilyButton
                             href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
-                            variant="primary"
+                            variant="secondary"
                             icon={<ArrowUpRight size={18} />}
-                            className="h-14 px-8 text-sm sm:text-base font-bold shadow-xl shadow-primary/20"
+                            className="h-14 px-8 text-sm sm:text-base font-bold"
                         >
                             Start a Project
                         </FamilyButton>
-
-                        {GENERAL_INFO.calendarUrl && (
-                            <a
-                                href={GENERAL_INFO.calendarUrl}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                                className="inline-flex items-center gap-2 h-14 px-6 rounded-full border border-border/60 hover:border-primary/50 bg-background-light/50 text-foreground hover:text-primary font-bold text-sm sm:text-base transition-all shadow-sm hover:shadow-md cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
-                            >
-                                <Calendar size={17} className="text-primary" />
-                                <span>Book 15-Min Call</span>
-                            </a>
-                        )}
-
-                        {/* 1-Click Copy Email with Instant Toast */}
-                        <CopyEmailButton />
-
-                        <a
-                            href="https://www.linkedin.com/in/jlsonon/"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            className="inline-flex items-center gap-2 h-14 px-6 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-sm sm:text-base transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
-                        >
-                            <span>LinkedIn</span>
-                            <ArrowUpRight size={16} />
-                        </a>
                     </div>
 
                     {/* Trust Signals / Guarantees */}
