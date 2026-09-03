@@ -4,8 +4,7 @@ export const GENERAL_INFO = {
     email: 'jlsonon12@gmail.com',
     emailSubject: "Let's Build a Custom System",
     emailBody: 'Tell me what your business is currently doing manually, what isn\'t working, and your target timeline.',
-    oldPortfolio: '',
-    upworkProfile: '',
+    calendarUrl: 'https://cal.com/jlsonon',
 };
 
 export const SOCIAL_LINKS = [

@@ -3,30 +3,12 @@ import SectionTitle from '@/components/SectionTitle';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { MapPin, Compass, ShieldCheck, Zap } from 'lucide-react';
+import { MapPin, Compass, ShieldCheck, Quote, Award } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 import SystemsArchitectureCard from '@/components/SystemsArchitectureCard';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const QUICK_FACTS = [
-    { label: 'Years Building', value: '4+', sub: 'Production software' },
-    { label: 'Flagship Systems', value: '5', sub: 'Live web & POS apps' },
-    { label: 'Active Examinees', value: '500+', sub: 'Civil Service review' },
-    { label: 'Commercial Deployments', value: '10+', sub: 'Businesses, Gyms & Hubs' },
-];
-
-const SPECIALIZATIONS = [
-    'AI Engineering & Intelligent Workflows',
-    'Custom POS & Cashier Terminals',
-    'Multi-Branch Operations Hubs',
-    'Next.js & React SaaS Architecture',
-    'PostgreSQL & Cloud Firestore',
-    'FastAPI & Node.js Backend Services',
-    'OCR & Automated Document Pipelines',
-    'Solo End-to-End Ownership',
-];
 
 const AboutMe = () => {
     const container = useRef<HTMLDivElement>(null);
@@ -86,7 +68,6 @@ const AboutMe = () => {
                                 alt="Jericho Sonon Portrait"
                                 fill
                                 className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                                priority
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                         </div>
@@ -140,39 +121,37 @@ const AboutMe = () => {
                         </div>
                     </div>
 
-                    {/* 5. Quick Facts & Specializations - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-6">
+                    {/* 5. Verified Client Proof & Endorsement - 4 cols */}
+                    <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-5 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/[0.04] blur-2xl rounded-full pointer-events-none" />
                         <div>
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
-                                <Zap size={14} />
-                                <span>Track Record</span>
+                            <div className="flex items-center justify-between gap-2 mb-4">
+                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
+                                    <Quote size={14} />
+                                    <span>Client Endorsement</span>
+                                </div>
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary">
+                                    <Award size={11} />
+                                    <span>Verified</span>
+                                </span>
                             </div>
-                            <div className="grid grid-cols-2 gap-3">
-                                {QUICK_FACTS.map((fact) => (
-                                    <div
-                                        key={fact.label}
-                                        className="border border-border/40 rounded-2xl p-3.5 bg-background/60 hover:border-primary/40 transition-colors"
-                                    >
-                                        <p className="text-2xl sm:text-3xl font-anton text-primary leading-none">
-                                            {fact.value}
-                                        </p>
-                                        <p className="text-[11px] font-semibold text-foreground/90 mt-1">
-                                            {fact.label}
-                                        </p>
-                                        <p className="text-[10px] text-muted-foreground">
-                                            {fact.sub}
-                                        </p>
-                                    </div>
-                                ))}
+
+                            <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed border-l-2 border-primary/40 pl-3.5 my-3">
+                                &ldquo;Jericho eliminated our front-desk logbook bottlenecks and synced our member records across locations. The system has run with zero downtime since day one.&rdquo;
+                            </p>
+
+                            <div className="mt-4">
+                                <p className="text-xs font-bold text-foreground">Operations &amp; Management</p>
+                                <p className="text-[11px] text-muted-foreground">Playground Fitness &amp; TrainFitness</p>
                             </div>
                         </div>
 
                         <div className="pt-4 border-t border-border/30">
-                            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">
-                                Core Capabilities
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                                Production Standards
                             </p>
                             <div className="flex flex-wrap gap-1.5">
-                                {SPECIALIZATIONS.slice(0, 5).map((tag) => (
+                                {['Zero Downtime Architecture', 'Rapid 2-4 Week Delivery', 'Direct Founder Ownership'].map((tag) => (
                                     <span
                                         key={tag}
                                         className="text-[10px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"

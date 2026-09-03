@@ -3,7 +3,7 @@ import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck, Calendar } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import CopyEmailButton from '@/components/CopyEmailButton';
@@ -106,6 +106,18 @@ const ContactCTA = () => {
                             Start a Project
                         </FamilyButton>
 
+                        {GENERAL_INFO.calendarUrl && (
+                            <a
+                                href={GENERAL_INFO.calendarUrl}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="inline-flex items-center gap-2 h-14 px-6 rounded-full border border-border/60 hover:border-primary/50 bg-background-light/50 text-foreground hover:text-primary font-bold text-sm sm:text-base transition-all shadow-sm hover:shadow-md cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
+                            >
+                                <Calendar size={17} className="text-primary" />
+                                <span>Book 15-Min Call</span>
+                            </a>
+                        )}
+
                         {/* 1-Click Copy Email with Instant Toast */}
                         <CopyEmailButton />
 
@@ -113,7 +125,7 @@ const ContactCTA = () => {
                             href="https://www.linkedin.com/in/jlsonon/"
                             target="_blank"
                             rel="noreferrer noopener"
-                            className="inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-sm sm:text-base transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
+                            className="inline-flex items-center gap-2 h-14 px-6 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-sm sm:text-base transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
                         >
                             <span>LinkedIn</span>
                             <ArrowUpRight size={16} />

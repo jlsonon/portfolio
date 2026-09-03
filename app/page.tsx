@@ -11,7 +11,7 @@ import ContactCTA from './_components/ContactCTA';
 
 export default function Home() {
     return (
-        <div className="page-">
+        <div className="flex flex-col min-h-screen">
             <Banner />
             <Clients />
             <ProjectList />

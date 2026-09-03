@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLenis } from 'lenis/react';
 import Image from 'next/image';
 
@@ -20,8 +20,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const ProjectDetails = ({ project }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lenis = useLenis();
-    const [iframeBlocked, setIframeBlocked] = useState(false);
-    const forceImagePreview = project.slug === 'prime-reviewer-ph';
 
     // Immediately reset scroll to top on project mount
     useEffect(() => {
@@ -252,42 +250,60 @@ const ProjectDetails = ({ project }: Props) => {
 
                 {/* High-Fidelity Browser Mockup Frame */}
                 <div
-                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-2xl border border-border/60 bg-background-light/95 shadow-2xl mt-4"
+                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-3xl border border-border/60 bg-background-light/95 shadow-2xl mt-4 group"
                     id="images"
                 >
                     {/* Browser chrome frame */}
-                    <div className="flex items-center gap-2 px-4 py-3 bg-background border-b border-border/40 shrink-0">
-                        <span className="size-3 rounded-full bg-red-500/80" />
-                        <span className="size-3 rounded-full bg-yellow-500/80" />
-                        <span className="size-3 rounded-full bg-green-500/80" />
-                        <div className="flex-1 mx-4 bg-background-light rounded-md px-4 py-1 flex items-center justify-center">
+                    <div className="flex items-center justify-between gap-3 px-4 py-3 bg-background border-b border-border/40 shrink-0">
+                        <div className="flex items-center gap-2">
+                            <span className="size-3 rounded-full bg-red-500/80" />
+                            <span className="size-3 rounded-full bg-yellow-500/80" />
+                            <span className="size-3 rounded-full bg-green-500/80" />
+                        </div>
+                        <div className="flex-1 max-w-md mx-2 bg-background-light rounded-lg px-4 py-1 flex items-center justify-center border border-border/30">
                             <p className="text-xs text-muted-foreground truncate font-mono">
                                 {project.liveUrl?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
                             </p>
                         </div>
+                        {project.liveUrl && project.liveUrl !== '#' && (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors"
+                            >
+                                <span>Open</span>
+                                <ArrowUpRight size={13} />
+                            </a>
+                        )}
                     </div>
 
                     <div className="relative flex-1 w-full bg-background overflow-hidden">
-                        {project.liveUrl && !forceImagePreview && !iframeBlocked ? (
-                            <iframe
-                                src={project.liveUrl}
-                                title={`${project.title} live preview`}
-                                className="w-full h-full border-none bg-white absolute inset-0"
-                                loading="lazy"
-                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                                onError={() => setIframeBlocked(true)}
-                            />
-                        ) : project.images.length > 0 || project.thumbnail ? (
-                            <Image
-                                src={project.images[0] || project.thumbnail}
-                                alt={`${project.title} interface preview`}
-                                fill
-                                className="object-cover object-top"
-                                unoptimized
-                            />
+                        {project.images.length > 0 || project.thumbnail ? (
+                            <>
+                                <Image
+                                    src={project.images[0] || project.thumbnail}
+                                    alt={`${project.title} interface preview`}
+                                    fill
+                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                                />
+                                {project.liveUrl && project.liveUrl !== '#' && (
+                                    <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <a
+                                            href={project.liveUrl}
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-primary text-black font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
+                                        >
+                                            <span>Launch Production System</span>
+                                            <ArrowUpRight size={17} />
+                                        </a>
+                                    </div>
+                                )}
+                            </>
                         ) : (
                             <div className="absolute inset-0 flex items-center justify-center border-t border-dashed border-border/40 bg-background-light">
-                                <span className="text-muted-foreground text-sm">Screenshots coming soon</span>
+                                <span className="text-muted-foreground text-sm">Interface preview coming soon</span>
                             </div>
                         )}
                     </div>
