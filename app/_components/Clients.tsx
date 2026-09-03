@@ -1,5 +1,6 @@
 'use client';
 import { CLIENTS } from '@/lib/data';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { Award, Building2, CheckCircle2, Dumbbell, GraduationCap, Landmark, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -39,22 +40,24 @@ const Clients = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
                         {CLIENTS.map((client) => {
                             const CardContent = (
-                                <div className="group relative flex flex-col p-5 rounded-2xl bg-background-light/40 border border-border/40 hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 h-full cursor-pointer hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
-                                    <div className="flex items-start justify-between gap-2.5 mb-3">
-                                        <div className="flex items-center gap-2.5">
-                                            <div className="p-2 rounded-lg bg-background border border-border/30 group-hover:border-primary/40 transition-colors">
-                                                {ICONS_MAP[client.name] || <CheckCircle2 className="size-4 text-primary shrink-0" />}
+                                <SpotlightCard className="h-full p-5 flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                                    <div>
+                                        <div className="flex items-start justify-between gap-2.5 mb-3">
+                                            <div className="flex items-center gap-2.5">
+                                                <div className="p-2 rounded-lg bg-background border border-border/30 group-hover:border-primary/40 transition-colors">
+                                                    {ICONS_MAP[client.name] || <CheckCircle2 className="size-4 text-primary shrink-0" />}
+                                                </div>
+                                                <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
+                                                    {client.name}
+                                                </h3>
                                             </div>
-                                            <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
-                                                {client.name}
-                                            </h3>
+                                            <ArrowUpRight size={14} className="text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all shrink-0" />
                                         </div>
-                                        <ArrowUpRight size={14} className="text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all shrink-0" />
-                                    </div>
 
-                                    <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
-                                        {client.description}
-                                    </p>
+                                        <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
+                                            {client.description}
+                                        </p>
+                                    </div>
 
                                     <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/20 text-[11px]">
                                         <span className="inline-flex items-center gap-1.5 font-semibold text-primary/95 text-[11px]">
@@ -67,7 +70,7 @@ const Clients = () => {
                                             </span>
                                         )}
                                     </div>
-                                </div>
+                                </SpotlightCard>
                             );
 
                             if (client.projectSlug) {

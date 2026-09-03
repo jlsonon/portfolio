@@ -151,6 +151,14 @@ const Navbar = () => {
                 </div>
             </header>
 
+            {/* Vercel-style subtle scroll blur mask underneath navbar */}
+            {isScrolled && (
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none fixed top-[56px] sm:top-[60px] left-0 right-0 h-8 bg-gradient-to-b from-background/60 via-background/20 to-transparent backdrop-blur-[1px] z-40 transition-opacity duration-300"
+                />
+            )}
+
             {/* Backdrop overlay */}
             <div
                 className={cn(

@@ -46,9 +46,9 @@ const WhoIBuildFor = () => {
     return (
         <section id="who-i-build-for" ref={containerRef} className="py-section">
             <div className="container">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border/30 mb-10">
-                    <SectionTitle title="Who I Build For" />
-                    <span className="text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20 self-start sm:self-auto">
+                <div className="flex flex-row items-center justify-between gap-3 sm:gap-4 pb-6 border-b border-border/30 mb-10 flex-wrap sm:flex-nowrap">
+                    <SectionTitle title="Who I Build For" className="mb-0 sm:mb-0" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20 shrink-0">
                         Tailored Business Solutions
                     </span>
                 </div>

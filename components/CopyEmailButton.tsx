@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import { GENERAL_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { FamilyButton } from '@/components/ui/family-button';
 
 interface CopyEmailButtonProps {
     className?: string;
@@ -41,27 +42,21 @@ export default function CopyEmailButton({
     return (
         <>
             {variant === 'button' && (
-                <button
+                <FamilyButton
                     onClick={handleCopy}
+                    variant="secondary"
+                    icon={<Copy size={16} />}
+                    successIcon={<Check size={16} className="text-emerald-400" />}
+                    successText={label ? `${label} (Copied!)` : 'Copied to Clipboard!'}
                     className={cn(
-                        'inline-flex items-center gap-2 px-6 py-4 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full font-semibold text-sm sm:text-base transition-all bg-background-light/40 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97] group',
-                        copied && 'border-emerald-500/40 text-emerald-400',
+                        'px-6 py-4 text-sm sm:text-base',
+                        copied && 'border-emerald-500/50 text-emerald-400 bg-emerald-500/10',
                         className
                     )}
-                    aria-label="Copy email address to clipboard"
+                    ariaLabel="Copy email address to clipboard"
                 >
-                    {copied ? (
-                        <>
-                            <Check size={16} className="text-emerald-400 animate-in zoom-in-50 duration-200" />
-                            <span className="text-emerald-400">{label || 'Copied to Clipboard!'}</span>
-                        </>
-                    ) : (
-                        <>
-                            <Copy size={16} className="group-hover:rotate-12 transition-transform duration-200" />
-                            <span>{label || 'Copy Email'}</span>
-                        </>
-                    )}
-                </button>
+                    {label || 'Copy Email'}
+                </FamilyButton>
             )}
 
             {variant === 'link' && (

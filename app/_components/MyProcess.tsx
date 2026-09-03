@@ -1,5 +1,6 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -79,9 +80,9 @@ const MyProcess = () => {
                     {STEPS.map((step, idx) => {
                         const Icon = step.icon;
                         return (
-                            <div
+                            <SpotlightCard
                                 key={step.number}
-                                className="process-step group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
+                                className="process-step flex flex-col justify-between p-6 sm:p-7 rounded-3xl hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                             >
                                 <div>
                                     {/* Number & Icon Header */}
@@ -107,7 +108,7 @@ const MyProcess = () => {
                                 <div className="mt-6 pt-4 border-t border-border/20 text-[10px] uppercase font-bold tracking-widest text-primary/80">
                                     Step {idx + 1} of 5
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         );
                     })}
                 </div>

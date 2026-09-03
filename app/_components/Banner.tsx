@@ -1,5 +1,6 @@
 'use client';
-import Button from '@/components/Button';
+import { AnimatedNumber } from '@/components/ui/animated-number';
+import { FamilyButton } from '@/components/ui/family-button';
 import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -101,15 +102,14 @@ const Banner = () => {
 
                 {/* CTA Buttons */}
                 <div className="hero-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-2">
-                    <Button
-                        as="link"
+                    <FamilyButton
                         href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
                         variant="primary"
-                        className="shadow-xl shadow-primary/20"
+                        icon={<ArrowUpRight size={16} />}
+                        className="shadow-xl shadow-primary/20 h-12 px-7"
                     >
-                        <span>Start a Project</span>
-                        <ArrowUpRight size={16} />
-                    </Button>
+                        Start a Project
+                    </FamilyButton>
 
                     <Link
                         href="/#selected-projects"
@@ -123,19 +123,27 @@ const Banner = () => {
                 {/* Authority Proof Bar */}
                 <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 border-t border-border/30 bg-background-light/20 sm:bg-transparent rounded-2xl sm:rounded-none p-4 sm:p-0">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">5</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                            <AnimatedNumber value={5} />
+                        </p>
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Flagship Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">10+</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                            <AnimatedNumber value={10} suffix="+" />
+                        </p>
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Commercial Deployments</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">500+</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                            <AnimatedNumber value={500} suffix="+" />
+                        </p>
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Active Examinees</p>
                     </div>
                     <div className="text-center px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">100%</p>
+                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                            <AnimatedNumber value={100} suffix="%" />
+                        </p>
                         <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Solo Ownership</p>
                     </div>
                 </div>

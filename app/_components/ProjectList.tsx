@@ -1,5 +1,6 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
+import { SlidingTabs } from '@/components/ui/sliding-tabs';
 import { PROJECTS } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useGSAP } from '@gsap/react';
@@ -110,39 +111,20 @@ const ProjectList = () => {
     return (
         <section className="pb-section pt-6" id="selected-projects">
             <div className="container">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-border/30">
-                    <SectionTitle title="Selected Production Systems" />
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-border/30">
+                    <SectionTitle title="Selected Production Systems" className="mb-0 sm:mb-0" />
 
                     {/* Category Filter Tabs */}
-                    <div className="flex flex-wrap gap-2">
-                        {CATEGORIES.map((cat) => {
-                            const isActive = activeCategory === cat.id;
-                            return (
-                                <button
-                                    key={cat.id}
-                                    onClick={() => setActiveCategory(cat.id)}
-                                    className={cn(
-                                        'px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-200 flex items-center gap-2 border cursor-pointer active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
-                                        isActive
-                                            ? 'bg-primary text-black border-primary shadow-lg shadow-primary/20'
-                                            : 'bg-background-light/40 border-border/40 text-muted-foreground hover:text-foreground hover:border-primary/40'
-                                    )}
-                                >
-                                    <span>{cat.label}</span>
-                                    <span
-                                        className={cn(
-                                            'size-4 rounded-full text-[10px] flex items-center justify-center font-bold',
-                                            isActive
-                                                ? 'bg-black/20 text-black'
-                                                : 'bg-border/40 text-muted-foreground'
-                                        )}
-                                    >
-                                        {cat.count}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
+                    <SlidingTabs
+                        tabs={CATEGORIES.map((cat) => ({
+                            id: cat.id,
+                            label: cat.label,
+                            count: cat.count,
+                        }))}
+                        activeId={activeCategory}
+                        onChange={(id) => setActiveCategory(id as 'all' | 'saas' | 'ai' | 'business')}
+                        className="self-start md:self-auto"
+                    />
                 </div>
 
                 <div className="group/projects relative" ref={containerRef}>

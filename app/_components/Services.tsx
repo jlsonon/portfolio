@@ -1,5 +1,7 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { FamilyButton } from '@/components/ui/family-button';
 import { GENERAL_INFO, SERVICES } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -52,9 +54,9 @@ const Services = () => {
                         const mailtoBody = `Hi Jericho,\n\nI'm interested in working together on:\n- Service: ${service.title} (${service.tagline})\n- Target Timeline: ${service.timeline}\n- Key Features Needed:\n\nLet's connect!`;
 
                         return (
-                            <div
+                            <SpotlightCard
                                 key={service.number}
-                                className="service-card group relative flex flex-col justify-between p-8 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/5"
+                                className="service-card flex flex-col justify-between p-7 sm:p-8 rounded-3xl hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
                             >
                                 {/* Header */}
                                 <div>
@@ -103,15 +105,16 @@ const Services = () => {
                                         <Clock size={14} className="text-primary/80" />
                                         <span className="font-medium">Est. {service.timeline}</span>
                                     </div>
-                                    <a
+                                    <FamilyButton
                                         href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
-                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-background border border-border/50 text-xs font-bold text-foreground group-hover:border-primary group-hover:text-primary group-hover:bg-primary/5 transition-all duration-200 active:scale-95"
+                                        variant="secondary"
+                                        icon={<ArrowUpRight size={14} />}
+                                        className="px-4 py-2 text-xs"
                                     >
-                                        <span>Inquire</span>
-                                        <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                    </a>
+                                        Inquire
+                                    </FamilyButton>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         );
                     })}
                 </div>

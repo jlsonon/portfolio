@@ -1,13 +1,13 @@
 'use client';
 import SectionTitle from '@/components/SectionTitle';
 import { MY_STACK } from '@/lib/data';
+import { Accordion } from '@/components/ui/accordion';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ChevronDown, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -20,17 +20,6 @@ const CATEGORY_NAMES: Record<string, string> = {
 
 const Skills = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({
-        frontend: true,
-        backend: true,
-    });
-
-    const toggleCategory = (categoryKey: string) => {
-        setOpenCategories((prev) => ({
-            ...prev,
-            [categoryKey]: !prev[categoryKey],
-        }));
-    };
 
     useGSAP(
         () => {
@@ -58,9 +47,9 @@ const Skills = () => {
     return (
         <section id="my-stack" ref={containerRef} className="pb-section pt-10">
             <div className="container">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-border/30 mb-8">
-                    <SectionTitle title="Technical Stack & Architecture" />
-                    <div className="flex items-center gap-2 text-xs font-semibold text-primary px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 self-start sm:self-auto">
+                <div className="flex flex-row items-center justify-between gap-3 sm:gap-4 pb-6 border-b border-border/30 mb-8 flex-wrap sm:flex-nowrap">
+                    <SectionTitle title="Technical Stack & Architecture" className="mb-0 sm:mb-0" />
+                    <div className="flex items-center gap-2 text-xs font-semibold text-primary px-3 sm:px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 shrink-0">
                         <ShieldCheck size={14} />
                         <span>Chosen for Reliability, Not Trends</span>
                     </div>
@@ -72,86 +61,47 @@ const Skills = () => {
                 </p>
 
                 {/* 1. Mobile-Only: Collapsible Accordion List */}
-                <div className="sm:hidden space-y-3">
-                    {Object.entries(MY_STACK).map(([key, items]) => {
-                        const isOpen = !!openCategories[key];
-                        const categoryName = CATEGORY_NAMES[key] || key.replace(/_/g, ' ');
-
-                        return (
-                            <div
-                                key={key}
-                                className={cn(
-                                    'rounded-2xl border transition-all duration-200 overflow-hidden',
-                                    isOpen
-                                        ? 'border-primary/40 bg-background-light/80 shadow-md'
-                                        : 'border-border/40 bg-background-light/40 hover:border-border/70'
-                                )}
-                            >
-                                <button
-                                    id={`skills-category-${key}`}
-                                    onClick={() => toggleCategory(key)}
-                                    className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.99]"
-                                    aria-expanded={isOpen}
-                                    aria-controls={`skills-panel-${key}`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <span
-                                            className={cn(
-                                                'size-2 rounded-full transition-colors',
-                                                isOpen ? 'bg-primary' : 'bg-muted-foreground/40'
-                                            )}
-                                        />
-                                        <span className="text-sm font-bold text-foreground">
-                                            {categoryName}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-2.5">
-                                        <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-background border border-border/40 text-muted-foreground font-semibold">
-                                            {items.length} tools
-                                        </span>
-                                        <ChevronDown
-                                            size={15}
-                                            className={cn(
-                                                'text-muted-foreground transition-transform duration-200',
-                                                isOpen && 'rotate-180 text-primary'
-                                            )}
-                                        />
-                                    </div>
-                                </button>
-
-                                {isOpen && (
-                                    <div
-                                        id={`skills-panel-${key}`}
-                                        role="region"
-                                        aria-labelledby={`skills-category-${key}`}
-                                        className="px-4 pb-4 pt-1 border-t border-border/20 animate-in fade-in-50 duration-200"
-                                    >
-                                        <div className="grid grid-cols-2 gap-2.5 pt-3">
-                                            {items.map((item) => (
-                                                <div
-                                                    key={item.name}
-                                                    className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-xl bg-background border border-border/30 text-center"
-                                                >
-                                                    <div className="size-10 rounded-lg bg-background-light border border-border/20 flex items-center justify-center p-2">
-                                                        <Image
-                                                            src={item.icon}
-                                                            alt={item.name}
-                                                            width={32}
-                                                            height={32}
-                                                            className="size-6 object-contain"
-                                                        />
-                                                    </div>
-                                                    <span className="text-xs font-semibold text-foreground/90 leading-tight">
-                                                        {item.name}
-                                                    </span>
+                <div className="sm:hidden">
+                    <Accordion
+                        allowMultiple
+                        defaultOpenId="frontend"
+                        items={Object.entries(MY_STACK).map(([key, items]) => {
+                            const categoryName = CATEGORY_NAMES[key] || key.replace(/_/g, ' ');
+                            return {
+                                id: key,
+                                title: (
+                                    <span className="flex items-center gap-2.5">
+                                        <span className="size-2 rounded-full bg-primary" />
+                                        <span>{categoryName}</span>
+                                    </span>
+                                ),
+                                badge: `${items.length} tools`,
+                                content: (
+                                    <div className="grid grid-cols-2 gap-2.5 pt-2">
+                                        {items.map((item) => (
+                                            <div
+                                                key={item.name}
+                                                className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-xl bg-background border border-border/30 text-center"
+                                            >
+                                                <div className="size-10 rounded-lg bg-background-light border border-border/20 flex items-center justify-center p-2">
+                                                    <Image
+                                                        src={item.icon}
+                                                        alt={item.name}
+                                                        width={32}
+                                                        height={32}
+                                                        className="size-6 object-contain"
+                                                    />
                                                 </div>
-                                            ))}
-                                        </div>
+                                                <span className="text-xs font-semibold text-foreground/90 leading-tight">
+                                                    {item.name}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
-                            </div>
-                        );
-                    })}
+                                ),
+                            };
+                        })}
+                    />
                 </div>
 
                 {/* 2. Desktop & Tablet: Sticky Category Layout */}

@@ -8,6 +8,7 @@ import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import CopyEmailButton from '@/components/CopyEmailButton';
 import TimezoneClock from '@/components/TimezoneClock';
+import { FamilyButton } from '@/components/ui/family-button';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -96,16 +97,14 @@ const ContactCTA = () => {
 
                     {/* Action Buttons */}
                     <div className="cta-item flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6">
-                        <a
+                        <FamilyButton
                             href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
-                            className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary text-black rounded-full font-bold text-sm sm:text-base hover:bg-primary-hover shadow-xl shadow-primary/20 transition-all duration-200 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
+                            variant="primary"
+                            icon={<ArrowUpRight size={18} />}
+                            className="h-14 px-8 text-sm sm:text-base font-bold shadow-xl shadow-primary/20"
                         >
-                            <span>Start a Project</span>
-                            <ArrowUpRight
-                                size={18}
-                                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                            />
-                        </a>
+                            Start a Project
+                        </FamilyButton>
 
                         {/* 1-Click Copy Email with Instant Toast */}
                         <CopyEmailButton />

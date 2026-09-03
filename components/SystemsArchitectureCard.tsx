@@ -13,6 +13,9 @@ import {
     Receipt,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SlidingTabs } from '@/components/ui/sliding-tabs';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 export default function SystemsArchitectureCard() {
     const [mode, setMode] = useState<'automated' | 'manual'>('automated');
@@ -43,39 +46,19 @@ export default function SystemsArchitectureCard() {
                 </div>
 
                 {/* Mode Switcher Tabs */}
-                <div className="inline-flex p-1 rounded-2xl bg-background border border-border/50 shrink-0 self-start sm:self-auto shadow-inner">
-                    <button
-                        onClick={() => {
-                            setMode('automated');
-                            setSelectedNode(null);
-                        }}
-                        className={cn(
-                            'px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer',
-                            mode === 'automated'
-                                ? 'bg-primary text-black shadow-md shadow-primary/20 scale-100'
-                                : 'text-muted-foreground hover:text-foreground'
-                        )}
-                    >
-                        <Zap size={13} />
-                        <span>Jericho&apos;s Cloud Engine</span>
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            setMode('manual');
-                            setSelectedNode(null);
-                        }}
-                        className={cn(
-                            'px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer',
-                            mode === 'manual'
-                                ? 'bg-red-500/90 text-white shadow-md shadow-red-500/20 scale-100'
-                                : 'text-muted-foreground hover:text-foreground'
-                        )}
-                    >
-                        <XCircle size={13} />
-                        <span>Manual Legacy Process</span>
-                    </button>
-                </div>
+                <SlidingTabs
+                    tabs={[
+                        { id: 'automated', label: "Jericho's Cloud Engine", icon: <Zap size={13} /> },
+                        { id: 'manual', label: 'Manual Legacy Process', icon: <XCircle size={13} /> },
+                    ]}
+                    activeId={mode}
+                    onChange={(id) => {
+                        setMode(id as 'automated' | 'manual');
+                        setSelectedNode(null);
+                    }}
+                    pillClassName={mode === 'manual' ? 'bg-red-500 shadow-red-500/20 text-white' : undefined}
+                    className="self-start sm:self-auto"
+                />
             </div>
 
             {/* Visual Pipeline Canvas */}
@@ -84,13 +67,13 @@ export default function SystemsArchitectureCard() {
                     {/* 3-Node Architecture Flow */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
                         {/* Node 1: Fast Frontend / POS */}
-                        <div
+                        <SpotlightCard
                             onClick={() => setSelectedNode(0)}
                             className={cn(
-                                'p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden',
+                                'p-5 cursor-pointer relative overflow-hidden transition-all duration-300',
                                 selectedNode === 0
                                     ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10'
-                                    : 'border-border/40 bg-background/50 hover:border-primary/40 hover:bg-background/80'
+                                    : 'hover:border-primary/40'
                             )}
                         >
                             <div className="flex items-center justify-between mb-3">
@@ -107,16 +90,16 @@ export default function SystemsArchitectureCard() {
                             <p className="text-xs text-muted-foreground leading-relaxed">
                                 Offline-first cashier UI, QR scanner, and self-service portals with zero input lag.
                             </p>
-                        </div>
+                        </SpotlightCard>
 
                         {/* Node 2: Next.js + Cloud Core */}
-                        <div
+                        <SpotlightCard
                             onClick={() => setSelectedNode(1)}
                             className={cn(
-                                'p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden',
+                                'p-5 cursor-pointer relative overflow-hidden transition-all duration-300',
                                 selectedNode === 1
                                     ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10'
-                                    : 'border-border/40 bg-background/50 hover:border-primary/40 hover:bg-background/80'
+                                    : 'hover:border-primary/40'
                             )}
                         >
                             <div className="flex items-center justify-between mb-3">
@@ -133,16 +116,16 @@ export default function SystemsArchitectureCard() {
                             <p className="text-xs text-muted-foreground leading-relaxed">
                                 Atomic transactions, row-level security, automated receipt generation, and real-time syncing.
                             </p>
-                        </div>
+                        </SpotlightCard>
 
                         {/* Node 3: Live Executive Analytics */}
-                        <div
+                        <SpotlightCard
                             onClick={() => setSelectedNode(2)}
                             className={cn(
-                                'p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden',
+                                'p-5 cursor-pointer relative overflow-hidden transition-all duration-300',
                                 selectedNode === 2
                                     ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10'
-                                    : 'border-border/40 bg-background/50 hover:border-primary/40 hover:bg-background/80'
+                                    : 'hover:border-primary/40'
                             )}
                         >
                             <div className="flex items-center justify-between mb-3">
@@ -159,26 +142,34 @@ export default function SystemsArchitectureCard() {
                             <p className="text-xs text-muted-foreground leading-relaxed">
                                 Multi-branch live revenue metrics, inventory alerts, and instant audit trails for owners.
                             </p>
-                        </div>
+                        </SpotlightCard>
                     </div>
 
                     {/* Operational KPIs Row */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-border/20">
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
                             <span className="text-[10px] uppercase font-bold text-muted-foreground block">System Latency</span>
-                            <span className="text-lg font-anton text-emerald-400">&lt; 180ms</span>
+                            <span className="text-lg font-anton text-emerald-400">
+                                <AnimatedNumber value={180} prefix="< " suffix="ms" />
+                            </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
                             <span className="text-[10px] uppercase font-bold text-muted-foreground block">Manual Time Saved</span>
-                            <span className="text-lg font-anton text-primary">15+ hrs/week</span>
+                            <span className="text-lg font-anton text-primary">
+                                <AnimatedNumber value={15} suffix="+ hrs/week" />
+                            </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
                             <span className="text-[10px] uppercase font-bold text-muted-foreground block">Double-Entry Error</span>
-                            <span className="text-lg font-anton text-emerald-400">0.00%</span>
+                            <span className="text-lg font-anton text-emerald-400">
+                                <AnimatedNumber value={0} decimals={2} suffix="%" />
+                            </span>
                         </div>
                         <div className="p-3 rounded-xl bg-background/40 border border-border/30">
                             <span className="text-[10px] uppercase font-bold text-muted-foreground block">Uptime Reliability</span>
-                            <span className="text-lg font-anton text-primary">99.9% Cloud</span>
+                            <span className="text-lg font-anton text-primary">
+                                <AnimatedNumber value={99.9} decimals={1} suffix="% Cloud" />
+                            </span>
                         </div>
                     </div>
                 </div>
