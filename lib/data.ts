@@ -251,6 +251,91 @@ export const PROJECTS: IProject[] = [
             'Eliminated physical paperwork bottlenecks with automated real-time status tracking',
             'Centralized emergency announcements and public safety alerts in a single resident portal'
         ],
+    },
+    {
+        title: 'Solar SPartz Industries',
+        slug: 'solar-spartz',
+        liveUrl: 'https://solarspartz.com',
+        year: 2026,
+        category: 'business',
+        clientName: 'Solar SPartz Energy Corporation',
+        userBase: 'Residential Homeowners & C&I Facility Managers',
+        description: 'Commercial and residential solar engineering platform and EPC operations system. Features an interactive Meralco bill reduction and ROI calculator, real-time hybrid system sizing, Tier-1 Bill of Materials (BOM) visualizer, and Net Metering engineering dispatch.',
+        role: 'Lead Full-Stack Engineer & Product Designer (Solo Builder)',
+        techStack: ['Next.js 16', 'React 19', 'Tailwind CSS v4', 'GSAP', 'Radix UI', 'Framer Motion'],
+        thumbnail: '/solar_spartz.png',
+        longThumbnail: '/solar_spartz.png',
+        images: ['/solar_spartz.png', '/projects/images/solar-spartz-1.jpg', '/projects/images/solar-spartz-2.jpg'],
+        problem: 'Property owners and industrial facility managers lacked transparent engineering calculations for solar sizing, ROI payback periods, and complex Net Metering compliance.',
+        solution: 'Built an engineering-grade solar configuration platform that models real-world Philippine solar irradiance, calculates 25-year levelized energy savings, and generates turnkey engineering proposals.',
+        highlightMetric: 'Engineered an interactive solar ROI calculator modeling 25-year energy savings with PEE-compliant system sizing.',
+        architecture: [
+            'Next.js App Router with React 19 server rendering for sub-second quote generation',
+            'Dynamic mathematical modeling engine calculating Meralco tariff brackets and Net Metering credits',
+            'Tailwind CSS v4 and GSAP for micro-interaction rich energy production visualizers'
+        ],
+        outcomes: [
+            'Turnkey platform deployed for residential and C&I solar operations across Metro Manila & Luzon',
+            'Automated system sizing calculations from 5kW residential hybrids to 500kW commercial arrays',
+            'Streamlined Net Metering and municipal electrical permit workflows'
+        ],
+    },
+    {
+        title: 'OpticBooth',
+        slug: 'opticbooth',
+        liveUrl: '#',
+        year: 2026,
+        category: 'business',
+        clientName: 'Event Photobooth Operators & Experiential Agencies',
+        userBase: 'Photobooth Operators, Event DJs & 10,000+ Event Guests',
+        description: 'Paperless digital photobooth kiosk platform with native Nikon Z 50 II mirrorless and DSLR hardware tethering. Features studio-grade optical telemetry HUD, real-time 3-pose composite strip rendering, and an instant 10-second auto-dismiss dynamic QR mobile delivery system.',
+        role: 'Hardware Systems & Full-Stack Engineer (Solo Builder)',
+        techStack: ['Electron', 'React', 'Tailwind CSS', 'Vite', 'Cloud Firestore', 'Nikon UVC/PTP'],
+        thumbnail: '/opticbooth.png',
+        longThumbnail: '/opticbooth.png',
+        images: ['/opticbooth.png'],
+        problem: 'Traditional event photobooths suffer from slow dye-sublimation printer jams, ribbon shortages, and fragile tablet cameras that fail under low-light party conditions.',
+        solution: 'Architected a zero-latency kiosk software bridging Nikon mirrorless cameras over USB-C UVC/PTP, delivering high-res composite strips to guest smartphones via instant dynamic QR codes in under 10 seconds.',
+        highlightMetric: 'Eliminated physical printer maintenance and jams with 10-second auto-dismiss dynamic QR mobile delivery.',
+        architecture: [
+            'Low-latency UVC video stream with real-time autofocus reticle and camera telemetry HUD',
+            'Real-time HTML5 canvas rendering engine assembling multi-pose photo strips in <300ms',
+            'High-concurrency cloud backend powering offline-first kiosk queuing and instant mobile handoff'
+        ],
+        outcomes: [
+            '100% paperless kiosk workflow eliminating dye-sub printer costs and mechanical failures',
+            'Sub-10-second guest turnover queue cycle maximizing event attendee throughput',
+            'White-label operator studio with custom theme designers and multi-event booking management'
+        ],
+    },
+    {
+        title: 'Keebs',
+        slug: 'keebs',
+        liveUrl: '#',
+        year: 2026,
+        category: 'ai',
+        clientName: 'Mechanical Keyboard Enthusiasts & Power Typists',
+        userBase: 'macOS & Windows Power Users',
+        description: 'High-performance native mechanical keyboard acoustic synthesis and haptic feedback engine for macOS and Windows. Simulates iconic switches (Holy Panda, Cherry MX, NovelKeys) with sub-5ms audio latency, binaural 3D spatial key panning, MacBook Force Touch trackpad haptics, and smart microphone call muting.',
+        role: 'Native Systems Engineer & Product Designer (Solo Builder)',
+        techStack: ['Swift 6.0', 'SwiftUI', 'AppKit', 'C# / .NET 8', 'AVAudioEngine', 'Core Haptics'],
+        thumbnail: '/keebs.png',
+        longThumbnail: '/keebs.png',
+        images: ['/keebs.png', '/keebs_icon.png'],
+        problem: 'Remote workers and laptop typists miss the tactile and acoustic feedback of physical custom mechanical keyboards, while existing sound apps suffer from noticeable audio lag (>40ms) and interrupt voice calls.',
+        solution: 'Engineered a low-latency native utility using low-level Core Audio and AVAudioEngine that maps physical keyboard coordinates to binaural stereo panning, triggers MacBook trackpad haptics, and automatically detects microphone streams to mute during calls.',
+        highlightMetric: 'Engineered a native audio & haptic engine delivering switch acoustics with sub-5ms latency and binaural spatial panning.',
+        architecture: [
+            'AVAudioEngine low-latency audio pipeline with pre-cached high-sample mechanical switch buffers',
+            'Physical coordinate mapping calculating real-time binaural stereo panning based on keypress positions',
+            'NSHapticFeedbackManager integration simulating physical switch bottom-out on MacBook trackpads',
+            'CoreAudio stream monitoring automatically muting keyboard playback during Zoom/Teams/Discord calls'
+        ],
+        outcomes: [
+            'Native multi-platform desktop release packaged for macOS (.dmg) and Windows (.exe)',
+            'Sub-5ms global key-to-audio latency imperceptible to power typists typing over 120 WPM',
+            'Zero audio pollution on conference calls with intelligent CoreAudio microphone detection'
+        ],
     }
 ];
 
@@ -265,7 +350,7 @@ export const MY_EXPERIENCE: IExperience[] = [
         title: 'Product Engineer & Solo Builder',
         company: 'Independent SaaS Products',
         duration: '2023 - Present',
-        description: 'Engineered and shipped 5 flagship production systems with 10+ commercial deployments serving 500+ active examinees, fitness facilities, and business owners.',
+        description: 'Engineered and shipped 8 flagship production systems with 10+ commercial deployments serving 500+ active examinees, fitness facilities, and business owners.',
     },
 ];
 
