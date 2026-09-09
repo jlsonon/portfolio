@@ -103,7 +103,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     rel="noreferrer noopener"
                                     className="h-11 px-6 bg-primary text-black rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
                                 >
-                                    <span>Visit Live App</span>
+                                    <span>{project.liveUrl.includes('github.com') ? 'View Repository' : 'Visit Live App'}</span>
                                     <ArrowUpRight size={16} />
                                 </a>
                             )}
@@ -295,7 +295,7 @@ const ProjectDetails = ({ project }: Props) => {
                                             rel="noreferrer noopener"
                                             className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-primary text-black font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
                                         >
-                                            <span>Launch Production System</span>
+                                            <span>{project.liveUrl.includes('github.com') ? 'View Source on GitHub' : 'Launch Production System'}</span>
                                             <ArrowUpRight size={17} />
                                         </a>
                                     </div>

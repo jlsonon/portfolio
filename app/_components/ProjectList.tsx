@@ -13,10 +13,10 @@ import Project from './Project';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const CATEGORIES = [
-    { id: 'all', label: 'All Systems', count: 8 },
+    { id: 'all', label: 'All Systems', count: 9 },
     { id: 'business', label: 'Business & POS', count: 4 },
     { id: 'saas', label: 'SaaS & Portals', count: 2 },
-    { id: 'ai', label: 'AI & Systems', count: 2 },
+    { id: 'ai', label: 'AI & Systems', count: 3 },
 ] as const;
 
 const ProjectList = () => {

@@ -255,7 +255,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'Solar Spartz Industries',
         slug: 'solar-spartz',
-        liveUrl: 'https://solarspartz.com',
+        liveUrl: 'https://solarspartz.vercel.app/',
         year: 2026,
         category: 'business',
         clientName: 'Solar Spartz Energy Corporation',
@@ -283,7 +283,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'OpticBooth',
         slug: 'opticbooth',
-        liveUrl: '#',
+        liveUrl: 'https://github.com/jlsonon/photobooth',
         year: 2026,
         category: 'business',
         clientName: 'Event Photobooth Operators & Experiential Agencies',
@@ -311,7 +311,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'Keebs',
         slug: 'keebs',
-        liveUrl: '#',
+        liveUrl: 'https://github.com/jlsonon/keebs',
         year: 2026,
         category: 'ai',
         clientName: 'Mechanical Keyboard Enthusiasts & Power Typists',
@@ -336,6 +336,34 @@ export const PROJECTS: IProject[] = [
             'Sub-5ms global key-to-audio latency imperceptible to power typists typing over 120 WPM',
             'Zero audio pollution on conference calls with intelligent CoreAudio microphone detection'
         ],
+    },
+    {
+        title: 'LuckyBingo',
+        slug: 'bingogame',
+        liveUrl: 'https://github.com/jlsonon/bingogame',
+        year: 2026,
+        category: 'ai',
+        clientName: 'Community & Event Organizations',
+        userBase: 'Multiplayer Rooms & 100+ Concurrent Players',
+        description: 'Real-time multiplayer digital bingo platform featuring an intelligent AI voice caller powered by Google Gemini. Brings sub-second WebSocket room state synchronization, dynamic card generation, customizable winning patterns (Line, Blackout, 4 Corners), and tamper-proof anti-cheat audit logs into a seamless mobile-first web app.',
+        role: 'Full-Stack & Real-Time Systems Engineer (Solo Builder)',
+        techStack: ['React 19', 'TypeScript', 'Node.js', 'Socket.io', 'Google Gemini AI', 'Tailwind CSS', 'Vite', 'Zustand'],
+        thumbnail: '/bingogame.png',
+        longThumbnail: '/bingogame.png',
+        images: ['/bingogame.png'],
+        problem: 'Traditional community and corporate bingo events suffer from slow manual verification, paper card waste, and lack of real-time synchronized calling for remote and hybrid players.',
+        solution: 'Architected a real-time multiplayer WebSocket platform with synchronized audio ball drops, automated instant card verification, dynamic pattern detection, and natural AI voice calling via Gemini.',
+        highlightMetric: 'Synchronized 100+ concurrent players with sub-100ms WebSocket state sync and automated zero-delay bingo pattern verification.',
+        architecture: [
+            'Socket.io & Node.js WebSocket engine for synchronized state distribution across 100+ concurrent players',
+            'Google Gemini API integration powering natural AI audio voice calling and dynamic banter during game rounds',
+            'Client-side Zustand state store with optimistic card daubing and cryptographically hashed anti-cheat ticket validation'
+        ],
+        outcomes: [
+            'Real-time interactive multiplayer game engine deployed with sub-second event broadcasts',
+            'Automated instantaneous winning pattern checks eliminating false claims and game stoppages',
+            'Mobile-optimized Progressive Web App (PWA) layout for fluid touch-friendly card play on any smartphone'
+        ],
     }
 ];
 
@@ -350,7 +378,7 @@ export const MY_EXPERIENCE: IExperience[] = [
         title: 'Product Engineer & Solo Builder',
         company: 'Independent SaaS Products',
         duration: '2023 - Present',
-        description: 'Engineered and shipped 8 flagship production systems with 10+ commercial deployments serving 500+ active examinees, fitness facilities, and business owners.',
+        description: 'Engineered and shipped 9 flagship production systems with 10+ commercial deployments serving 500+ active examinees, fitness facilities, and business owners.',
     },
 ];
 
