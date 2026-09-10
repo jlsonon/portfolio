@@ -15,7 +15,7 @@ const ICONS_MAP: Record<string, React.ReactNode> = {
 const Clients = () => {
     return (
         <section id="trusted-by" className="relative z-[1] py-10 sm:py-14 border-y border-border/40 bg-background-light/20 backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <div className="container">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
@@ -32,7 +32,8 @@ const Clients = () => {
                             </div>
                         </div>
 
-                        <span className="text-[11px] text-muted-foreground font-semibold px-3 py-1 rounded-full bg-background border border-border/40 self-start sm:self-auto">
+                        <span className="text-[11px] text-muted-foreground font-semibold px-3 py-1 rounded-full bg-background border border-border/40 self-start sm:self-auto flex items-center gap-1.5">
+                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             100% Production Verified
                         </span>
                     </div>
@@ -51,7 +52,7 @@ const Clients = () => {
                                                     {client.name}
                                                 </h3>
                                             </div>
-                                            <ArrowUpRight size={14} className="text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all shrink-0" />
+                                            <ArrowUpRight size={14} className="text-muted-foreground opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:text-primary transition-all shrink-0" />
                                         </div>
 
                                         <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">

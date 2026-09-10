@@ -51,14 +51,14 @@ const ContactCTA = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/[0.06] blur-[140px] rounded-full pointer-events-none -z-10" />
 
             <div className="container" ref={containerRef}>
-                <div className="border border-border/40 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-md text-center max-w-4xl mx-auto relative shadow-2xl">
+                <div className="border border-border/50 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-xl text-center max-w-4xl mx-auto relative shadow-2xl ring-1 ring-white/5">
                     {/* Live Timezone & Availability Badge */}
                     <div className="cta-item flex justify-center mb-6">
                         <TimezoneClock />
                     </div>
 
                     {/* Headline */}
-                    <h2 className="cta-item text-3xl sm:text-5xl md:text-6xl font-anton leading-tight text-foreground tracking-tight">
+                    <h2 className="cta-item text-3xl sm:text-5xl md:text-6xl font-anton leading-tight text-foreground tracking-[-0.03em]">
                         Have a manual business process
                         <br />
                         <span className="text-primary">
@@ -82,10 +82,10 @@ const ContactCTA = () => {
                                     key={type.id}
                                     onClick={() => setSelectedType(type.id)}
                                     className={cn(
-                                        'px-4 py-2 rounded-full text-xs font-bold tracking-wide border transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95',
+                                        'px-4 py-2 rounded-full text-xs font-bold tracking-wide border transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none select-none active:scale-95',
                                         selectedType === type.id
-                                            ? 'bg-primary text-black border-primary shadow-lg shadow-primary/20'
-                                            : 'bg-background/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/40'
+                                            ? 'bg-primary text-black border-primary shadow-lg shadow-primary/25'
+                                            : 'bg-background/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/40 backdrop-blur-sm'
                                     )}
                                 >
                                     {type.label}

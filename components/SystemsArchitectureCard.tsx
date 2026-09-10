@@ -146,28 +146,28 @@ export default function SystemsArchitectureCard() {
                     </div>
 
                     {/* Operational KPIs Row */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-border/20">
-                        <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">System Latency</span>
-                            <span className="text-lg font-anton text-emerald-400">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-border/25">
+                        <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
+                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">System Latency</span>
+                            <span className="text-lg sm:text-xl font-anton text-emerald-400 tabular-nums">
                                 <AnimatedNumber value={180} prefix="< " suffix="ms" />
                             </span>
                         </div>
-                        <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Manual Time Saved</span>
-                            <span className="text-lg font-anton text-primary">
+                        <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
+                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Manual Time Saved</span>
+                            <span className="text-lg sm:text-xl font-anton text-primary tabular-nums">
                                 <AnimatedNumber value={15} suffix="+ hrs/week" />
                             </span>
                         </div>
-                        <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Double-Entry Error</span>
-                            <span className="text-lg font-anton text-emerald-400">
+                        <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
+                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Double-Entry Error</span>
+                            <span className="text-lg sm:text-xl font-anton text-emerald-400 tabular-nums">
                                 <AnimatedNumber value={0} decimals={2} suffix="%" />
                             </span>
                         </div>
-                        <div className="p-3 rounded-xl bg-background/40 border border-border/30">
-                            <span className="text-[11px] uppercase font-bold text-muted-foreground block">Uptime Reliability</span>
-                            <span className="text-lg font-anton text-primary">
+                        <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
+                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Uptime Reliability</span>
+                            <span className="text-lg sm:text-xl font-anton text-primary tabular-nums">
                                 <AnimatedNumber value={99.9} decimals={1} suffix="% Cloud" />
                             </span>
                         </div>

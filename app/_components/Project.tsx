@@ -1,6 +1,7 @@
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
 import { ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import Image from 'next/image';
 
 interface Props {
     index: number;
@@ -12,13 +13,13 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
     return (
         <TransitionLink
             href={`/projects/${project.slug}`}
-            className="project-item group block py-6 lg:py-8 lg:border-b border-border/30 first:!pt-0 last:pb-0 last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 transition-opacity duration-300 cursor-pointer"
+            className="project-item group block p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-border/40 lg:border-0 lg:border-b border-border/30 bg-background-light/25 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none py-6 lg:py-8 first:!pt-0 lg:first:pt-0 last:pb-0 last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 hover:border-primary/40 lg:hover:border-border/30 transition-all duration-300 cursor-pointer"
             onMouseEnter={() => onMouseEnter(project.slug)}
             onFocus={() => onMouseEnter(project.slug)}
         >
             {/* Desktop & Mobile Row Content */}
             <div className="flex gap-4 sm:gap-6 items-start">
-                <div className="font-anton text-muted-foreground/60 text-lg sm:text-2xl pt-1 tracking-wider shrink-0">
+                <div className="font-anton tabular-nums text-muted-foreground/60 text-lg sm:text-2xl pt-1 tracking-wider shrink-0">
                     {String(index + 1).padStart(2, '0')}.
                 </div>
 
@@ -29,7 +30,7 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                                 <span>{project.title}</span>
                                 <ArrowUpRight
                                     size={24}
-                                    className="text-primary opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-200 shrink-0 hidden sm:inline-block"
+                                    className="text-primary opacity-0 -translate-x-1.5 translate-y-1.5 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-200 shrink-0 hidden sm:inline-block"
                                 />
                             </h3>
 
@@ -45,9 +46,22 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                         </span>
                     </div>
 
+                    {/* Mobile Only Crisp Screenshot Mockup */}
+                    {project.thumbnail && (
+                        <div className="lg:hidden mt-4 relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-border/40 bg-background shadow-md">
+                            <Image
+                                src={project.thumbnail}
+                                alt={`${project.title} screenshot`}
+                                fill
+                                className="object-cover object-top"
+                                sizes="(max-width: 1024px) 100vw, 500px"
+                            />
+                        </div>
+                    )}
+
                     {/* Problem -> Outcome Micro Summary */}
                     {project.problem && project.outcomes && project.outcomes.length > 0 && (
-                        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground/90 bg-background-light/30 rounded-xl p-3 border border-border/30">
+                        <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground/90 bg-background-light/40 rounded-xl p-3 border border-border/30">
                             <div className="flex items-start gap-1.5">
                                 <AlertCircle size={13} className="text-amber-400/80 shrink-0 mt-0.5" />
                                 <span className="line-clamp-1 sm:line-clamp-2">
@@ -63,12 +77,12 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                         </div>
                     )}
 
-                    <div className="mt-2.5 flex flex-wrap items-center gap-2 sm:gap-3 text-muted-foreground text-xs">
+                    <div className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3 text-muted-foreground text-xs">
                         <span className="text-foreground/90 font-medium">
                             {project.role.split('(')[0].trim()}
                         </span>
                         <span className="inline-block size-1 rounded-full bg-border" />
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                             {project.techStack.slice(0, 4).map((tech) => (
                                 <span
                                     key={tech}

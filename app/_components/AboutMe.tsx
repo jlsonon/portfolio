@@ -147,10 +147,10 @@ const AboutMe = () => {
                                         type="button"
                                         onClick={() => setActiveTestimonial(idx)}
                                         className={cn(
-                                            'flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all text-center cursor-pointer',
+                                            'flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all duration-200 text-center cursor-pointer select-none active:scale-95',
                                             activeTestimonial === idx
                                                 ? 'bg-primary text-black shadow-sm'
-                                                : 'text-muted-foreground hover:text-foreground'
+                                                : 'text-muted-foreground hover:text-foreground hover:bg-background-light/40'
                                         )}
                                     >
                                         {item.author}
@@ -158,7 +158,7 @@ const AboutMe = () => {
                                 ))}
                             </div>
 
-                            <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed border-l-2 border-primary/40 pl-3.5 my-3 min-h-[72px]">
+                            <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed border-l-2 border-primary/40 pl-3.5 my-3 min-h-[80px] flex items-center">
                                 &ldquo;{TESTIMONIALS[activeTestimonial].quote}&rdquo;
                             </p>
 

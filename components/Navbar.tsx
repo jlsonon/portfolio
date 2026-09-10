@@ -86,7 +86,7 @@ const Navbar = () => {
                         : 'bg-background/50 backdrop-blur-md border-b border-transparent py-4'
                 )}
             >
-                <div className="flex items-center justify-between px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+                <div className="container flex items-center justify-between">
                     {/* Brand / Logo */}
                     <button
                         onClick={() => router.push('/')}

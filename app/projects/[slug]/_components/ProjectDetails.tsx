@@ -250,17 +250,17 @@ const ProjectDetails = ({ project }: Props) => {
 
                 {/* High-Fidelity Browser Mockup Frame */}
                 <div
-                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-3xl border border-border/60 bg-background-light/95 shadow-2xl mt-4 group"
+                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-3xl border border-border/70 bg-background-light/95 shadow-[0_30px_90px_rgba(0,0,0,0.85)] ring-1 ring-white/10 mt-6 group"
                     id="images"
                 >
                     {/* Browser chrome frame */}
-                    <div className="flex items-center justify-between gap-3 px-4 py-3 bg-background border-b border-border/40 shrink-0">
+                    <div className="flex items-center justify-between gap-3 px-4 py-3 bg-background/90 border-b border-border/40 shrink-0">
                         <div className="flex items-center gap-2">
                             <span className="size-3 rounded-full bg-red-500/80" />
                             <span className="size-3 rounded-full bg-yellow-500/80" />
                             <span className="size-3 rounded-full bg-green-500/80" />
                         </div>
-                        <div className="flex-1 max-w-md mx-2 bg-background-light rounded-lg px-4 py-1 flex items-center justify-center border border-border/30">
+                        <div className="flex-1 max-w-md mx-2 bg-background-light/80 rounded-lg px-4 py-1.5 flex items-center justify-center border border-border/30">
                             <p className="text-xs text-muted-foreground truncate font-mono">
                                 {project.liveUrl?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
                             </p>

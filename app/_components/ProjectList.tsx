@@ -115,33 +115,35 @@ const ProjectList = () => {
                     <SectionTitle title="Selected Production Systems" className="mb-0 sm:mb-0" />
 
                     {/* Category Filter Tabs */}
-                    <SlidingTabs
-                        tabs={CATEGORIES.map((cat) => ({
-                            id: cat.id,
-                            label: cat.label,
-                            count: cat.count,
-                        }))}
-                        activeId={activeCategory}
-                        onChange={(id) => setActiveCategory(id as 'all' | 'saas' | 'ai' | 'business')}
-                        className="self-start md:self-auto"
-                    />
+                    <div className="w-full sm:w-auto overflow-x-auto no-scrollbar">
+                        <SlidingTabs
+                            tabs={CATEGORIES.map((cat) => ({
+                                id: cat.id,
+                                label: cat.label,
+                                count: cat.count,
+                            }))}
+                            activeId={activeCategory}
+                            onChange={(id) => setActiveCategory(id as 'all' | 'saas' | 'ai' | 'business')}
+                            className="self-start md:self-auto"
+                        />
+                    </div>
                 </div>
 
                 <div className="group/projects relative" ref={containerRef}>
                     {/* Desktop Floating Live Browser Preview */}
                     {selectedProject !== null && (
                         <div
-                            className="hidden lg:block absolute right-0 top-0 z-20 pointer-events-none w-[360px] xl:w-[460px] opacity-0 drop-shadow-2xl"
+                            className="hidden lg:block absolute right-0 top-0 z-20 pointer-events-none w-[380px] xl:w-[480px] opacity-0"
                             ref={imageContainer}
                         >
-                            <div className="rounded-2xl overflow-hidden border border-border/60 bg-background-light/95 backdrop-blur-md shadow-2xl">
+                            <div className="rounded-2xl overflow-hidden border border-border/70 bg-background-light/95 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
                                 {/* Browser Chrome */}
-                                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-background border-b border-border/40">
+                                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-background/90 border-b border-border/40">
                                     <span className="size-2.5 rounded-full bg-red-500/80" />
                                     <span className="size-2.5 rounded-full bg-yellow-500/80" />
                                     <span className="size-2.5 rounded-full bg-green-500/80" />
-                                    <div className="flex-1 mx-2 bg-background-light rounded-md px-3 py-0.5 text-center">
-                                        <p className="text-[10px] text-muted-foreground truncate font-medium">
+                                    <div className="flex-1 mx-2 bg-background-light/80 border border-border/30 rounded-md px-3 py-0.5 text-center">
+                                        <p className="text-[10px] text-muted-foreground truncate font-mono">
                                             {PROJECTS.find((p) => p.slug === selectedProject)?.liveUrl?.replace('https://', '') ?? selectedProject}
                                         </p>
                                     </div>

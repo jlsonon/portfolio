@@ -51,12 +51,12 @@ const Experiences = () => {
                             className="experience-item group flex gap-5 md:gap-7 items-start relative"
                         >
                             {/* Numbered circular node + vertical timeline line */}
-                            <div className="shrink-0 flex flex-col items-center gap-2">
-                                <span className="size-10 rounded-2xl border border-primary/40 bg-background-light flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-black group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 shadow-sm">
+                            <div className="shrink-0 flex flex-col items-center gap-2 self-stretch">
+                                <span className="size-10 rounded-2xl border border-primary/40 bg-background-light flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-black group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 shadow-sm shrink-0">
                                     {String(idx + 1).padStart(2, '0')}
                                 </span>
                                 {idx < MY_EXPERIENCE.length - 1 && (
-                                    <span className="w-0.5 grow bg-gradient-to-b from-primary/30 via-border/50 to-transparent min-h-12" />
+                                    <span className="w-0.5 grow bg-gradient-to-b from-primary/40 via-border/60 to-primary/20 my-1 rounded-full" />
                                 )}
                             </div>
 

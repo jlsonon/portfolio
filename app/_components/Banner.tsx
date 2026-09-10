@@ -60,7 +60,7 @@ const Banner = () => {
                 {/* Profile Avatar & Status Pill */}
                 <div className="hero-item flex flex-col items-center gap-3">
                     <div className="relative group cursor-pointer">
-                        <div className="size-28 sm:size-32 rounded-full overflow-hidden border-2 border-primary/50 p-1 bg-background-light shadow-xl shadow-primary/10 group-hover:border-primary group-hover:shadow-primary/20 transition-all duration-300">
+                        <div className="size-28 sm:size-32 rounded-full overflow-hidden border-2 border-primary/60 ring-1 ring-white/10 p-1 bg-background-light shadow-[0_0_35px_rgba(243,183,40,0.18)] group-hover:border-primary group-hover:shadow-[0_0_45px_rgba(243,183,40,0.28)] transition-all duration-300">
                             <Image
                                 src="/banner.jpg"
                                 alt="Jericho Sonon"
@@ -82,7 +82,7 @@ const Banner = () => {
 
                 {/* Headline: Strict 2-line Wide Typography */}
                 <div className="hero-item max-w-5xl mx-auto">
-                    <h1 className="font-anton leading-[0.96] text-[clamp(2.5rem,5.8vw,5.5rem)] text-foreground tracking-tight">
+                    <h1 className="font-anton leading-[0.96] text-[clamp(2.5rem,5.8vw,5.5rem)] text-foreground tracking-[-0.03em]">
                         <span className="block">Custom Business Systems</span>
                         <span className="text-primary block mt-1.5">That Replace Manual Work.</span>
                     </h1>
@@ -94,7 +94,7 @@ const Banner = () => {
                 </p>
 
                 {/* Opinionated Builder Quote Pill */}
-                <div className="hero-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-light/60 border border-border/50 text-xs sm:text-sm text-foreground/80 font-medium italic">
+                <div className="hero-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-light/60 border border-border/60 text-xs sm:text-sm text-foreground/80 font-medium italic backdrop-blur-sm shadow-sm">
                     <span className="text-primary font-bold">“</span>
                     Working software for real users, not portfolio-only mockups.
                     <span className="text-primary font-bold">”</span>
@@ -106,14 +106,14 @@ const Banner = () => {
                         href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
                         variant="primary"
                         icon={<ArrowUpRight size={16} />}
-                        className="shadow-xl shadow-primary/20 h-12 px-7"
+                        className="shadow-xl shadow-primary/20 h-12 px-7 font-bold text-sm"
                     >
                         Start a Project
                     </FamilyButton>
 
                     <Link
                         href="/#selected-projects"
-                        className="h-12 px-7 rounded-full text-sm font-semibold border border-border/60 hover:border-primary/50 text-foreground hover:text-primary transition-all duration-200 bg-background-light/40 flex items-center gap-2 active:scale-[0.97]"
+                        className="h-12 px-7 rounded-full text-sm font-semibold border border-border/60 hover:border-primary/60 text-foreground hover:text-primary transition-all duration-200 bg-background-light/40 hover:bg-background-light/80 backdrop-blur-sm flex items-center gap-2 shadow-sm active:scale-[0.97]"
                     >
                         <span>View Live Systems</span>
                         <span className="text-primary">↓</span>
@@ -121,30 +121,30 @@ const Banner = () => {
                 </div>
 
                 {/* Authority Proof Bar */}
-                <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 border-t border-border/30 bg-background-light/20 sm:bg-transparent rounded-2xl sm:rounded-none p-4 sm:p-0">
+                <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 sm:pt-5 sm:pb-5 border-t sm:border-y border-border/30 bg-background-light/25 sm:bg-background-light/20 backdrop-blur-sm rounded-2xl p-4 sm:px-2">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                        <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={9} />
                         </p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Flagship Systems</p>
+                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Flagship Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                        <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={10} suffix="+" />
                         </p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Commercial Deployments</p>
+                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Commercial Deployments</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                        <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={500} suffix="+" />
                         </p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Active Examinees</p>
+                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Active Examinees</p>
                     </div>
                     <div className="text-center px-2">
-                        <p className="text-3xl sm:text-4xl font-anton text-primary">
+                        <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={100} suffix="%" />
                         </p>
-                        <p className="text-[11px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">Solo Ownership</p>
+                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Solo Ownership</p>
                     </div>
                 </div>
 
