@@ -47,11 +47,9 @@ const ContactCTA = () => {
 
     return (
         <section className="py-section relative overflow-hidden" id="contact-cta">
-            {/* Ambient gold glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/[0.06] blur-[140px] rounded-full pointer-events-none -z-10" />
 
             <div className="container" ref={containerRef}>
-                <div className="border border-border/50 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-xl text-center max-w-4xl mx-auto relative shadow-2xl ring-1 ring-white/5">
+                <div className="border border-border/50 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-md text-center max-w-4xl mx-auto relative shadow-xl">
                     {/* Live Timezone & Availability Badge */}
                     <div className="cta-item flex justify-center mb-6">
                         <TimezoneClock />

@@ -129,9 +129,7 @@ export default function GitHubCalendar() {
     };
 
     return (
-        <div className="w-full rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md p-6 sm:p-8 shadow-lg relative overflow-hidden">
-            {/* Ambient gold glow */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-primary/[0.04] blur-[90px] rounded-full pointer-events-none -z-10" />
+        <div className="w-full rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md p-6 sm:p-8 shadow-lg">
 
             {/* Header / Stats Block */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/30 mb-6">
@@ -232,7 +230,7 @@ export default function GitHubCalendar() {
             </div>
 
             {/* Footer Legend & Privacy Notice */}
-            <div className="mt-5 pt-4 border-t border-border/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] text-muted-foreground">
+            <div className="mt-5 pt-4 border-t border-border/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1.5">
                     <ShieldCheck size={13} className="text-primary shrink-0" />
                     <span>Commercial repositories &amp; client code remain confidential.</span>

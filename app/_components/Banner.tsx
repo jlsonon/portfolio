@@ -50,8 +50,6 @@ const Banner = () => {
             className="relative overflow-hidden pt-8 pb-16 sm:py-20 lg:py-24"
             id="banner"
         >
-            {/* Ambient radial wash background */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.07] blur-[120px] rounded-full pointer-events-none -z-10" />
 
             <div
                 className="container min-h-[82vh] flex flex-col items-center justify-center text-center gap-5 sm:gap-6"
@@ -60,7 +58,7 @@ const Banner = () => {
                 {/* Profile Avatar & Status Pill */}
                 <div className="hero-item flex flex-col items-center gap-3">
                     <div className="relative group cursor-pointer">
-                        <div className="size-28 sm:size-32 rounded-full overflow-hidden border-2 border-primary/60 ring-1 ring-white/10 p-1 bg-background-light shadow-[0_0_35px_rgba(243,183,40,0.18)] group-hover:border-primary group-hover:shadow-[0_0_45px_rgba(243,183,40,0.28)] transition-all duration-300">
+                        <div className="size-28 sm:size-32 rounded-full overflow-hidden border-2 border-primary/60 p-1 bg-background-light shadow-lg group-hover:border-primary transition-all duration-300">
                             <Image
                                 src="/banner.jpg"
                                 alt="Jericho Sonon"
@@ -74,7 +72,7 @@ const Banner = () => {
                     </div>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm">
-                        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-primary">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                             Software &amp; Solutions Engineer
                         </span>
                     </div>
@@ -82,7 +80,7 @@ const Banner = () => {
 
                 {/* Headline: Strict 2-line Wide Typography */}
                 <div className="hero-item max-w-5xl mx-auto">
-                    <h1 className="font-anton leading-[0.96] text-[clamp(2.5rem,5.8vw,5.5rem)] text-foreground tracking-[-0.03em]">
+                    <h1 className="font-anton leading-[1.02] sm:leading-[0.96] text-[clamp(2.2rem,5.8vw,5.5rem)] text-foreground tracking-[-0.03em]">
                         <span className="block">Custom Business Systems</span>
                         <span className="text-primary block mt-1.5">That Replace Manual Work.</span>
                     </h1>
@@ -126,25 +124,25 @@ const Banner = () => {
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={9} />
                         </p>
-                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Flagship Systems</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Flagship Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={10} suffix="+" />
                         </p>
-                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Commercial Deployments</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Commercial Deployments</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={500} suffix="+" />
                         </p>
-                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Active Examinees</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Active Examinees</p>
                     </div>
                     <div className="text-center px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={100} suffix="%" />
                         </p>
-                        <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 uppercase tracking-[0.14em] font-semibold">Solo Ownership</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Solo Ownership</p>
                     </div>
                 </div>
 
@@ -154,7 +152,7 @@ const Banner = () => {
                     className="hero-item scroll-indicator text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-1.5 mt-4"
                     aria-label="Scroll down to content"
                 >
-                    <span className="text-[11px] uppercase tracking-widest font-bold">Scroll Down</span>
+                    <span className="text-xs uppercase tracking-widest font-bold">Scroll Down</span>
                     <ArrowDown size={14} className="text-primary" />
                 </a>
             </div>

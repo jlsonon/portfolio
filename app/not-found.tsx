@@ -5,9 +5,7 @@ import { Home, ArrowUpRight } from 'lucide-react';
 
 export default function NotFound() {
     return (
-        <main className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative overflow-hidden">
-            {/* Ambient gold glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/[0.07] blur-[120px] rounded-full pointer-events-none -z-10" />
+        <main className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative">
 
             {/* Big 404 Display */}
             <p className="text-[clamp(6rem,22vw,15rem)] font-anton leading-none text-primary/15 select-none tracking-tighter">

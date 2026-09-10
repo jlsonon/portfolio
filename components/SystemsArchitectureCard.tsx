@@ -22,14 +22,7 @@ export default function SystemsArchitectureCard() {
     const [selectedNode, setSelectedNode] = useState<number | null>(null);
 
     return (
-        <div className="w-full rounded-3xl border border-border/40 bg-background-light/35 backdrop-blur-md p-6 sm:p-8 relative overflow-hidden shadow-xl">
-            {/* Ambient Background Gradient Wash */}
-            <div
-                className={cn(
-                    'absolute top-0 right-0 w-96 h-96 blur-[120px] rounded-full pointer-events-none transition-all duration-700 -z-10',
-                    mode === 'automated' ? 'bg-primary/10' : 'bg-red-500/10'
-                )}
-            />
+        <div className="w-full rounded-3xl border border-border/40 bg-background-light/35 backdrop-blur-md p-6 sm:p-8 shadow-lg">
 
             {/* Header: Title + Interactive Mode Switcher Tabs */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/30 mb-6">
@@ -80,7 +73,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <Smartphone size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                                     &lt; 50ms Input
                                 </span>
                             </div>
@@ -106,7 +99,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <Database size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                                <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
                                     Next.js 15 + Postgres
                                 </span>
                             </div>
@@ -132,7 +125,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
                                     <TrendingUp size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                                     Live Sync
                                 </span>
                             </div>
@@ -148,25 +141,25 @@ export default function SystemsArchitectureCard() {
                     {/* Operational KPIs Row */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-border/25">
                         <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
-                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">System Latency</span>
+                            <span className="text-xs uppercase font-bold text-muted-foreground block tracking-wider">System Latency</span>
                             <span className="text-lg sm:text-xl font-anton text-emerald-400 tabular-nums">
                                 <AnimatedNumber value={180} prefix="< " suffix="ms" />
                             </span>
                         </div>
                         <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
-                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Manual Time Saved</span>
+                            <span className="text-xs uppercase font-bold text-muted-foreground block tracking-wider">Manual Time Saved</span>
                             <span className="text-lg sm:text-xl font-anton text-primary tabular-nums">
                                 <AnimatedNumber value={15} suffix="+ hrs/week" />
                             </span>
                         </div>
                         <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
-                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Double-Entry Error</span>
+                            <span className="text-xs uppercase font-bold text-muted-foreground block tracking-wider">Double-Entry Error</span>
                             <span className="text-lg sm:text-xl font-anton text-emerald-400 tabular-nums">
                                 <AnimatedNumber value={0} decimals={2} suffix="%" />
                             </span>
                         </div>
                         <div className="p-3.5 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm">
-                            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-muted-foreground block tracking-wider">Uptime Reliability</span>
+                            <span className="text-xs uppercase font-bold text-muted-foreground block tracking-wider">Uptime Reliability</span>
                             <span className="text-lg sm:text-xl font-anton text-primary tabular-nums">
                                 <AnimatedNumber value={99.9} decimals={1} suffix="% Cloud" />
                             </span>
@@ -183,7 +176,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <Receipt size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     High Risk
                                 </span>
                             </div>
@@ -201,7 +194,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <FileSpreadsheet size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     48hr Delay
                                 </span>
                             </div>
@@ -219,7 +212,7 @@ export default function SystemsArchitectureCard() {
                                 <div className="size-8 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
                                     <FileWarning size={16} />
                                 </div>
-                                <span className="text-[11px] font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                <span className="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
                                     Blind Spots
                                 </span>
                             </div>

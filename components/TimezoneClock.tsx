@@ -51,7 +51,7 @@ export default function TimezoneClock({ className }: { className?: string }) {
 
             <span className="w-px h-3 bg-border/60 hidden sm:inline-block" />
 
-            <div className="flex items-center gap-1.5 text-[11px]">
+            <div className="flex items-center gap-1.5 text-xs">
                 <span
                     className={cn(
                         'size-1.5 rounded-full',

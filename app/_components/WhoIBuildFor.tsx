@@ -64,7 +64,7 @@ const WhoIBuildFor = () => {
                                     <div className="size-11 rounded-2xl bg-background border border-border/40 flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300 shadow-sm">
                                         {ICONS_MAP[niche.icon]}
                                     </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                                    <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
                                         Custom System
                                     </span>
                                 </div>

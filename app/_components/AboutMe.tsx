@@ -44,7 +44,6 @@ const AboutMe = () => {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-6">
                     {/* 1. Core Builder Statement Card - 12 cols */}
                     <div className="about-card md:col-span-12 border border-border/40 rounded-3xl p-7 sm:p-10 bg-background-light/40 backdrop-blur-md relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.04] blur-[100px] rounded-full pointer-events-none" />
                         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
                             <Compass size={15} />
                             <span>How I Build &amp; What I Value</span>
@@ -81,7 +80,7 @@ const AboutMe = () => {
                                     <h3 className="font-anton text-2xl text-foreground">
                                         Jericho Sonon
                                     </h3>
-                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold">
+                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
                                         <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                         Available
                                     </span>
@@ -114,7 +113,7 @@ const AboutMe = () => {
                         </div>
 
                         <div className="pt-4 border-t border-border/30">
-                            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
                                 Operating Standard
                             </p>
                             <div className="flex items-center gap-2 text-xs text-foreground/80 font-medium">
@@ -126,14 +125,13 @@ const AboutMe = () => {
 
                     {/* 5. Verified Client Proof & Endorsement - 4 cols */}
                     <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-5 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/[0.04] blur-2xl rounded-full pointer-events-none" />
                         <div>
                             <div className="flex items-center justify-between gap-2 mb-3">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
                                     <Quote size={14} />
                                     <span>Client Endorsement</span>
                                 </div>
-                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[11px] font-bold text-primary">
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
                                     <Award size={12} />
                                     <span>Verified</span>
                                 </span>
@@ -168,11 +166,11 @@ const AboutMe = () => {
                                         <p className="text-xs font-bold text-foreground">
                                             {TESTIMONIALS[activeTestimonial].author}
                                         </p>
-                                        <p className="text-[11px] text-muted-foreground">
+                                        <p className="text-xs text-muted-foreground">
                                             {TESTIMONIALS[activeTestimonial].role}, {TESTIMONIALS[activeTestimonial].company}
                                         </p>
                                     </div>
-                                    <span className="text-[11px] font-semibold text-primary/90 px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
+                                    <span className="text-xs font-semibold text-primary/90 px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
                                         {TESTIMONIALS[activeTestimonial].highlight}
                                     </span>
                                 </div>
@@ -180,14 +178,14 @@ const AboutMe = () => {
                         </div>
 
                         <div className="pt-3 border-t border-border/30">
-                            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
                                 Production Standards
                             </p>
                             <div className="flex flex-wrap gap-1.5">
                                 {['Zero Downtime Architecture', 'Rapid 2-4 Week Delivery', 'Direct Founder Ownership'].map((tag) => (
                                     <span
                                         key={tag}
-                                        className="text-[11px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
+                                        className="text-xs font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
                                     >
                                         {tag}
                                     </span>

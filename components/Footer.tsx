@@ -8,11 +8,8 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-border/40 bg-background-light/30 backdrop-blur-sm py-14 relative overflow-hidden" id="contact">
-            {/* Ambient glow behind footer */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] bg-primary/5 blur-[100px] pointer-events-none rounded-full" />
-
-            <div className="container relative z-10">
+        <footer className="border-t border-border/40 bg-background-light/30 backdrop-blur-sm py-14" id="contact">
+            <div className="container">
                 {/* Top Quick Contact Block */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/30">
                     <div className="text-center md:text-left">

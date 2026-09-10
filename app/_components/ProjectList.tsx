@@ -136,14 +136,14 @@ const ProjectList = () => {
                             className="hidden lg:block absolute right-0 top-0 z-20 pointer-events-none w-[380px] xl:w-[480px] opacity-0"
                             ref={imageContainer}
                         >
-                            <div className="rounded-2xl overflow-hidden border border-border/70 bg-background-light/95 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+                            <div className="rounded-2xl overflow-hidden border border-border/70 bg-background-light/95 backdrop-blur-xl shadow-2xl">
                                 {/* Browser Chrome */}
                                 <div className="flex items-center gap-2 px-3.5 py-2.5 bg-background/90 border-b border-border/40">
                                     <span className="size-2.5 rounded-full bg-red-500/80" />
                                     <span className="size-2.5 rounded-full bg-yellow-500/80" />
                                     <span className="size-2.5 rounded-full bg-green-500/80" />
                                     <div className="flex-1 mx-2 bg-background-light/80 border border-border/30 rounded-md px-3 py-0.5 text-center">
-                                        <p className="text-[10px] text-muted-foreground truncate font-mono">
+                                        <p className="text-xs text-muted-foreground truncate font-mono">
                                             {PROJECTS.find((p) => p.slug === selectedProject)?.liveUrl?.replace('https://', '') ?? selectedProject}
                                         </p>
                                     </div>

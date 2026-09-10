@@ -32,7 +32,7 @@ const Clients = () => {
                             </div>
                         </div>
 
-                        <span className="text-[11px] text-muted-foreground font-semibold px-3 py-1 rounded-full bg-background border border-border/40 self-start sm:self-auto flex items-center gap-1.5">
+                        <span className="text-xs text-muted-foreground font-semibold px-3 py-1 rounded-full bg-background border border-border/40 self-start sm:self-auto flex items-center gap-1.5">
                             <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             100% Production Verified
                         </span>
@@ -41,7 +41,7 @@ const Clients = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
                         {CLIENTS.map((client) => {
                             const CardContent = (
-                                <SpotlightCard className="h-full p-5 flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                                <SpotlightCard className="h-full p-5 sm:p-6 rounded-2xl flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
                                     <div>
                                         <div className="flex items-start justify-between gap-2.5 mb-3">
                                             <div className="flex items-center gap-2.5">
@@ -60,13 +60,13 @@ const Clients = () => {
                                         </p>
                                     </div>
 
-                                    <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/20 text-[11px]">
-                                        <span className="inline-flex items-center gap-1.5 font-semibold text-primary/95 text-[11px]">
+                                    <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/20 text-xs">
+                                        <span className="inline-flex items-center gap-1.5 font-semibold text-primary/95 text-xs">
                                             <CheckCircle2 className="size-3 text-primary shrink-0" />
                                             {client.badge}
                                         </span>
                                         {client.location && (
-                                            <span className="text-muted-foreground/80 text-[11px] truncate max-w-[110px]">
+                                            <span className="text-muted-foreground/80 text-xs truncate max-w-[110px]">
                                                 {client.location}
                                             </span>
                                         )}

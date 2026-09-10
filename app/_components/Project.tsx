@@ -13,7 +13,7 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
     return (
         <TransitionLink
             href={`/projects/${project.slug}`}
-            className="project-item group block p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-border/40 lg:border-0 lg:border-b border-border/30 bg-background-light/25 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none py-6 lg:py-8 first:!pt-0 lg:first:pt-0 last:pb-0 last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 hover:border-primary/40 lg:hover:border-border/30 transition-all duration-300 cursor-pointer"
+            className="project-item group block p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-border/40 lg:border-0 lg:border-b border-border/30 bg-background-light/25 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none lg:py-8 lg:first:pt-0 lg:last:pb-0 lg:last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 hover:border-primary/40 lg:hover:border-border/30 transition-all duration-300 cursor-pointer active:scale-[0.99] lg:active:scale-100"
             onMouseEnter={() => onMouseEnter(project.slug)}
             onFocus={() => onMouseEnter(project.slug)}
         >
@@ -35,7 +35,7 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                             </h3>
 
                             {project.clientName && (
-                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
                                     {project.clientName}
                                 </span>
                             )}
@@ -86,7 +86,7 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                             {project.techStack.slice(0, 4).map((tech) => (
                                 <span
                                     key={tech}
-                                    className="px-2 py-0.5 rounded-md bg-background-light/80 border border-border/40 text-[11px] text-muted-foreground group-hover:border-primary/30 group-hover:text-foreground/90 transition-colors"
+                                    className="px-2.5 py-0.5 rounded-md bg-background-light/80 border border-border/40 text-xs text-muted-foreground group-hover:border-primary/30 group-hover:text-foreground/90 transition-colors"
                                 >
                                     {tech}
                                 </span>

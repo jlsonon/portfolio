@@ -130,4 +130,11 @@
     .markdown-text ul {
         @apply pl-5 mt-2 list-disc;
     }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 }

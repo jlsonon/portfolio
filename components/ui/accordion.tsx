@@ -69,7 +69,7 @@ export function Accordion({
                                         {item.title}
                                     </span>
                                     {item.badge && (
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                                        <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
                                             {item.badge}
                                         </span>
                                     )}

@@ -75,7 +75,7 @@ const Services = () => {
                                                 {service.number}
                                             </span>
                                         </div>
-                                        <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary">
+                                        <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary">
                                             {service.badge}
                                         </span>
                                     </div>
@@ -93,7 +93,7 @@ const Services = () => {
 
                                     {/* Deliverables List */}
                                     <div className="mt-6 pt-6 border-t border-border/30 space-y-2.5">
-                                        <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold mb-3">
+                                        <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-3">
                                             Production Deliverables
                                         </p>
                                         {service.deliverables.map((item) => (
@@ -107,14 +107,14 @@ const Services = () => {
                                     {/* Target Business Niches */}
                                     {service.niches && (
                                         <div className="mt-6 pt-4 border-t border-border/25">
-                                            <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold mb-2.5">
+                                            <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-2.5">
                                                 Target Business Niches
                                             </p>
                                             <div className="flex flex-wrap gap-1.5">
                                                 {service.niches.map((niche) => (
                                                     <span
                                                         key={niche}
-                                                        className="text-[11px] font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
+                                                        className="text-xs font-semibold border border-primary/20 text-primary/90 bg-primary/5 rounded-full px-2.5 py-0.5"
                                                     >
                                                         {niche}
                                                     </span>
@@ -126,7 +126,7 @@ const Services = () => {
                                     {/* Live Case Study Reference */}
                                     {service.exampleProject && (
                                         <div className="mt-4 pt-3 border-t border-border/20 flex items-center justify-between text-xs">
-                                            <span className="text-muted-foreground text-[11px] font-medium">Live System:</span>
+                                            <span className="text-muted-foreground text-xs font-medium">Live System:</span>
                                             <Link
                                                 href={`/projects/${service.exampleProject.slug}`}
                                                 className="inline-flex items-center gap-1 font-bold text-primary hover:underline text-xs"
