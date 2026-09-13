@@ -61,7 +61,7 @@ const Experiences = () => {
                             </div>
 
                             {/* Card Content */}
-                            <div className="flex-1 p-6 sm:p-7 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md group-hover:border-primary/40 group-hover:bg-background-light/80 transition-all duration-300">
+                            <div className="flex-1 p-6 sm:p-7 rounded-2xl border border-border/40 bg-background-light/40 group-hover:border-primary/40 group-hover:bg-background-light/80 transition-all duration-300">
                                 <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                                     <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
                                         {item.company}

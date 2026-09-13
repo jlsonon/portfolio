@@ -56,10 +56,11 @@ export default {
                 sm: 'calc(var(--radius) - 4px)',
             },
             fontFamily: {
-                anton: ['var(--font-anton)'],
-                grotesk: ['var(--font-anton)'],
-                inter: ['var(--font-inter)'],
-                'roboto-flex': ['var(--font-inter)'],
+                anton: ['var(--font-anton)', 'sans-serif'],
+                display: ['var(--font-anton)', 'sans-serif'],
+                grotesk: ['var(--font-anton)', 'sans-serif'],
+                inter: ['var(--font-inter)', 'sans-serif'],
+                sans: ['var(--font-inter)', 'sans-serif'],
             },
             transitionTimingFunction: {
                 spring: 'cubic-bezier(0.23, 1, 0.32, 1)',

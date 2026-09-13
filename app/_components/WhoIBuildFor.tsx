@@ -57,7 +57,7 @@ const WhoIBuildFor = () => {
                     {WHO_I_BUILD_FOR.map((niche) => (
                         <div
                             key={niche.title}
-                            className="niche-card group flex flex-col justify-between p-6 sm:p-7 rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
+                            className="niche-card group flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-border/40 bg-background-light/40 hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
                         >
                             <div>
                                 <div className="flex items-center justify-between gap-3 mb-5">
@@ -65,7 +65,7 @@ const WhoIBuildFor = () => {
                                         {ICONS_MAP[niche.icon]}
                                     </div>
                                     <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
-                                        Custom System
+                                        {(niche as any).badge || 'Custom System'}
                                     </span>
                                 </div>
 

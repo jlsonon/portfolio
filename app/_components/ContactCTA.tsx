@@ -49,7 +49,7 @@ const ContactCTA = () => {
         <section className="py-section relative overflow-hidden" id="contact-cta">
 
             <div className="container" ref={containerRef}>
-                <div className="border border-border/50 rounded-3xl p-8 sm:p-14 md:p-16 bg-background-light/40 backdrop-blur-md text-center max-w-4xl mx-auto relative shadow-xl">
+                <div className="border border-border/50 rounded-2xl p-8 sm:p-14 md:p-16 bg-background-light/40 text-center max-w-4xl mx-auto relative shadow-xl">
                     {/* Live Timezone & Availability Badge */}
                     <div className="cta-item flex justify-center mb-6">
                         <TimezoneClock />
@@ -99,7 +99,7 @@ const ContactCTA = () => {
                                 href={GENERAL_INFO.calendarUrl}
                                 variant="primary"
                                 icon={<Calendar size={18} className="text-black" />}
-                                className="h-14 px-8 text-sm sm:text-base font-bold shadow-xl shadow-primary/20"
+                                className="h-12 px-7 text-sm font-bold shadow-xl shadow-primary/20"
                             >
                                 Book 15-Min Call
                             </FamilyButton>
@@ -109,7 +109,7 @@ const ContactCTA = () => {
                             href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`}
                             variant="secondary"
                             icon={<ArrowUpRight size={18} />}
-                            className="h-14 px-8 text-sm sm:text-base font-bold"
+                            className="h-12 px-7 text-sm font-bold"
                         >
                             Start a Project
                         </FamilyButton>

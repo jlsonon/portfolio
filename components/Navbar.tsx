@@ -8,16 +8,6 @@ import { SocialIcon } from './SocialIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const RAINBOW_COLORS = [
-    'bg-amber-500',
-    'bg-indigo-500',
-    'bg-emerald-500',
-    'bg-violet-500',
-    'bg-sky-500',
-    'bg-fuchsia-500',
-    'bg-cyan-500',
-    'bg-rose-500',
-];
 
 const MENU_LINKS = [
     { name: 'Home', url: '/' },
@@ -187,11 +177,11 @@ const Navbar = () => {
                             <span className="text-xs text-muted-foreground font-mono">
                                 Jericho Sonon
                             </span>
-                            {/* Mobile Only Sleek Circular Close Button */}
+                            {/* Sleek Circular Close Button */}
                             <button
                                 onClick={() => setIsMenuOpen(false)}
-                                className="sm:hidden size-8 rounded-full bg-background border border-border/60 hover:border-primary/50 text-foreground hover:text-primary flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-sm"
-                                aria-label="Collapse drawer menu"
+                                className="size-8 rounded-full bg-background border border-border/60 hover:border-primary/50 text-foreground hover:text-primary flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-sm"
+                                aria-label="Close menu"
                             >
                                 <X size={15} className="text-primary" />
                             </button>
@@ -199,7 +189,7 @@ const Navbar = () => {
                     </div>
 
                     <ul className="space-y-2">
-                        {MENU_LINKS.map((link, idx) => (
+                        {MENU_LINKS.map((link) => (
                             <li key={link.name}>
                                 <button
                                     onClick={() => handleNavClick(link.url)}
@@ -207,10 +197,7 @@ const Navbar = () => {
                                 >
                                     <span className="flex items-center gap-3.5">
                                         <span
-                                            className={cn(
-                                                'size-2.5 rounded-full transition-all duration-300 group-hover:scale-150 shadow-sm shrink-0',
-                                                RAINBOW_COLORS[idx % RAINBOW_COLORS.length]
-                                            )}
+                                            className="size-2 rounded-full bg-primary/40 transition-all duration-300 group-hover:scale-125 group-hover:bg-primary shadow-sm shrink-0"
                                         />
                                         <span>{link.name}</span>
                                     </span>

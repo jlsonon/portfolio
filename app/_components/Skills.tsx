@@ -46,7 +46,7 @@ const Skills = () => {
     );
 
     return (
-        <section id="my-stack" ref={containerRef} className="pb-section pt-10">
+        <section id="my-stack" ref={containerRef} className="py-section">
             <div className="container">
                 <div className="flex flex-row items-center justify-between gap-3 sm:gap-4 pb-6 border-b border-border/30 mb-8 flex-wrap sm:flex-nowrap">
                     <SectionTitle title="Technical Stack & Architecture" className="mb-0 sm:mb-0" />

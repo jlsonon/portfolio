@@ -122,9 +122,9 @@ const Banner = () => {
                 <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 sm:pt-5 sm:pb-5 border-t sm:border-y border-border/30 bg-background-light/25 sm:bg-background-light/20 backdrop-blur-sm rounded-2xl p-4 sm:px-2">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
-                            <AnimatedNumber value={9} />
+                            <AnimatedNumber value={10} />
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Flagship Systems</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Production Systems</p>
                     </div>
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
@@ -136,13 +136,13 @@ const Banner = () => {
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={500} suffix="+" />
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Active Examinees</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Active Users</p>
                     </div>
                     <div className="text-center px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={100} suffix="%" />
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Solo Ownership</p>
+                        <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Code Ownership</p>
                     </div>
                 </div>
 

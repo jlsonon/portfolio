@@ -59,9 +59,9 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
                         </div>
                     )}
 
-                    {/* Problem -> Outcome Micro Summary */}
+                    {/* Problem -> Outcome Micro Summary (Desktop / Tablet) */}
                     {project.problem && project.outcomes && project.outcomes.length > 0 && (
-                        <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground/90 bg-background-light/40 rounded-xl p-3 border border-border/30">
+                        <div className="mt-3.5 hidden sm:grid sm:grid-cols-2 gap-2 text-xs text-muted-foreground/90 bg-background-light/40 rounded-xl p-3 border border-border/30">
                             <div className="flex items-start gap-1.5">
                                 <AlertCircle size={13} className="text-amber-400/80 shrink-0 mt-0.5" />
                                 <span className="line-clamp-1 sm:line-clamp-2">

@@ -62,7 +62,7 @@ const Services = () => {
                         return (
                             <SpotlightCard
                                 key={service.number}
-                                className="service-card h-full flex flex-col justify-between p-7 sm:p-8 rounded-3xl hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+                                className="service-card h-full flex flex-col justify-between p-7 sm:p-8 rounded-2xl hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
                             >
                                 {/* Header */}
                                 <div>

@@ -109,7 +109,7 @@ const ProjectList = () => {
     };
 
     return (
-        <section className="pb-section pt-6" id="selected-projects">
+        <section className="py-section" id="selected-projects">
             <div className="container">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-border/30">
                     <SectionTitle title="Selected Production Systems" className="mb-0 sm:mb-0" />

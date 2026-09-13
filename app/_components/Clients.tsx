@@ -33,7 +33,7 @@ const Clients = () => {
                         </div>
 
                         <span className="text-xs text-muted-foreground font-semibold px-3 py-1 rounded-full bg-background border border-border/40 self-start sm:self-auto flex items-center gap-1.5">
-                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span className="size-1.5 rounded-full bg-emerald-400" />
                             100% Production Verified
                         </span>
                     </div>

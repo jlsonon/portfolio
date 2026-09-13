@@ -7,7 +7,7 @@ export default function NotFound() {
     return (
         <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative">
             {/* Big 404 Display */}
-            <p className="text-[clamp(6rem,22vw,15rem)] font-anton leading-none text-primary/15 select-none tracking-tighter">
+            <p className="text-[clamp(6rem,22vw,15rem)] font-anton leading-none text-primary/25 select-none tracking-tighter">
                 404
             </p>
 

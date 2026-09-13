@@ -2,12 +2,13 @@
 import parse from 'html-react-parser';
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
+import { cn } from '@/lib/utils';
 import { PROJECTS } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal, Github, Globe } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLenis } from 'lenis/react';
 import Image from 'next/image';
 
@@ -20,6 +21,10 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const ProjectDetails = ({ project }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lenis = useLenis();
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+    const displayImages = project.images && project.images.length > 0 ? project.images : (project.thumbnail ? [project.thumbnail] : []);
+    const currentImage = displayImages[activeImageIndex] || project.thumbnail;
 
     // Immediately reset scroll to top on project mount
     useEffect(() => {
@@ -83,7 +88,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 </span>
                                 {project.status === 'ongoing' && (
                                     <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-xs border border-primary/25 flex items-center gap-1.5 font-bold">
-                                        <span className="size-1.5 rounded-full bg-primary animate-pulse" /> Active Development
+                                        <span className="size-1.5 rounded-full bg-primary" /> Active Development
                                     </span>
                                 )}
                             </div>
@@ -186,7 +191,7 @@ const ProjectDetails = ({ project }: Props) => {
                         {/* Structured Problem & Solution Case Study */}
                         {project.problem && project.solution && (
                             <div className="fade-in-later grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div className="p-6 rounded-3xl bg-background-light/40 border border-red-500/20 shadow-sm">
+                                <div className="p-6 rounded-2xl bg-background-light/40 border border-red-500/20 shadow-sm">
                                     <p className="text-xs font-bold uppercase tracking-wider text-red-400 mb-2.5 flex items-center gap-2">
                                         <ShieldAlert size={15} className="text-red-400 shrink-0" />
                                         <span>The Operational Problem</span>
@@ -196,7 +201,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     </p>
                                 </div>
 
-                                <div className="p-6 rounded-3xl bg-background-light/40 border border-emerald-500/20 shadow-sm">
+                                <div className="p-6 rounded-2xl bg-background-light/40 border border-emerald-500/20 shadow-sm">
                                     <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2.5 flex items-center gap-2">
                                         <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
                                         <span>The Engineered Solution</span>
@@ -210,7 +215,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                         {/* Architecture Decisions */}
                         {project.architecture && project.architecture.length > 0 && (
-                            <div className="fade-in-later p-7 rounded-3xl bg-background-light/40 border border-border/40 shadow-sm">
+                            <div className="fade-in-later p-7 rounded-2xl bg-background-light/40 border border-border/40 shadow-sm">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
                                     <Terminal size={15} />
                                     <span>Key Architectural Decisions</span>
@@ -228,7 +233,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                         {/* Verified Outcomes */}
                         {project.outcomes && project.outcomes.length > 0 && (
-                            <div className="fade-in-later p-7 rounded-3xl bg-background-light/60 border border-primary/25 shadow-md">
+                            <div className="fade-in-later p-7 rounded-2xl bg-background-light/60 border border-primary/25 shadow-md">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
                                     <TrendingUp size={15} />
                                     <span>Verified Production Outcomes</span>
@@ -260,7 +265,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                 {/* High-Fidelity Browser Mockup Frame */}
                 <div
-                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-3xl border border-border/70 bg-background-light/95 shadow-2xl mt-6 group"
+                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-2xl border border-border/70 bg-background-light/95 shadow-2xl mt-6 group"
                     id="images"
                 >
                     {/* Browser chrome frame */}
@@ -302,10 +307,10 @@ const ProjectDetails = ({ project }: Props) => {
                     </div>
 
                     <div className="relative flex-1 w-full bg-background overflow-hidden">
-                        {project.images.length > 0 || project.thumbnail ? (
+                        {currentImage ? (
                             <>
                                 <Image
-                                    src={project.images[0] || project.thumbnail}
+                                    src={currentImage}
                                     alt={`${project.title} interface preview`}
                                     fill
                                     className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
@@ -313,7 +318,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 {(project.liveUrl || project.repoUrl) && (
                                     <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-wrap items-center justify-center gap-3 p-4">
                                         {project.liveUrl && project.liveUrl !== '#' && (
-                                            <a
+                                             <a
                                                 href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noreferrer noopener"
@@ -346,6 +351,28 @@ const ProjectDetails = ({ project }: Props) => {
                         )}
                     </div>
                 </div>
+
+                {/* Screenshot Switcher (when multiple images exist) */}
+                {displayImages.length > 1 && (
+                    <div className="fade-in-later flex items-center justify-center gap-2 mt-4">
+                        <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider mr-1">Preview:</span>
+                        {displayImages.map((img, idx) => (
+                            <button
+                                key={img}
+                                type="button"
+                                onClick={() => setActiveImageIndex(idx)}
+                                className={cn(
+                                    'px-3.5 py-1 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer select-none active:scale-95',
+                                    activeImageIndex === idx
+                                        ? 'bg-primary text-black shadow-sm font-bold'
+                                        : 'bg-background-light/70 text-muted-foreground hover:text-foreground hover:bg-background-light border border-border/40'
+                                )}
+                            >
+                                Screenshot 0{idx + 1}
+                            </button>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Previous / Next Navigation Rail */}

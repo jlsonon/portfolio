@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/30">
                     <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                            <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                            <span className="size-2 rounded-full bg-emerald-400" />
                             <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
                                 Open for Custom Systems &amp; SaaS Contracts
                             </p>
@@ -38,7 +38,7 @@ const Footer = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
                     {/* Copyright & Location */}
                     <p className="text-xs text-muted-foreground">
-                        © {year} Jericho Sonon • Full-Stack Systems &amp; Product Engineer
+                        © 2024–{year} Jericho Sonon • Full-Stack Systems &amp; Product Engineer
                     </p>
 
                     {/* Social links */}

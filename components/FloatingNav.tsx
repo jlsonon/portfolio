@@ -16,10 +16,11 @@ const SECTIONS: SectionItem[] = [
     { id: 'selected-projects', name: 'Flagship Systems', shortName: 'Systems', number: '03' },
     { id: 'about-me', name: 'About & How I Work', shortName: 'About', number: '04' },
     { id: 'services', name: 'Systems & Capabilities', shortName: 'Services', number: '05' },
-    { id: 'my-stack', name: 'Core Production Stack', shortName: 'Stack', number: '06' },
-    { id: 'my-experience', name: 'Experience & History', shortName: 'Experience', number: '07' },
-    { id: 'my-process', name: 'How I Build Systems', shortName: 'Process', number: '08' },
-    { id: 'contact-cta', name: 'Start a Project', shortName: 'Contact', number: '09' },
+    { id: 'who-i-build-for', name: 'Target Industries', shortName: 'Industries', number: '06' },
+    { id: 'my-stack', name: 'Core Production Stack', shortName: 'Stack', number: '07' },
+    { id: 'my-experience', name: 'Experience & History', shortName: 'Experience', number: '08' },
+    { id: 'my-process', name: 'How I Build Systems', shortName: 'Process', number: '09' },
+    { id: 'contact-cta', name: 'Start a Project', shortName: 'Contact', number: '10' },
 ];
 
 const BUTTON_HEIGHT = 38; // px per section slot
@@ -192,7 +193,7 @@ export default function FloatingNav() {
                                 </span>
                                 {isActive && (
                                     <span className="flex items-center gap-1 text-[10px] font-mono text-primary font-normal pl-1 border-l border-white/10">
-                                        <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                                        <span className="size-1.5 rounded-full bg-primary" />
                                         Reading
                                     </span>
                                 )}

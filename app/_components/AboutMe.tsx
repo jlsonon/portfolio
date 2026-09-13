@@ -36,14 +36,14 @@ const AboutMe = () => {
     );
 
     return (
-        <section className="pb-section pt-10" id="about-me">
+        <section className="py-section" id="about-me">
             <div className="container" ref={container}>
                 <SectionTitle title="About & How I Work" />
 
                 {/* Gapless Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-6">
                     {/* 1. Core Builder Statement Card - 12 cols */}
-                    <div className="about-card md:col-span-12 border border-border/40 rounded-3xl p-7 sm:p-10 bg-background-light/40 backdrop-blur-md relative overflow-hidden group">
+                    <div className="about-card md:col-span-12 border border-border/40 rounded-2xl p-7 sm:p-10 bg-background-light/40 relative overflow-hidden group">
                         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
                             <Compass size={15} />
                             <span>How I Build &amp; What I Value</span>
@@ -63,7 +63,7 @@ const AboutMe = () => {
                     </div>
 
                     {/* 3. Portrait Photo Card - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-3xl overflow-hidden bg-background-light/40 flex flex-col relative group min-h-[400px]">
+                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl overflow-hidden bg-background-light/40 flex flex-col relative group min-h-[400px]">
                         <div className="relative w-full h-[280px] sm:h-[300px] overflow-hidden bg-background">
                             <Image
                                 src="/DSC_3489.jpg"
@@ -98,7 +98,7 @@ const AboutMe = () => {
                     </div>
 
                     {/* 4. Bio & Background Card - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-6">
+                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl p-7 bg-background-light/40 flex flex-col justify-between gap-6">
                         <div>
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
                                 <Compass size={14} />
@@ -124,7 +124,7 @@ const AboutMe = () => {
                     </div>
 
                     {/* 5. Verified Client Proof & Endorsement - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-3xl p-7 bg-background-light/40 backdrop-blur-md flex flex-col justify-between gap-5 relative overflow-hidden group">
+                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl p-7 bg-background-light/40 flex flex-col justify-between gap-5 relative overflow-hidden group">
                         <div>
                             <div className="flex items-center justify-between gap-2 mb-3">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">

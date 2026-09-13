@@ -32,12 +32,6 @@
         --input: 36 10% 15%;
         --ring: 43 96% 58%;
         --radius: 1rem;
-
-        /* Emil Kowalski Custom Easing Tokens */
-        --ease-spring: cubic-bezier(0.23, 1, 0.32, 1);
-        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-        --ease-in-out-smooth: cubic-bezier(0.77, 0, 0.175, 1);
-        --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     [data-theme='light'] {
@@ -118,15 +112,6 @@
 }
 
 @layer components {
-    .glass-panel {
-        @apply bg-background-light/40 backdrop-blur-md border border-border/40;
-    }
-    .glass-card {
-        @apply bg-background-light/50 backdrop-blur-sm border border-border/50 transition-all duration-300;
-    }
-    .glow-gold {
-        box-shadow: 0 0 35px -5px hsl(43 96% 58% / 0.15);
-    }
     .markdown-text ul {
         @apply pl-5 mt-2 list-disc;
     }
