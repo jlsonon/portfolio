@@ -123,6 +123,8 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 operatingSystem:
                     project.slug === 'keebs'
                         ? 'macOS, Windows, Android'
+                        : project.slug === 'qota'
+                        ? 'macOS, Windows'
                         : 'Web Browser, Cloud',
                 image: imageUrl,
                 url: projectUrl,

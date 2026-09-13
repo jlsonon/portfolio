@@ -13,10 +13,10 @@ import Project from './Project';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const CATEGORIES = [
-    { id: 'all', label: 'All Systems', count: 9 },
+    { id: 'all', label: 'All Systems', count: 10 },
     { id: 'business', label: 'Business & POS', count: 4 },
     { id: 'saas', label: 'SaaS & Portals', count: 2 },
-    { id: 'ai', label: 'AI & Systems', count: 3 },
+    { id: 'ai', label: 'AI & Systems', count: 4 },
 ] as const;
 
 const ProjectList = () => {
@@ -144,7 +144,10 @@ const ProjectList = () => {
                                     <span className="size-2.5 rounded-full bg-green-500/80" />
                                     <div className="flex-1 mx-2 bg-background-light/80 border border-border/30 rounded-md px-3 py-0.5 text-center">
                                         <p className="text-xs text-muted-foreground truncate font-mono">
-                                            {PROJECTS.find((p) => p.slug === selectedProject)?.liveUrl?.replace('https://', '') ?? selectedProject}
+                                            {(() => {
+                                                const p = PROJECTS.find((proj) => proj.slug === selectedProject);
+                                                return (p?.liveUrl || p?.repoUrl)?.replace('https://', '').replace(/\/$/, '') ?? selectedProject;
+                                            })()}
                                         </p>
                                     </div>
                                 </div>

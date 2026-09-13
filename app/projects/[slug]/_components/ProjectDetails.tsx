@@ -6,7 +6,7 @@ import { PROJECTS } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, ShieldAlert, TrendingUp, Terminal, Github, Globe } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useLenis } from 'lenis/react';
 import Image from 'next/image';
@@ -98,10 +98,23 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="h-11 px-6 bg-primary text-black rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
+                                    className="h-11 px-5 sm:px-6 bg-primary text-black rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
                                 >
-                                    <span>{project.liveUrl.includes('github.com') ? 'View Repository' : 'Visit Live App'}</span>
-                                    <ArrowUpRight size={16} />
+                                    <Globe size={15} />
+                                    <span>Visit Live Site</span>
+                                    <ArrowUpRight size={15} />
+                                </a>
+                            )}
+                            {project.repoUrl && (
+                                <a
+                                    href={project.repoUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="h-11 px-5 sm:px-6 bg-background-light/80 hover:bg-background border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full flex items-center justify-center gap-2 transition-all text-xs font-bold tracking-wide active:scale-95 shadow-sm"
+                                >
+                                    <Github size={15} />
+                                    <span>View Repository</span>
+                                    <ArrowUpRight size={15} />
                                 </a>
                             )}
                         </div>
@@ -259,20 +272,33 @@ const ProjectDetails = ({ project }: Props) => {
                         </div>
                         <div className="flex-1 max-w-md mx-2 bg-background-light/80 rounded-lg px-4 py-1.5 flex items-center justify-center border border-border/30">
                             <p className="text-xs text-muted-foreground truncate font-mono">
-                                {project.liveUrl?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
+                                {(project.liveUrl || project.repoUrl)?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
                             </p>
                         </div>
-                        {project.liveUrl && project.liveUrl !== '#' && (
-                            <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors"
-                            >
-                                <span>Open</span>
-                                <ArrowUpRight size={13} />
-                            </a>
-                        )}
+                        <div className="hidden sm:flex items-center gap-2 shrink-0">
+                            {project.liveUrl && project.liveUrl !== '#' && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors"
+                                >
+                                    <Globe size={13} />
+                                    <span>Live Site</span>
+                                </a>
+                            )}
+                            {project.repoUrl && (
+                                <a
+                                    href={project.repoUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
+                                >
+                                    <Github size={13} />
+                                    <span>Repo</span>
+                                </a>
+                            )}
+                        </div>
                     </div>
 
                     <div className="relative flex-1 w-full bg-background overflow-hidden">
@@ -284,17 +310,32 @@ const ProjectDetails = ({ project }: Props) => {
                                     fill
                                     className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
                                 />
-                                {project.liveUrl && project.liveUrl !== '#' && (
-                                    <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noreferrer noopener"
-                                            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-primary text-black font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
-                                        >
-                                            <span>{project.liveUrl.includes('github.com') ? 'View Source on GitHub' : 'Launch Production System'}</span>
-                                            <ArrowUpRight size={17} />
-                                        </a>
+                                {(project.liveUrl || project.repoUrl) && (
+                                    <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-wrap items-center justify-center gap-3 p-4">
+                                        {project.liveUrl && project.liveUrl !== '#' && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noreferrer noopener"
+                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-black font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
+                                            >
+                                                <Globe size={16} />
+                                                <span>Visit Live Site</span>
+                                                <ArrowUpRight size={16} />
+                                            </a>
+                                        )}
+                                        {project.repoUrl && (
+                                            <a
+                                                href={project.repoUrl}
+                                                target="_blank"
+                                                rel="noreferrer noopener"
+                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-background/90 text-foreground hover:text-primary border border-border/60 hover:border-primary/50 font-bold text-sm shadow-2xl hover:scale-105 active:scale-95 transition-all"
+                                            >
+                                                <Github size={16} />
+                                                <span>View Repository</span>
+                                                <ArrowUpRight size={16} />
+                                            </a>
+                                        )}
                                     </div>
                                 )}
                             </>

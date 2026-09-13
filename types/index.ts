@@ -23,6 +23,7 @@ export interface IProject {
     images: string[];
     slug: string;
     liveUrl?: string;
+    repoUrl?: string;
     status?: 'completed' | 'ongoing';
     category?: 'saas' | 'ai' | 'business' | 'all';
     clientName?: string;

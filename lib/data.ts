@@ -283,7 +283,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'OpticBooth',
         slug: 'opticbooth',
-        liveUrl: 'https://github.com/jlsonon/photobooth',
+        repoUrl: 'https://github.com/jlsonon/photobooth',
         year: 2026,
         category: 'business',
         clientName: 'Event Photobooth Operators & Experiential Agencies',
@@ -311,7 +311,8 @@ export const PROJECTS: IProject[] = [
     {
         title: 'Keebs',
         slug: 'keebs',
-        liveUrl: 'https://github.com/jlsonon/keebs',
+        liveUrl: 'https://keebs.live',
+        repoUrl: 'https://github.com/jlsonon/keebs',
         year: 2026,
         category: 'ai',
         clientName: 'Mechanical Keyboard Enthusiasts & Power Typists',
@@ -340,7 +341,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'LuckyBingo',
         slug: 'bingogame',
-        liveUrl: 'https://github.com/jlsonon/bingogame',
+        repoUrl: 'https://github.com/jlsonon/bingogame',
         year: 2026,
         category: 'ai',
         clientName: 'Community & Event Organizations',
@@ -363,6 +364,35 @@ export const PROJECTS: IProject[] = [
             'Real-time interactive multiplayer game engine deployed with sub-second event broadcasts',
             'Automated instantaneous winning pattern checks eliminating false claims and game stoppages',
             'Mobile-optimized Progressive Web App (PWA) layout for fluid touch-friendly card play on any smartphone'
+        ],
+    },
+    {
+        title: 'QOTA',
+        slug: 'qota',
+        liveUrl: 'https://qota.live',
+        repoUrl: 'https://github.com/jlsonon/qota',
+        year: 2026,
+        category: 'ai',
+        clientName: 'AI Engineers & Antigravity/Claude Power Users',
+        userBase: 'macOS & Windows AI Engineers',
+        description: 'Universal real-time AI quota monitor and tactile floating HUD for macOS and Windows. Projects a persistent Level 1001 micro-pill instrument anchored over full-screen IDEs to monitor remaining token velocity and 5-hour cycle thresholds across Google Antigravity, Claude Code, and OpenAI Codex.',
+        role: 'Native Systems & Full-Stack Engineer (Solo Builder)',
+        techStack: ['Electron', 'Node.js', 'AppKit / Cocoa', 'JavaScript', 'Tailwind CSS'],
+        thumbnail: '/qota.png',
+        longThumbnail: '/qota.png',
+        images: ['/qota.png'],
+        problem: 'Software engineers using terminal and IDE AI coding agents (Antigravity, Claude Code, Codex) suffer from abrupt mid-session token lockouts with zero predictive visibility into 5-hour rolling cycle limits.',
+        solution: 'Engineered a lightweight, zero-cloud desktop telemetry HUD running at Cocoa Level 1001 (visible over native macOS full-screen spaces) with a decreasing sprint rail and menu bar status indicator.',
+        highlightMetric: 'Projected an ultra-compact Level 1001 floating HUD delivering real-time quota telemetry across 3 AI agent ecosystems with zero cloud data transmission.',
+        architecture: [
+            'Persistent Cocoa Level 1001 (NSScreenSaverWindowLevel) window anchoring over full-screen editors',
+            'Local JSON/log telemetry scanner computing decreasing 5-hour sprint rails and remaining allowances',
+            'Native macOS menu bar (NSStatusItem) and Windows System Tray percentage indicators with color-coded health beacons'
+        ],
+        outcomes: [
+            'Eliminated unexpected mid-session AI agent throttles with proactive warning thresholds',
+            '100% local telemetry processing with zero external cloud tracking or token leakage',
+            'Multi-platform desktop release packaged for macOS (.dmg) and Windows (.exe)'
         ],
     }
 ];
