@@ -1,22 +1,24 @@
 import type { MetadataRoute } from 'next';
 import { PROJECTS } from '@/lib/data';
 
-const BASE_URL = 'https://jlsonon-portfolio.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jlsonon.xyz';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const projectRoutes = PROJECTS.map((project) => ({
+    const now = new Date();
+
+    const projectRoutes: MetadataRoute.Sitemap = PROJECTS.map((project) => ({
         url: `${BASE_URL}/projects/${project.slug}`,
-        lastModified: new Date('2026-07-01'),
-        changeFrequency: 'monthly' as const,
-        priority: 0.8,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.85,
     }));
 
     return [
         {
             url: BASE_URL,
-            lastModified: new Date('2026-07-01'),
-            changeFrequency: 'monthly' as const,
-            priority: 1,
+            lastModified: now,
+            changeFrequency: 'daily',
+            priority: 1.0,
         },
         ...projectRoutes,
     ];

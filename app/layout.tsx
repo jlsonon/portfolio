@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import { ReactLenis } from 'lenis/react';
 
@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import FloatingNav from '@/components/FloatingNav';
 import Navbar from '@/components/Navbar';
 import StickyEmail from './_components/StickyEmail';
+import { PROJECTS } from '@/lib/data';
 
 const spaceGrotesk = Space_Grotesk({
     weight: ['400', '500', '600', '700'],
@@ -23,8 +24,18 @@ const inter = Inter({
     variable: '--font-inter',
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jlsonon.xyz';
+
+export const viewport: Viewport = {
+    themeColor: '#0a0a0a',
+    colorScheme: 'dark',
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-    metadataBase: new URL('https://jlsonon-portfolio.vercel.app'),
+    metadataBase: new URL(BASE_URL),
     title: {
         default: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         template: '%s | Jericho Sonon',
@@ -33,22 +44,52 @@ export const metadata: Metadata = {
         'Software & Solutions Engineer based in Quezon City, Philippines. I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
     keywords: [
         'Jericho Sonon',
+        'Jericho Sonon Portfolio',
         'Full-Stack Developer Philippines',
-        'Custom Business Systems',
-        'POS Systems Developer',
+        'Software Engineer Quezon City',
+        'Custom Business Systems Developer',
+        'POS Systems Developer Manila',
         'Gym Management SaaS',
-        'Laundry POS',
-        'Civil Service Reviewer',
-        'Next.js React Developer Quezon City',
+        'Laundry POS Software',
+        'Civil Service Exam Reviewer',
+        'Next.js React TypeScript Developer',
+        'Workflow Automation Engineer',
+        'Native macOS Windows Systems',
     ],
+    authors: [{ name: 'Jericho Sonon', url: BASE_URL }],
+    creator: 'Jericho Sonon',
+    publisher: 'Jericho Sonon',
+    category: 'technology',
+    alternates: {
+        canonical: '/',
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://jlsonon-portfolio.vercel.app',
+        url: BASE_URL,
         siteName: 'Jericho Sonon — Software & Solutions Engineer',
         title: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
         description:
             'I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
+        images: [
+            {
+                url: '/opengraph-image',
+                width: 1200,
+                height: 630,
+                alt: 'Jericho Sonon — Custom Business Systems That Replace Manual Work',
+            },
+        ],
     },
     twitter: {
         card: 'summary_large_image',
@@ -56,40 +97,88 @@ export const metadata: Metadata = {
         description:
             'I design and build custom POS platforms, operations dashboards, and web SaaS applications that replace spreadsheets and paper logbooks.',
         creator: '@jlsonon',
+        images: ['/twitter-image'],
+    },
+    icons: {
+        icon: [
+            { url: '/icon.svg', type: 'image/svg+xml' },
+        ],
+        apple: [
+            { url: '/icon.svg', type: 'image/svg+xml' },
+        ],
     },
 };
 
 const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Jericho Sonon',
-    url: 'https://jlsonon-portfolio.vercel.app',
-    image: 'https://jlsonon-portfolio.vercel.app/profile.jpg',
-    jobTitle: 'Full-Stack Systems & Product Engineer',
-    worksFor: {
-        '@type': 'Organization',
-        name: 'Freelance & Technical Consulting',
-    },
-    address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Quezon City',
-        addressCountry: 'Philippines',
-    },
-    sameAs: [
-        'https://github.com/jlsonon',
-        'https://www.linkedin.com/in/jlsonon/',
-        'https://medium.com/@jlsonon12',
-    ],
-    knowsAbout: [
-        'Full-Stack Systems Engineering',
-        'Point of Sale (POS) Systems',
-        'Commercial Gym & Business Management',
-        'Next.js',
-        'React',
-        'TypeScript',
-        'Firebase & Firestore',
-        'PostgreSQL',
-        'AI Agent Automations',
+    '@graph': [
+        {
+            '@type': 'Person',
+            '@id': `${BASE_URL}/#person`,
+            name: 'Jericho Sonon',
+            url: BASE_URL,
+            image: `${BASE_URL}/profile.jpg`,
+            jobTitle: 'Full-Stack Systems & Product Engineer',
+            description:
+                'Software & Solutions Engineer based in Quezon City, Philippines. I design and build custom POS platforms, operations dashboards, and web SaaS applications.',
+            worksFor: {
+                '@type': 'Organization',
+                name: 'Freelance & Technical Consulting',
+            },
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Quezon City',
+                addressRegion: 'Metro Manila',
+                addressCountry: 'Philippines',
+            },
+            sameAs: [
+                'https://github.com/jlsonon',
+                'https://www.linkedin.com/in/jlsonon/',
+                'https://medium.com/@jlsonon12',
+            ],
+            knowsAbout: [
+                'Full-Stack Systems Engineering',
+                'Point of Sale (POS) Systems',
+                'Commercial Gym & Business Management',
+                'Next.js & React',
+                'TypeScript',
+                'Firebase & PostgreSQL',
+                'Native Desktop Audio Systems (AVAudioEngine)',
+                'Workflow Automation & AI Agents',
+            ],
+        },
+        {
+            '@type': 'WebSite',
+            '@id': `${BASE_URL}/#website`,
+            url: BASE_URL,
+            name: 'Jericho Sonon — Software & Solutions Engineer',
+            description:
+                'Portfolio and case studies of custom business systems, POS platforms, and SaaS applications engineered by Jericho Sonon.',
+            publisher: {
+                '@id': `${BASE_URL}/#person`,
+            },
+        },
+        {
+            '@type': 'ProfilePage',
+            '@id': `${BASE_URL}/#profilepage`,
+            url: BASE_URL,
+            name: 'Jericho Sonon Portfolio',
+            mainEntity: {
+                '@id': `${BASE_URL}/#person`,
+            },
+        },
+        {
+            '@type': 'ItemList',
+            name: 'Selected Production Systems',
+            description: 'Flagship production software systems engineered by Jericho Sonon',
+            itemListElement: PROJECTS.map((project, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: project.title,
+                url: `${BASE_URL}/projects/${project.slug}`,
+                description: project.description,
+            })),
+        },
     ],
 };
 

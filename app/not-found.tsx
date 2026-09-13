@@ -5,8 +5,7 @@ import { Home, ArrowUpRight } from 'lucide-react';
 
 export default function NotFound() {
     return (
-        <main className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative">
-
+        <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 gap-6 relative">
             {/* Big 404 Display */}
             <p className="text-[clamp(6rem,22vw,15rem)] font-anton leading-none text-primary/15 select-none tracking-tighter">
                 404
@@ -37,6 +36,6 @@ export default function NotFound() {
                     <ArrowUpRight size={16} />
                 </Link>
             </div>
-        </main>
+        </section>
     );
 }
