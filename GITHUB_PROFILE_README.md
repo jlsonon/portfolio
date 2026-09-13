@@ -38,29 +38,33 @@
 
 ### Flagship Systems
 
-| System | Role & Focus | Tech Stack | Links |
+| System | What It Is | Stack | Links |
 | :--- | :--- | :--- | :--- |
-| **Keebs** | Native Mechanical Keyboard Audio Engine | `Swift 6`, `AVAudioEngine`, `CoreHaptics`, `C#` | [Site](https://keebs.live) • [Source](https://github.com/jlsonon/keebs) • [Case Study](https://jlsonon.xyz/projects/keebs) |
-| **QOTA** | Universal Real-Time AI Quota Telemetry HUD (Claude, Gemini, Codex) | `Electron`, `Node.js`, `AppKit` | [Site](https://qota.live) • [Source](https://github.com/jlsonon/qota) • [Case Study](https://jlsonon.xyz/projects/qota) |
-| **Solar Spartz** | Turnkey Solar Platform & Savings Calculator | `Next.js 15`, `React 19`, `Tailwind CSS` | [Site](https://solarspartz.vercel.app/) • [Case Study](https://jlsonon.xyz/projects/solarspartz) |
-| **FitLocker** | Multi-Branch Commercial Gym Management & POS | `Next.js`, `Firebase`, `QR Engine`, `Tailwind CSS` | [Site](https://fitlocker-5a5ee.web.app/) • [Case Study](https://jlsonon.xyz/projects/fitlocker) |
-| **Laundry POS** | Commercial Laundromat Order Queue & Thermal POS | `Next.js`, `PostgreSQL`, `Thermal ESC/POS` | [Site](https://laundryos-xi.vercel.app/login) • [Case Study](https://jlsonon.xyz/projects/laundry-pos) |
-| **Prime Reviewer** | Civil Service Licensure Diagnostic Exam Engine | `Next.js`, `TypeScript`, `Analytics` | [Site](https://primereviewerph.online) • [Case Study](https://jlsonon.xyz/projects/prime-reviewer-ph) |
-| **OpticBooth** | Interactive Digital Photobooth Kiosk Platform | `Next.js`, `Canvas API`, `WebRTC`, `QR Delivery` | [Source](https://github.com/jlsonon/photobooth) • [Case Study](https://jlsonon.xyz/projects/opticbooth) |
-| **LuckyBingo** | Real-Time Live Event Interactive Bingo Engine | `Next.js`, `WebSockets`, `Canvas API` | [Source](https://github.com/jlsonon/bingogame) • [Case Study](https://jlsonon.xyz/projects/bingogame) |
+| **Keebs** | Keyboard audio & haptics engine | `Swift 6`, `AVAudioEngine` | [Site](https://keebs.live) • [Code](https://github.com/jlsonon/keebs) |
+| **QOTA** | AI quota HUD for Claude, Gemini, Codex | `Electron`, `AppKit` | [Site](https://qota.live) • [Code](https://github.com/jlsonon/qota) |
+| **Solar Spartz** | Solar EPC platform & ROI calculator | `Next.js 15`, `React 19` | [Site](https://solarspartz.vercel.app/) • [Case Study](https://jlsonon.xyz/projects/solarspartz) |
+| **FitLocker** | Gym POS & QR check-in kiosks | `Next.js`, `Firebase` | [Site](https://fitlocker-5a5ee.web.app/) • [Case Study](https://jlsonon.xyz/projects/fitlocker) |
+| **Laundry POS** | Laundromat order queue & thermal POS | `Next.js`, `PostgreSQL` | [Site](https://laundryos-xi.vercel.app/login) • [Case Study](https://jlsonon.xyz/projects/laundry-pos) |
+| **Prime Reviewer** | Licensure diagnostic engine (500+ users) | `Next.js`, `TypeScript` | [Site](https://primereviewerph.online) • [Case Study](https://jlsonon.xyz/projects/prime-reviewer-ph) |
+| **OpticBooth** | Digital photobooth kiosk platform | `Canvas API`, `WebRTC` | [Code](https://github.com/jlsonon/photobooth) • [Case Study](https://jlsonon.xyz/projects/opticbooth) |
+| **LuckyBingo** | Live event multiplayer bingo engine | `WebSockets`, `Canvas` | [Code](https://github.com/jlsonon/bingogame) • [Case Study](https://jlsonon.xyz/projects/bingogame) |
 
-> Explore all 10 production systems, client deployments, and interactive architecture reviews at **[jlsonon.xyz](https://jlsonon.xyz)**.
+> 10 production systems & deep architecture reviews at **[jlsonon.xyz](https://jlsonon.xyz)**.
 
 ---
 
-### Core Architecture & Production Tooling
+### What I Build
+
+* **Gyms & Fitness**: Sub-second QR check-in kiosks, membership POS & branch tracking.
+* **Laundromats & Retail**: Order queueing, thermal ESC/POS receipts & claim lookups.
+* **EdTech & Testing**: Timed exam simulators & diagnostic analytics *(500+ students)*.
+* **SMBs & Operations**: Bespoke client portals, subscription billing & operational tooling.
+
+---
 
 ```text
-Frontend & UI       │ Next.js 15/16, React 19, TypeScript, Tailwind CSS, GSAP, Radix UI
-Backend & Runtimes  │ Node.js, Express, RESTful APIs, Serverless Functions, C# .NET
-AI & Agent Tooling  │ Claude (Anthropic), Gemini (Google), Codex (OpenAI), Agentic Telemetry
-Databases & Cloud   │ PostgreSQL, Firebase / Firestore, Supabase, Vercel
-Systems & Hardware  │ Core Audio / AVAudioEngine, CoreHaptics, Thermal Printing (ESC/POS)
+Driver │ MacBook Pro • Custom 65% Mechanical (Holy Panda 67g tactile)
+Focus  │ Engineering low-latency POS systems, business platforms & AI HUDs
 ```
 
 ---
