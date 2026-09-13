@@ -100,6 +100,12 @@ export const MY_STACK = {
         { name: 'Django', icon: '/icons/django.svg' },
         { name: 'Firebase', icon: '/icons/firebase.svg' },
     ],
+    ai: [
+        { name: 'Claude', icon: '/icons/claude.svg' },
+        { name: 'Gemini', icon: '/icons/gemini.svg' },
+        { name: 'Codex', icon: '/icons/codex.svg' },
+        { name: 'Antigravity', icon: '/icons/antigravity.svg' },
+    ],
     database: [
         { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
         { name: 'Cloud Firestore', icon: '/icons/firestore.svg' },

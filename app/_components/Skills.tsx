@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const CATEGORY_NAMES: Record<string, string> = {
     frontend: 'Frontend & UI Architecture',
     backend: 'Backend Services & APIs',
+    ai: 'AI Agents, LLMs & Telemetry',
     database: 'Data & Real-Time Storage',
     infrastructure: 'Cloud, Containers & Deployment',
 };
