@@ -1,6 +1,7 @@
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
 import { ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Image from 'next/image';
 
 interface Props {
@@ -13,7 +14,8 @@ const Project = ({ index, project, onMouseEnter }: Props) => {
     return (
         <TransitionLink
             href={`/projects/${project.slug}`}
-            className="project-item group block p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-border/40 lg:border-0 lg:border-b border-border/30 bg-background-light/25 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none lg:py-8 lg:first:pt-0 lg:last:pb-0 lg:last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 hover:border-primary/40 lg:hover:border-border/30 transition-all duration-300 cursor-pointer active:scale-[0.99] lg:active:scale-100"
+            onClick={() => playKeebsClick(1.05)}
+            className="project-item group block p-5 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-border/40 lg:border-0 lg:border-b border-border/30 bg-card/60 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none lg:py-8 lg:first:pt-0 lg:last:pb-0 lg:last:border-none lg:group-hover/projects:opacity-40 lg:hover:!opacity-100 hover:border-primary/40 lg:hover:border-border/30 transition-all duration-300 cursor-pointer active:scale-[0.99] lg:active:scale-100"
             onMouseEnter={() => onMouseEnter(project.slug)}
             onFocus={() => onMouseEnter(project.slug)}
         >

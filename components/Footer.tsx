@@ -1,20 +1,23 @@
+'use client';
+
 import { SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
 import Link from 'next/link';
 import CopyEmailButton from './CopyEmailButton';
 import TimezoneClock from './TimezoneClock';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-border/40 bg-background-light/30 backdrop-blur-sm py-14" id="contact">
+        <footer className="border-t border-border/50 bg-card/60 backdrop-blur-md py-14" id="contact">
             <div className="container">
                 {/* Top Quick Contact Block */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/30">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/40">
                     <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                            <span className="size-2 rounded-full bg-emerald-400" />
+                            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
                             <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
                                 Open for Custom Systems &amp; SaaS Contracts
                             </p>
@@ -27,7 +30,8 @@ const Footer = () => {
                         <TimezoneClock />
                         <Link
                             href="/#contact-cta"
-                            className="px-6 py-3 rounded-full text-xs font-semibold bg-primary text-black hover:bg-primary-hover shadow-md hover:shadow-primary/25 transition-all duration-200 active:scale-[0.97]"
+                            onClick={() => playKeebsClick()}
+                            className="px-6 py-3 rounded-full text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary-hover shadow-md hover:shadow-primary/25 transition-all duration-200 active:scale-[0.97]"
                         >
                             Start a Conversation
                         </Link>
@@ -49,7 +53,8 @@ const Footer = () => {
                                     href={link.url}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="px-3 py-1.5 rounded-lg border border-border/40 hover:border-primary/50 text-xs text-muted-foreground uppercase tracking-wider hover:text-primary transition-all duration-200 flex items-center gap-2 group/link bg-background/40 active:scale-95"
+                                    onClick={() => playKeebsClick()}
+                                    className="px-3 py-1.5 rounded-lg border border-border/50 hover:border-primary/50 text-xs text-muted-foreground uppercase tracking-wider hover:text-primary transition-all duration-200 flex items-center gap-2 group/link bg-background/60 active:scale-95 shadow-xs"
                                 >
                                     <SocialIcon name={link.name} size={14} className="text-muted-foreground group-hover/link:text-primary transition-colors" />
                                     <span>{link.name}</span>

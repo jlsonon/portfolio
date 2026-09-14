@@ -4,7 +4,42 @@
 
 @layer base {
     :root {
-        /* Dark warm background (Default) */
+        /* Architectural Alabaster (#FBFBF9) & Crisp Surface (Default Light) */
+        --background: 40 20% 98%;
+        --background-light: 0 0% 100%;
+        --foreground: 240 10% 8%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 8%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 8%;
+
+        /* Rich Warm Amber / Gold (#D97706 / #F59E0B) */
+        --primary: 38 95% 45%;
+        --primary-hover: 38 95% 38%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 40 10% 93%;
+        --secondary-hover: 40 10% 88%;
+        --secondary-foreground: 240 10% 8%;
+
+        --muted: 40 12% 93%;
+        --muted-foreground: 240 5% 45%;
+        --accent: 40 15% 94%;
+        --accent-foreground: 240 10% 8%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 40 10% 88%;
+        --input: 40 10% 88%;
+        --ring: 38 95% 45%;
+        --radius: 1rem;
+
+        /* Emil Kowalski custom snappy physics */
+        --ease-out-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+        --ease-in-out-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    [data-theme='dark'] {
+        /* Obsidian Dark Mode (#0C0A09 / #181512) */
         --background: 36 20% 5%;
         --background-light: 36 15% 10%;
         --foreground: 40 20% 92%;
@@ -14,7 +49,7 @@
         --popover: 36 15% 10%;
         --popover-foreground: 40 20% 92%;
 
-        /* Amber / Gold accent */
+        /* Glowing Amber Gold */
         --primary: 43 96% 58%;
         --primary-hover: 43 96% 65%;
         --primary-foreground: 36 20% 5%;
@@ -32,36 +67,6 @@
         --input: 36 10% 15%;
         --ring: 43 96% 58%;
         --radius: 1rem;
-    }
-
-    [data-theme='light'] {
-        /* Clean architectural warm alabaster / slate light mode */
-        --background: 40 25% 97%;
-        --background-light: 0 0% 100%;
-        --foreground: 36 25% 12%;
-
-        --card: 0 0% 100%;
-        --card-foreground: 36 25% 12%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 36 25% 12%;
-
-        /* Rich warm amber gold */
-        --primary: 38 95% 45%;
-        --primary-hover: 38 95% 38%;
-        --primary-foreground: 0 0% 100%;
-        --secondary: 25 95% 48%;
-        --secondary-hover: 25 95% 42%;
-        --secondary-foreground: 0 0% 100%;
-
-        --muted: 36 15% 92%;
-        --muted-foreground: 36 12% 40%;
-        --accent: 36 15% 92%;
-        --accent-foreground: 36 25% 12%;
-        --destructive: 0 72% 51%;
-        --destructive-foreground: 0 0% 100%;
-        --border: 36 15% 86%;
-        --input: 36 15% 90%;
-        --ring: 38 95% 45%;
     }
 }
 
@@ -84,7 +89,11 @@
         width: 100%;
     }
     ::selection {
-        background-color: hsl(43 96% 58% / 0.25);
+        background-color: hsl(38 95% 45% / 0.22);
+        color: hsl(240 10% 8%);
+    }
+    [data-theme='dark'] ::selection {
+        background-color: hsl(43 96% 58% / 0.3);
         color: hsl(40 20% 95%);
     }
     ::-webkit-scrollbar {

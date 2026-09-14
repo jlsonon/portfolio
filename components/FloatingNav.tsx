@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useLenis } from 'lenis/react';
 import { cn } from '@/lib/utils';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 interface SectionItem {
     id: string;
@@ -109,6 +110,7 @@ export default function FloatingNav() {
     }, [handleScroll]);
 
     const scrollToSection = (id: string, index: number) => {
+        playKeebsClick(1.0);
         setActiveIndex(index);
         isClickingRef.current = true;
 
@@ -141,11 +143,11 @@ export default function FloatingNav() {
             className="hidden lg:flex fixed right-4 xl:right-7 top-1/2 -translate-y-1/2 z-40 flex-col items-center"
         >
             {/* Main Frosted Glass Capsule */}
-            <div className="relative p-2 rounded-full bg-[#0c0c0e]/75 backdrop-blur-2xl border border-white/[0.08] shadow-[0_16px_40px_rgba(0,0,0,0.5),0_1px_0_rgba(255,255,255,0.06)_inset] flex flex-col items-center gap-0">
+            <div className="relative p-2 rounded-full bg-card/85 backdrop-blur-2xl border border-border/60 shadow-lg flex flex-col items-center gap-0">
                 {/* Background Reading Progress Spine */}
-                <div className="absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-white/[0.06] rounded-full overflow-hidden pointer-events-none -z-10">
+                <div className="absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-border/60 rounded-full overflow-hidden pointer-events-none -z-10">
                     <div
-                        className="w-full bg-gradient-to-b from-primary/60 via-primary to-primary transition-all duration-200 ease-out rounded-full shadow-[0_0_8px_rgba(235,160,33,0.4)]"
+                        className="w-full bg-gradient-to-b from-primary/60 via-primary to-primary transition-all duration-200 ease-out rounded-full shadow-[0_0_8px_rgba(217,119,6,0.35)]"
                         style={{ height: `${scrollProgress}%` }}
                     />
                 </div>
@@ -153,7 +155,7 @@ export default function FloatingNav() {
                 {/* Fluid Sliding Active Indicator Capsule */}
                 <div
                     aria-hidden="true"
-                    className="absolute left-2 right-2 h-[26px] rounded-full bg-primary shadow-[0_0_18px_rgba(235,160,33,0.38),0_1px_2px_rgba(0,0,0,0.3)_inset] pointer-events-none transition-all duration-300"
+                    className="absolute left-2 right-2 h-[26px] rounded-full bg-primary shadow-sm pointer-events-none transition-all duration-300"
                     style={{
                         top: `${PADDING_OFFSET + activeIndex * BUTTON_HEIGHT + 6}px`,
                         transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
@@ -179,10 +181,10 @@ export default function FloatingNav() {
                             {/* Emil Kowalski Dynamic Fade Flyout Tooltip */}
                             <div
                                 className={cn(
-                                    'absolute right-12 px-3.5 py-2 rounded-2xl text-xs font-semibold pointer-events-none shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex items-center gap-2.5 border whitespace-nowrap bg-[#121216]/95 backdrop-blur-2xl transition-all duration-250 ease-out',
+                                    'absolute right-12 px-3.5 py-2 rounded-2xl text-xs font-semibold pointer-events-none shadow-xl flex items-center gap-2.5 border whitespace-nowrap bg-card/95 backdrop-blur-2xl transition-all duration-250 ease-out',
                                     shouldShowLabel
                                         ? 'opacity-100 translate-x-0 scale-100 border-primary/40 text-foreground'
-                                        : 'opacity-0 translate-x-2 scale-95 border-white/[0.08] text-muted-foreground'
+                                        : 'opacity-0 translate-x-2 scale-95 border-border/50 text-muted-foreground'
                                 )}
                             >
                                 <span className="text-[10px] font-mono font-bold text-primary px-1.5 py-0.5 rounded-md bg-primary/10 border border-primary/20">
@@ -192,7 +194,7 @@ export default function FloatingNav() {
                                     {section.name}
                                 </span>
                                 {isActive && (
-                                    <span className="flex items-center gap-1 text-[10px] font-mono text-primary font-normal pl-1 border-l border-white/10">
+                                    <span className="flex items-center gap-1 text-[10px] font-mono text-primary font-normal pl-1 border-l border-border/40">
                                         <span className="size-1.5 rounded-full bg-primary" />
                                         Reading
                                     </span>
@@ -204,8 +206,8 @@ export default function FloatingNav() {
                                 className={cn(
                                     'rounded-full transition-all duration-200 ease-out relative z-10',
                                     isActive
-                                        ? 'size-1.5 bg-black shadow-sm'
-                                        : 'size-1.5 bg-white/25 group-hover:bg-primary group-hover:scale-150 group-hover:shadow-[0_0_8px_rgba(235,160,33,0.6)]'
+                                        ? 'size-1.5 bg-primary-foreground shadow-sm'
+                                        : 'size-1.5 bg-muted-foreground/30 group-hover:bg-primary group-hover:scale-150 group-hover:shadow-[0_0_8px_rgba(217,119,6,0.6)]'
                                 )}
                             />
                         </button>

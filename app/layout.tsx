@@ -27,8 +27,10 @@ const inter = Inter({
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jlsonon.xyz';
 
 export const viewport: Viewport = {
-    themeColor: '#0a0a0a',
-    colorScheme: 'dark',
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#fbfbf9' },
+        { media: '(prefers-color-scheme: dark)', color: '#0c0a09' },
+    ],
     width: 'device-width',
     initialScale: 1,
     maximumScale: 5,
@@ -188,8 +190,21 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            (function() {
+                                try {
+                                    var storedTheme = localStorage.getItem('theme');
+                                    var theme = storedTheme || 'light';
+                                    document.documentElement.setAttribute('data-theme', theme);
+                                } catch (e) {}
+                            })();
+                        `,
+                    }}
+                />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -200,7 +215,7 @@ export default function RootLayout({
             >
                 <a
                     href="#main-content"
-                    className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[999] bg-primary text-black px-4 py-2 rounded-md font-bold text-sm shadow-xl opacity-0 focus:opacity-100 pointer-events-none focus:pointer-events-auto transition-opacity"
+                    className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[999] bg-primary text-primary-foreground px-4 py-2 rounded-md font-bold text-sm shadow-xl opacity-0 focus:opacity-100 pointer-events-none focus:pointer-events-auto transition-opacity"
                 >
                     Skip to content
                 </a>

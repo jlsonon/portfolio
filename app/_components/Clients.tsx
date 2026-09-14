@@ -2,6 +2,7 @@
 import { CLIENTS } from '@/lib/data';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { Award, Building2, CheckCircle2, Dumbbell, GraduationCap, Landmark, ArrowUpRight } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Link from 'next/link';
 import React from 'react';
 
@@ -14,7 +15,7 @@ const ICONS_MAP: Record<string, React.ReactNode> = {
 
 const Clients = () => {
     return (
-        <section id="trusted-by" className="relative z-[1] py-10 sm:py-14 border-y border-border/40 bg-background-light/20 backdrop-blur-sm">
+        <section id="trusted-by" className="relative z-[1] py-10 sm:py-14 border-y border-border/40 bg-card/40 backdrop-blur-sm">
             <div className="container">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -76,7 +77,11 @@ const Clients = () => {
 
                             if (client.projectSlug) {
                                 return (
-                                    <Link key={client.name} href={`/projects/${client.projectSlug}`}>
+                                    <Link
+                                        key={client.name}
+                                        href={`/projects/${client.projectSlug}`}
+                                        onClick={() => playKeebsClick(1.05)}
+                                    >
                                         {CardContent}
                                     </Link>
                                 );

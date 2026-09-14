@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { MapPin, Compass, ShieldCheck, Quote, Award } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import SystemsArchitectureCard from '@/components/SystemsArchitectureCard';
@@ -43,12 +44,12 @@ const AboutMe = () => {
                 {/* Gapless Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-6">
                     {/* 1. Core Builder Statement Card - 12 cols */}
-                    <div className="about-card md:col-span-12 border border-border/40 rounded-2xl p-7 sm:p-10 bg-background-light/40 relative overflow-hidden group">
+                    <div className="about-card md:col-span-12 border border-border/50 rounded-2xl p-7 sm:p-10 bg-card shadow-sm relative overflow-hidden group">
                         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
                             <Compass size={15} />
                             <span>How I Build &amp; What I Value</span>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-anton leading-tight text-foreground/95 max-w-4xl tracking-tight">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-anton leading-tight text-foreground max-w-4xl tracking-tight">
                             I turn businesses that run on{' '}
                             <span className="text-primary underline decoration-primary/30 underline-offset-8">
                                 paper logbooks and messy spreadsheets
@@ -63,15 +64,15 @@ const AboutMe = () => {
                     </div>
 
                     {/* 3. Portrait Photo Card - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl overflow-hidden bg-background-light/40 flex flex-col relative group min-h-[400px]">
-                        <div className="relative w-full h-[280px] sm:h-[300px] overflow-hidden bg-background">
+                    <div className="about-card md:col-span-4 border border-border/50 rounded-2xl overflow-hidden bg-card shadow-sm flex flex-col relative group min-h-[400px]">
+                        <div className="relative w-full h-[280px] sm:h-[300px] overflow-hidden bg-muted">
                             <Image
                                 src="/DSC_3489.jpg"
                                 alt="Jericho Sonon Portrait"
                                 fill
                                 className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
                         </div>
 
                         <div className="p-6 pt-3 flex flex-col justify-between grow">
@@ -80,8 +81,8 @@ const AboutMe = () => {
                                     <h3 className="font-anton text-2xl text-foreground">
                                         Jericho Sonon
                                     </h3>
-                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
-                                        <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-bold">
+                                        <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                                         Available
                                     </span>
                                 </div>
@@ -90,7 +91,7 @@ const AboutMe = () => {
                                 </p>
                             </div>
 
-                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-4 pt-3 border-t border-border/30">
+                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-4 pt-3 border-t border-border/40">
                                 <MapPin size={13} className="text-primary shrink-0" />
                                 <span>Quezon City, Metro Manila, Philippines</span>
                             </div>
@@ -98,7 +99,7 @@ const AboutMe = () => {
                     </div>
 
                     {/* 4. Bio & Background Card - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl p-7 bg-background-light/40 flex flex-col justify-between gap-6">
+                    <div className="about-card md:col-span-4 border border-border/50 rounded-2xl p-7 bg-card shadow-sm flex flex-col justify-between gap-6">
                         <div>
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
                                 <Compass size={14} />
@@ -112,7 +113,7 @@ const AboutMe = () => {
                             </p>
                         </div>
 
-                        <div className="pt-4 border-t border-border/30">
+                        <div className="pt-4 border-t border-border/40">
                             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
                                 Operating Standard
                             </p>
@@ -124,7 +125,7 @@ const AboutMe = () => {
                     </div>
 
                     {/* 5. Verified Client Proof & Endorsement - 4 cols */}
-                    <div className="about-card md:col-span-4 border border-border/40 rounded-2xl p-7 bg-background-light/40 flex flex-col justify-between gap-5 relative overflow-hidden group">
+                    <div className="about-card md:col-span-4 border border-border/50 rounded-2xl p-7 bg-card shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group">
                         <div>
                             <div className="flex items-center justify-between gap-2 mb-3">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
@@ -138,17 +139,20 @@ const AboutMe = () => {
                             </div>
 
                             {/* Staff Member Toggle (Claire Castro & Miguel Tarnate) */}
-                            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-background/80 border border-border/40 my-3">
+                            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-muted/60 border border-border/40 my-3">
                                 {TESTIMONIALS.map((item, idx) => (
                                     <button
                                         key={item.author}
                                         type="button"
-                                        onClick={() => setActiveTestimonial(idx)}
+                                        onClick={() => {
+                                            playKeebsClick(1.1);
+                                            setActiveTestimonial(idx);
+                                        }}
                                         className={cn(
                                             'flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all duration-200 text-center cursor-pointer select-none active:scale-95',
                                             activeTestimonial === idx
-                                                ? 'bg-primary text-black shadow-sm'
-                                                : 'text-muted-foreground hover:text-foreground hover:bg-background-light/40'
+                                                ? 'bg-primary text-primary-foreground shadow-sm'
+                                                : 'text-muted-foreground hover:text-foreground hover:bg-background/60'
                                         )}
                                     >
                                         {item.author}

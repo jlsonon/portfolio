@@ -82,12 +82,12 @@ const MyProcess = () => {
                         return (
                             <SpotlightCard
                                 key={step.number}
-                                className="process-step h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                                className="process-step h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 bg-card border-border/60"
                             >
                                 <div>
                                     {/* Number & Icon Header */}
                                     <div className="flex items-center justify-between gap-3 mb-6">
-                                        <span className="size-10 rounded-2xl border border-primary/40 bg-background flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-black transition-all duration-200 shadow-sm">
+                                        <span className="size-10 rounded-2xl border border-primary/40 bg-background flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-200 shadow-sm">
                                             {step.number}
                                         </span>
 

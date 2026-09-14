@@ -5,7 +5,8 @@ import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef } from 'react';
@@ -30,14 +31,6 @@ const Banner = () => {
                     clearProps: 'all',
                 }
             );
-
-            gsap.to('.scroll-indicator', {
-                y: 6,
-                repeat: -1,
-                yoyo: true,
-                duration: 1.6,
-                ease: 'power1.inOut',
-            });
         },
         { scope: containerRef }
     );
@@ -105,13 +98,15 @@ const Banner = () => {
                         variant="primary"
                         icon={<ArrowUpRight size={16} />}
                         className="shadow-xl shadow-primary/20 h-12 px-7 font-bold text-sm"
+                        onClick={() => playKeebsClick(1.1)}
                     >
                         Start a Project
                     </FamilyButton>
 
                     <Link
                         href="/#selected-projects"
-                        className="h-12 px-7 rounded-full text-sm font-semibold border border-border/60 hover:border-primary/60 text-foreground hover:text-primary transition-all duration-200 bg-background-light/40 hover:bg-background-light/80 backdrop-blur-sm flex items-center gap-2 shadow-sm active:scale-[0.97]"
+                        onClick={() => playKeebsClick(1.05)}
+                        className="h-12 px-7 rounded-full text-sm font-semibold border border-border/60 hover:border-primary/60 text-foreground hover:text-primary transition-all duration-200 bg-background-light/50 hover:bg-background-light/90 backdrop-blur-sm flex items-center gap-2 shadow-sm active:scale-[0.97]"
                     >
                         <span>View Live Systems</span>
                         <span className="text-primary">↓</span>
@@ -119,7 +114,7 @@ const Banner = () => {
                 </div>
 
                 {/* Authority Proof Bar */}
-                <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 sm:pt-5 sm:pb-5 border-t sm:border-y border-border/30 bg-background-light/25 sm:bg-background-light/20 backdrop-blur-sm rounded-2xl p-4 sm:px-2">
+                <div className="hero-item w-full max-w-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 mt-6 sm:mt-8 pt-6 sm:pt-5 sm:pb-5 border border-border/40 bg-card/75 backdrop-blur-sm rounded-2xl p-4 sm:px-2 shadow-sm">
                     <div className="text-center sm:border-r sm:border-border/30 px-2">
                         <p className="text-3xl sm:text-4xl font-anton text-primary tabular-nums tracking-tight">
                             <AnimatedNumber value={10} />
@@ -145,16 +140,6 @@ const Banner = () => {
                         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">Code Ownership</p>
                     </div>
                 </div>
-
-                {/* Scroll Indicator */}
-                <a
-                    href="#trusted-by"
-                    className="hero-item scroll-indicator text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-1.5 mt-4"
-                    aria-label="Scroll down to content"
-                >
-                    <span className="text-xs uppercase tracking-widest font-bold">Scroll Down</span>
-                    <ArrowDown size={14} className="text-primary" />
-                </a>
             </div>
         </section>
     );

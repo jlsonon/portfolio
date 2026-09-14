@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
+import { playKeebsClick } from '@/lib/keebs-audio';
+
 interface FamilyButtonProps {
     children: React.ReactNode;
     icon?: React.ReactNode;
@@ -35,6 +37,7 @@ export function FamilyButton({
     const [isPending, setIsPending] = useState(false);
 
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        playKeebsClick();
         if (disabled || isPending) return;
 
         if (onClick) {
@@ -59,16 +62,16 @@ export function FamilyButton({
     const baseStyles = cn(
         'group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.96] shadow-sm',
         variant === 'primary' && [
-            'bg-primary text-black hover:bg-primary-hover shadow-primary/20 hover:shadow-md hover:shadow-primary/30',
-            isSuccess && 'bg-emerald-400 text-black shadow-emerald-500/20'
+            'bg-primary text-primary-foreground hover:bg-primary-hover shadow-primary/20 hover:shadow-md hover:shadow-primary/30',
+            isSuccess && 'bg-emerald-500 text-white shadow-emerald-500/20'
         ],
         variant === 'secondary' && [
-            'bg-background-light/50 border border-border/60 text-foreground hover:border-primary/50 hover:text-primary hover:bg-background-light',
-            isSuccess && 'border-emerald-500/50 text-emerald-400'
+            'bg-card border border-border/60 text-foreground hover:border-primary/50 hover:text-primary hover:bg-muted/30',
+            isSuccess && 'border-emerald-500/50 text-emerald-500'
         ],
         variant === 'ghost' && [
-            'bg-transparent text-foreground hover:text-primary hover:bg-background-light/40',
-            isSuccess && 'text-emerald-400'
+            'bg-transparent text-foreground hover:text-primary hover:bg-muted/40',
+            isSuccess && 'text-emerald-500'
         ],
         disabled && 'opacity-50 pointer-events-none',
         className
@@ -90,7 +93,12 @@ export function FamilyButton({
     if (href) {
         if (href.startsWith('/') || href.startsWith('#')) {
             return (
-                <Link href={href} className={baseStyles} aria-label={ariaLabel}>
+                <Link
+                    href={href}
+                    onClick={() => playKeebsClick()}
+                    className={baseStyles}
+                    aria-label={ariaLabel}
+                >
                     {content}
                 </Link>
             );
@@ -100,6 +108,7 @@ export function FamilyButton({
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => playKeebsClick()}
                 className={baseStyles}
                 aria-label={ariaLabel}
             >

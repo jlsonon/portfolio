@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
 import { Variant } from '@/types';
 import { cn } from '@/lib/utils';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 const Spinner = ({ icon }: { icon?: boolean }) => (
     <span className="inline-flex items-center justify-center gap-2">
@@ -50,19 +51,19 @@ const Button = ({
     ...rest
 }: Props) => {
     const variantClasses = {
-        primary: 'bg-primary text-black hover:bg-primary-hover shadow-lg shadow-primary/20 border border-primary/30',
-        secondary: 'bg-secondary text-black hover:bg-secondary-hover shadow-lg shadow-secondary/20 border border-secondary/30',
-        outline: 'bg-background-light/40 text-foreground border border-border/60 hover:border-primary/50 hover:text-primary hover:bg-background-light',
-        ghost: 'bg-transparent text-foreground hover:text-primary hover:bg-background-light/40',
-        success: 'bg-emerald-500 text-black hover:bg-emerald-400 shadow-lg shadow-emerald-500/20',
+        primary: 'bg-primary text-primary-foreground hover:bg-primary-hover shadow-lg shadow-primary/20 border border-primary/30',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary-hover shadow-sm border border-border/50',
+        outline: 'bg-card text-foreground border border-border/60 hover:border-primary/50 hover:text-primary hover:bg-muted/40',
+        ghost: 'bg-transparent text-foreground hover:text-primary hover:bg-muted/40',
+        success: 'bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg shadow-emerald-500/20',
         warning: 'bg-orange-500 text-white hover:bg-orange-400',
         danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/80',
         info: 'bg-sky-500 text-white hover:bg-sky-400',
         light: 'bg-foreground text-background hover:bg-foreground/90',
-        dark: 'bg-background-light text-foreground border border-border/50 hover:border-primary/40',
+        dark: 'bg-card text-foreground border border-border/50 hover:border-primary/40',
         link: 'text-foreground hover:text-primary underline-offset-4 hover:underline p-0 h-auto bg-transparent',
         'no-color': '',
-    }[variant] || 'bg-primary text-black hover:bg-primary-hover';
+    }[variant] || 'bg-primary text-primary-foreground hover:bg-primary-hover';
 
     const baseClasses = cn(
         'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 ease-out cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]',
@@ -79,6 +80,10 @@ const Button = ({
                 <a
                     className={baseClasses}
                     {...props}
+                    onClick={(e) => {
+                        playKeebsClick();
+                        props.onClick?.(e);
+                    }}
                     href={props.href.toString() || '#'}
                 >
                     {loading ? <Spinner icon={icon} /> : children}
@@ -87,7 +92,15 @@ const Button = ({
         }
 
         return (
-            <Link className={baseClasses} {...props} href={props.href || '#'}>
+            <Link
+                className={baseClasses}
+                {...props}
+                onClick={(e) => {
+                    playKeebsClick();
+                    props.onClick?.(e);
+                }}
+                href={props.href || '#'}
+            >
                 {loading ? <Spinner icon={icon} /> : children}
             </Link>
         );
@@ -95,7 +108,15 @@ const Button = ({
 
     const props = rest as ButtonProps;
     return (
-        <button className={baseClasses} disabled={loading || props.disabled} {...props}>
+        <button
+            className={baseClasses}
+            disabled={loading || props.disabled}
+            {...props}
+            onClick={(e) => {
+                playKeebsClick();
+                props.onClick?.(e);
+            }}
+        >
             {loading ? <Spinner icon={icon} /> : children}
         </button>
     );

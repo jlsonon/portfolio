@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ShieldCheck } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 
@@ -17,6 +18,31 @@ const CATEGORY_NAMES: Record<string, string> = {
     ai: 'AI Agents, LLMs & Telemetry',
     database: 'Data & Real-Time Storage',
     infrastructure: 'Cloud, Containers & Deployment',
+};
+
+const TECH_TO_PROJECTS: Record<string, string[]> = {
+    'React': ['FitLocker', 'Solar Spartz', 'BarangayConnect', 'LuckyBingo'],
+    'Next.js': ['FitLocker', 'Solar Spartz', 'Laundry POS', 'Prime Reviewer PH', 'OpticBooth', 'BarangayConnect'],
+    'Tailwind CSS': ['Keebs', 'Solar Spartz', 'FitLocker', 'Laundry POS', 'Prime Reviewer PH', 'QOTA'],
+    'Zustand': ['Laundry POS', 'MochiMoney', 'LuckyBingo'],
+    'Shadcn UI': ['FitLocker', 'Solar Spartz', 'Laundry POS'],
+    'Zod': ['Laundry POS', 'Prime Reviewer PH'],
+    'Node.js': ['LuckyBingo', 'QOTA', 'Laundry POS'],
+    'Express.js': ['LuckyBingo', 'BarangayConnect'],
+    'FastAPI': ['Solar Spartz Math Engine', 'AI Document OCR'],
+    'Django': ['Enterprise Admin', 'Prime Reviewer PH'],
+    'Firebase': ['FitLocker', 'BarangayConnect'],
+    'Claude': ['AI Systems', 'Pipeline Tooling'],
+    'Gemini': ['LuckyBingo Voice Caller', 'Agentic Workflows'],
+    'Codex': ['Terminal Automation', 'Systems Tooling'],
+    'Antigravity': ['QOTA Telemetry', 'Autonomous Agent Engine'],
+    'PostgreSQL': ['Laundry POS', 'Prime Reviewer PH', 'BarangayConnect'],
+    'Cloud Firestore': ['FitLocker', 'BarangayConnect'],
+    'MongoDB': ['OpticBooth', 'Document Store'],
+    'Redis': ['LuckyBingo Real-Time Sync', 'Rate Limiting'],
+    'Docker': ['Backend Services', 'Local DB Testing'],
+    'Vercel': ['Solar Spartz', 'Prime Reviewer PH', 'OpticBooth'],
+    'Git': ['All 10 Systems in Production'],
 };
 
 const Skills = () => {
@@ -82,9 +108,10 @@ const Skills = () => {
                                         {items.map((item) => (
                                             <div
                                                 key={item.name}
-                                                className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-xl bg-background border border-border/30 text-center"
+                                                onClick={() => playKeebsClick(1.15)}
+                                                className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-xl bg-card border border-border/40 text-center shadow-sm active:scale-95 cursor-pointer"
                                             >
-                                                <div className="size-10 rounded-lg bg-background-light border border-border/20 flex items-center justify-center p-2">
+                                                <div className="size-10 rounded-lg bg-muted border border-border/30 flex items-center justify-center p-2">
                                                     <Image
                                                         src={item.icon}
                                                         alt={item.name}
@@ -93,9 +120,16 @@ const Skills = () => {
                                                         className="size-6 object-contain"
                                                     />
                                                 </div>
-                                                <span className="text-xs font-semibold text-foreground/90 leading-tight">
-                                                    {item.name}
-                                                </span>
+                                                <div className="flex flex-col items-center">
+                                                    <span className="text-xs font-semibold text-foreground leading-tight">
+                                                        {item.name}
+                                                    </span>
+                                                    {TECH_TO_PROJECTS[item.name] && (
+                                                        <span className="text-[10px] font-mono text-muted-foreground mt-0.5 line-clamp-1">
+                                                            {TECH_TO_PROJECTS[item.name][0]}
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -124,10 +158,11 @@ const Skills = () => {
                                 <div className="sm:col-span-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
                                     {value.map((item) => (
                                         <div
-                                            className="group flex flex-col justify-center items-center gap-2.5 p-4 rounded-2xl bg-background-light/50 border border-border/40 hover:border-primary/50 hover:bg-background-light/90 transition-all duration-200 hover:-translate-y-1 text-center cursor-default active:scale-95 shadow-sm"
+                                            className="group flex flex-col justify-between items-center gap-2.5 p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/50 hover:bg-muted/40 transition-all duration-200 hover:-translate-y-1 text-center cursor-pointer active:scale-95 shadow-sm"
                                             key={item.name}
+                                            onClick={() => playKeebsClick(1.15)}
                                         >
-                                            <div className="p-2.5 bg-background rounded-xl border border-border/30 group-hover:border-primary/40 group-hover:shadow-sm transition-all duration-200 flex items-center justify-center size-12 md:size-14">
+                                            <div className="p-2.5 bg-background rounded-xl border border-border/40 group-hover:border-primary/40 group-hover:shadow-sm transition-all duration-200 flex items-center justify-center size-12 md:size-14">
                                                 <Image
                                                     src={item.icon}
                                                     alt={item.name}
@@ -136,9 +171,16 @@ const Skills = () => {
                                                     className="size-7 md:size-8 object-contain group-hover:scale-105 transition-transform duration-200"
                                                 />
                                             </div>
-                                            <span className="text-xs md:text-sm font-semibold text-foreground/85 group-hover:text-primary transition-colors">
-                                                {item.name}
-                                            </span>
+                                            <div className="flex flex-col items-center">
+                                                <span className="text-xs md:text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
+                                                    {item.name}
+                                                </span>
+                                                {TECH_TO_PROJECTS[item.name] && (
+                                                    <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary/90 transition-colors line-clamp-1 mt-1">
+                                                        {TECH_TO_PROJECTS[item.name][0]}
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

@@ -5,6 +5,7 @@ import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import { GENERAL_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { FamilyButton } from '@/components/ui/family-button';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 interface CopyEmailButtonProps {
     className?: string;
@@ -22,6 +23,7 @@ export default function CopyEmailButton({
 
     const handleCopy = async (e: React.MouseEvent) => {
         e.preventDefault();
+        playKeebsClick();
         try {
             await navigator.clipboard.writeText(GENERAL_INFO.email);
             setCopied(true);
@@ -95,7 +97,7 @@ export default function CopyEmailButton({
                     </div>
                     <a
                         href={`mailto:${GENERAL_INFO.email}`}
-                        className="ml-2 px-3 py-1 rounded-full bg-primary text-black text-xs font-bold hover:bg-primary-hover transition-colors inline-flex items-center gap-1 shrink-0"
+                        className="ml-2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold hover:bg-primary-hover transition-colors inline-flex items-center gap-1 shrink-0"
                     >
                         <span>Open Mail</span>
                         <ArrowUpRight size={12} />

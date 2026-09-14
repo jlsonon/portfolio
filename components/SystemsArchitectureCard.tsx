@@ -16,13 +16,14 @@ import { cn } from '@/lib/utils';
 import { SlidingTabs } from '@/components/ui/sliding-tabs';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 export default function SystemsArchitectureCard() {
     const [mode, setMode] = useState<'automated' | 'manual'>('automated');
     const [selectedNode, setSelectedNode] = useState<number | null>(null);
 
     return (
-        <div className="w-full rounded-3xl border border-border/40 bg-background-light/35 backdrop-blur-md p-6 sm:p-8 shadow-lg">
+        <div className="w-full rounded-3xl border border-border/50 bg-card p-6 sm:p-8 shadow-sm">
 
             {/* Header: Title + Interactive Mode Switcher Tabs */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/30 mb-6">
@@ -46,6 +47,7 @@ export default function SystemsArchitectureCard() {
                     ]}
                     activeId={mode}
                     onChange={(id) => {
+                        playKeebsClick(1.1);
                         setMode(id as 'automated' | 'manual');
                         setSelectedNode(null);
                     }}
@@ -232,8 +234,11 @@ export default function SystemsArchitectureCard() {
                             <span>Estimated loss: 12–20 staff hours weekly lost to manual data entry &amp; reconciliation mistakes.</span>
                         </div>
                         <button
-                            onClick={() => setMode('automated')}
-                            className="px-3.5 py-1.5 rounded-xl bg-primary text-black font-bold text-xs hover:bg-primary-hover transition-colors shrink-0 cursor-pointer"
+                            onClick={() => {
+                                playKeebsClick();
+                                setMode('automated');
+                            }}
+                            className="px-3.5 py-1.5 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary-hover transition-colors shrink-0 cursor-pointer active:scale-95"
                         >
                             See Software Solution →
                         </button>

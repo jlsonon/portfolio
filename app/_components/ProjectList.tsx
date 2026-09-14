@@ -3,6 +3,7 @@ import SectionTitle from '@/components/SectionTitle';
 import { SlidingTabs } from '@/components/ui/sliding-tabs';
 import { PROJECTS } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -123,7 +124,10 @@ const ProjectList = () => {
                                 count: cat.count,
                             }))}
                             activeId={activeCategory}
-                            onChange={(id) => setActiveCategory(id as 'all' | 'saas' | 'ai' | 'business')}
+                            onChange={(id) => {
+                                playKeebsClick(1.1);
+                                setActiveCategory(id as 'all' | 'saas' | 'ai' | 'business');
+                            }}
                             className="self-start md:self-auto"
                         />
                     </div>
@@ -136,13 +140,13 @@ const ProjectList = () => {
                             className="hidden lg:block absolute right-0 top-0 z-20 pointer-events-none w-[380px] xl:w-[480px] opacity-0"
                             ref={imageContainer}
                         >
-                            <div className="rounded-2xl overflow-hidden border border-border/70 bg-background-light/95 backdrop-blur-xl shadow-2xl">
+                            <div className="rounded-2xl overflow-hidden border border-border/70 bg-card/95 backdrop-blur-xl shadow-2xl">
                                 {/* Browser Chrome */}
-                                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-background/90 border-b border-border/40">
+                                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-muted/60 border-b border-border/40">
                                     <span className="size-2.5 rounded-full bg-red-500/80" />
                                     <span className="size-2.5 rounded-full bg-yellow-500/80" />
                                     <span className="size-2.5 rounded-full bg-green-500/80" />
-                                    <div className="flex-1 mx-2 bg-background-light/80 border border-border/30 rounded-md px-3 py-0.5 text-center">
+                                    <div className="flex-1 mx-2 bg-background border border-border/40 rounded-md px-3 py-0.5 text-center">
                                         <p className="text-xs text-muted-foreground truncate font-mono">
                                             {(() => {
                                                 const p = PROJECTS.find((proj) => proj.slug === selectedProject);

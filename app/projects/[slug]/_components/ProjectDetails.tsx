@@ -11,6 +11,7 @@ import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, Shiel
 import { useEffect, useRef, useState } from 'react';
 import { useLenis } from 'lenis/react';
 import Image from 'next/image';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 interface Props {
     project: IProject;
@@ -69,6 +70,7 @@ const ProjectDetails = ({ project }: Props) => {
                 <TransitionLink
                     back
                     href="/"
+                    onClick={() => playKeebsClick()}
                     className="mb-8 inline-flex items-center gap-2 group h-10 text-muted-foreground hover:text-foreground transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg px-1 active:scale-95"
                 >
                     <ArrowLeft
@@ -103,7 +105,8 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="h-11 px-5 sm:px-6 bg-primary text-black rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
+                                    onClick={() => playKeebsClick()}
+                                    className="h-11 px-5 sm:px-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center gap-2 hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all text-xs font-bold tracking-wide active:scale-95"
                                 >
                                     <Globe size={15} />
                                     <span>Visit Live Site</span>
@@ -115,7 +118,8 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.repoUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="h-11 px-5 sm:px-6 bg-background-light/80 hover:bg-background border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full flex items-center justify-center gap-2 transition-all text-xs font-bold tracking-wide active:scale-95 shadow-sm"
+                                    onClick={() => playKeebsClick()}
+                                    className="h-11 px-5 sm:px-6 bg-card hover:bg-muted/40 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full flex items-center justify-center gap-2 transition-all text-xs font-bold tracking-wide active:scale-95 shadow-sm"
                                 >
                                     <Github size={15} />
                                     <span>View Repository</span>
@@ -129,7 +133,7 @@ const ProjectDetails = ({ project }: Props) => {
                     <div className="space-y-10 pb-16">
                         {/* Client & Production Deployment Context */}
                         {project.clientName && (
-                            <div className="fade-in-later p-5 rounded-2xl bg-background-light/50 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                            <div className="fade-in-later p-5 rounded-2xl bg-card border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
                                 <div>
                                     <p className="text-xs uppercase font-bold tracking-widest text-primary">
                                         Commercial Deployment & Client
@@ -170,7 +174,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 {project.techStack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="text-xs font-semibold border border-border/50 rounded-xl px-3.5 py-1.5 text-foreground/90 bg-background-light/60 hover:border-primary/40 transition-colors"
+                                        className="text-xs font-semibold border border-border/50 rounded-xl px-3.5 py-1.5 text-foreground/90 bg-card hover:border-primary/40 transition-colors"
                                     >
                                         {tech}
                                     </span>
@@ -183,7 +187,7 @@ const ProjectDetails = ({ project }: Props) => {
                             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
                                 Executive Overview
                             </p>
-                            <div className="text-base sm:text-lg text-muted-foreground leading-relaxed prose-invert markdown-text">
+                            <div className="text-base sm:text-lg text-muted-foreground leading-relaxed markdown-text">
                                 {parse(project.description)}
                             </div>
                         </div>
@@ -191,9 +195,9 @@ const ProjectDetails = ({ project }: Props) => {
                         {/* Structured Problem & Solution Case Study */}
                         {project.problem && project.solution && (
                             <div className="fade-in-later grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div className="p-6 rounded-2xl bg-background-light/40 border border-red-500/20 shadow-sm">
-                                    <p className="text-xs font-bold uppercase tracking-wider text-red-400 mb-2.5 flex items-center gap-2">
-                                        <ShieldAlert size={15} className="text-red-400 shrink-0" />
+                                <div className="p-6 rounded-2xl bg-card border border-red-500/20 shadow-sm">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-red-500 dark:text-red-400 mb-2.5 flex items-center gap-2">
+                                        <ShieldAlert size={15} className="shrink-0" />
                                         <span>The Operational Problem</span>
                                     </p>
                                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -201,9 +205,9 @@ const ProjectDetails = ({ project }: Props) => {
                                     </p>
                                 </div>
 
-                                <div className="p-6 rounded-2xl bg-background-light/40 border border-emerald-500/20 shadow-sm">
-                                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2.5 flex items-center gap-2">
-                                        <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+                                <div className="p-6 rounded-2xl bg-card border border-emerald-500/20 shadow-sm">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2.5 flex items-center gap-2">
+                                        <CheckCircle2 size={15} className="shrink-0" />
                                         <span>The Engineered Solution</span>
                                     </p>
                                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -215,7 +219,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                         {/* Architecture Decisions */}
                         {project.architecture && project.architecture.length > 0 && (
-                            <div className="fade-in-later p-7 rounded-2xl bg-background-light/40 border border-border/40 shadow-sm">
+                            <div className="fade-in-later p-7 rounded-2xl bg-card border border-border/50 shadow-sm">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
                                     <Terminal size={15} />
                                     <span>Key Architectural Decisions</span>
@@ -233,7 +237,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                         {/* Verified Outcomes */}
                         {project.outcomes && project.outcomes.length > 0 && (
-                            <div className="fade-in-later p-7 rounded-2xl bg-background-light/60 border border-primary/25 shadow-md">
+                            <div className="fade-in-later p-7 rounded-2xl bg-card border border-primary/25 shadow-md">
                                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-4">
                                     <TrendingUp size={15} />
                                     <span>Verified Production Outcomes</span>
@@ -265,7 +269,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                 {/* High-Fidelity Browser Mockup Frame */}
                 <div
-                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-2xl border border-border/70 bg-background-light/95 shadow-2xl mt-6 group"
+                    className="fade-in-later relative flex flex-col max-w-5xl mx-auto w-full aspect-[16/10] overflow-hidden rounded-2xl border border-border/70 bg-card shadow-2xl mt-6 group"
                     id="images"
                 >
                     {/* Browser chrome frame */}
@@ -275,7 +279,7 @@ const ProjectDetails = ({ project }: Props) => {
                             <span className="size-3 rounded-full bg-yellow-500/80" />
                             <span className="size-3 rounded-full bg-green-500/80" />
                         </div>
-                        <div className="flex-1 max-w-md mx-2 bg-background-light/80 rounded-lg px-4 py-1.5 flex items-center justify-center border border-border/30">
+                        <div className="flex-1 max-w-md mx-2 bg-muted/40 rounded-lg px-4 py-1.5 flex items-center justify-center border border-border/40">
                             <p className="text-xs text-muted-foreground truncate font-mono">
                                 {(project.liveUrl || project.repoUrl)?.replace('https://', '').replace(/\/$/, '') ?? project.slug}
                             </p>
@@ -286,6 +290,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
+                                    onClick={() => playKeebsClick()}
                                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors"
                                 >
                                     <Globe size={13} />
@@ -297,6 +302,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.repoUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
+                                    onClick={() => playKeebsClick()}
                                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
                                 >
                                     <Github size={13} />
@@ -322,7 +328,8 @@ const ProjectDetails = ({ project }: Props) => {
                                                 href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noreferrer noopener"
-                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-black font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
+                                                onClick={() => playKeebsClick()}
+                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-2xl shadow-primary/30 hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all"
                                             >
                                                 <Globe size={16} />
                                                 <span>Visit Live Site</span>
@@ -334,7 +341,8 @@ const ProjectDetails = ({ project }: Props) => {
                                                 href={project.repoUrl}
                                                 target="_blank"
                                                 rel="noreferrer noopener"
-                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-background/90 text-foreground hover:text-primary border border-border/60 hover:border-primary/50 font-bold text-sm shadow-2xl hover:scale-105 active:scale-95 transition-all"
+                                                onClick={() => playKeebsClick()}
+                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-card/90 text-foreground hover:text-primary border border-border/60 hover:border-primary/50 font-bold text-sm shadow-2xl hover:scale-105 active:scale-95 transition-all"
                                             >
                                                 <Github size={16} />
                                                 <span>View Repository</span>
@@ -345,7 +353,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 )}
                             </>
                         ) : (
-                            <div className="absolute inset-0 flex items-center justify-center border-t border-dashed border-border/40 bg-background-light">
+                            <div className="absolute inset-0 flex items-center justify-center border-t border-dashed border-border/40 bg-muted/20">
                                 <span className="text-muted-foreground text-sm">Interface preview coming soon</span>
                             </div>
                         )}
@@ -360,12 +368,15 @@ const ProjectDetails = ({ project }: Props) => {
                             <button
                                 key={img}
                                 type="button"
-                                onClick={() => setActiveImageIndex(idx)}
+                                onClick={() => {
+                                    playKeebsClick();
+                                    setActiveImageIndex(idx);
+                                }}
                                 className={cn(
                                     'px-3.5 py-1 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer select-none active:scale-95',
                                     activeImageIndex === idx
-                                        ? 'bg-primary text-black shadow-sm font-bold'
-                                        : 'bg-background-light/70 text-muted-foreground hover:text-foreground hover:bg-background-light border border-border/40'
+                                        ? 'bg-primary text-primary-foreground shadow-sm font-bold'
+                                        : 'bg-card text-muted-foreground hover:text-foreground hover:bg-muted/40 border border-border/50'
                                 )}
                             >
                                 Screenshot 0{idx + 1}
@@ -381,6 +392,7 @@ const ProjectDetails = ({ project }: Props) => {
                     {prevProject ? (
                         <TransitionLink
                             href={`/projects/${prevProject.slug}`}
+                            onClick={() => playKeebsClick()}
                             className="group flex flex-col gap-1 text-left active:scale-95"
                         >
                             <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors flex items-center gap-1">
@@ -397,6 +409,7 @@ const ProjectDetails = ({ project }: Props) => {
                     {nextProject ? (
                         <TransitionLink
                             href={`/projects/${nextProject.slug}`}
+                            onClick={() => playKeebsClick()}
                             className="group flex flex-col gap-1 text-right active:scale-95"
                         >
                             <span className="text-xs text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors flex items-center justify-end gap-1">

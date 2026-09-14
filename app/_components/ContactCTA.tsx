@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 import TimezoneClock from '@/components/TimezoneClock';
 import { FamilyButton } from '@/components/ui/family-button';
 
+import { playKeebsClick } from '@/lib/keebs-audio';
+
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PROJECT_TYPES = [
@@ -49,7 +51,7 @@ const ContactCTA = () => {
         <section className="py-section relative overflow-hidden" id="contact-cta">
 
             <div className="container" ref={containerRef}>
-                <div className="border border-border/50 rounded-2xl p-8 sm:p-14 md:p-16 bg-background-light/40 text-center max-w-4xl mx-auto relative shadow-xl">
+                <div className="border border-border/60 rounded-3xl p-8 sm:p-14 md:p-16 bg-card text-center max-w-4xl mx-auto relative shadow-xl shadow-black/5">
                     {/* Live Timezone & Availability Badge */}
                     <div className="cta-item flex justify-center mb-6">
                         <TimezoneClock />
@@ -78,12 +80,15 @@ const ContactCTA = () => {
                             {PROJECT_TYPES.map((type) => (
                                 <button
                                     key={type.id}
-                                    onClick={() => setSelectedType(type.id)}
+                                    onClick={() => {
+                                        playKeebsClick();
+                                        setSelectedType(type.id);
+                                    }}
                                     className={cn(
                                         'px-4 py-2 rounded-full text-xs font-bold tracking-wide border transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none select-none active:scale-95',
                                         selectedType === type.id
-                                            ? 'bg-primary text-black border-primary shadow-lg shadow-primary/25'
-                                            : 'bg-background/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/40 backdrop-blur-sm'
+                                            ? 'bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/25'
+                                            : 'bg-background/80 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/40 backdrop-blur-sm'
                                     )}
                                 >
                                     {type.label}
@@ -98,7 +103,7 @@ const ContactCTA = () => {
                             <FamilyButton
                                 href={GENERAL_INFO.calendarUrl}
                                 variant="primary"
-                                icon={<Calendar size={18} className="text-black" />}
+                                icon={<Calendar size={18} className="text-primary-foreground" />}
                                 className="h-12 px-7 text-sm font-bold shadow-xl shadow-primary/20"
                             >
                                 Book 15-Min Call

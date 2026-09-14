@@ -28,7 +28,7 @@
 <!-- Tech Stack Icons -->
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,nodejs,postgres,firebase,swift,cs,docker,figma,linux&theme=dark" alt="Tech Stack" />
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,nodejs,postgres,firebase,swift,cs,py,docker,linux,figma&theme=dark" alt="Tech Stack" />
   </a>
 </p>
 
@@ -40,7 +40,7 @@
 
 | System | What It Is | Stack | Links |
 | :--- | :--- | :--- | :--- |
-| **Keebs** | Keyboard audio & haptics engine | `Swift 6`, `AVAudioEngine` | [Site](https://keebs.live) • [Code](https://github.com/jlsonon/keebs) |
+| **Keebs** | Cross-platform mechanical keyboard sound simulator (macOS, Windows, Linux, Android) | `Swift 6`, `C# .NET 8`, `Python`, `WebAudio` | [Site](https://keebs.live) • [Code](https://github.com/jlsonon/keebs) |
 | **QOTA** | AI quota HUD for Claude, Gemini, Codex | `Electron`, `AppKit` | [Site](https://qota.live) • [Code](https://github.com/jlsonon/qota) |
 | **Solar Spartz** | Solar EPC platform & ROI calculator | `Next.js 15`, `React 19` | [Site](https://solarspartz.vercel.app/) • [Case Study](https://jlsonon.xyz/projects/solarspartz) |
 | **FitLocker** | Gym POS & QR check-in kiosks | `Next.js`, `Firebase` | [Site](https://fitlocker-5a5ee.web.app/) • [Case Study](https://jlsonon.xyz/projects/fitlocker) |
@@ -63,12 +63,20 @@
 ---
 
 ```text
-Driver │ MacBook Pro • Custom 65% Mechanical (Holy Panda 67g tactile)
+Driver │ MacBook Air
 Focus  │ Engineering low-latency POS systems, business platforms & AI HUDs
 ```
 
 ---
 
+### Contact & Links
+
+* **Live Portfolio & Case Studies**: [jlsonon.xyz](https://jlsonon.xyz)
+* **LinkedIn**: [linkedin.com/in/jlsonon](https://www.linkedin.com/in/jlsonon/)
+* **Technical Writing**: [medium.com/@jlsonon12](https://medium.com/@jlsonon12)
+* **Direct Email**: [jlsonon12@gmail.com](mailto:jlsonon12@gmail.com)
+* **Schedule a Consultation**: [cal.com/jlsonon](https://cal.com/jlsonon)
+
 <div align="center">
-  <sub>Designed and built by <b>Jericho Sonon</b> • Engineering portfolio at <a href="https://jlsonon.xyz"><b>jlsonon.xyz</b></a></sub>
+  <sub>Designed and built by <b>Jericho Sonon</b> • Production systems at <a href="https://jlsonon.xyz"><b>jlsonon.xyz</b></a></sub>
 </div>

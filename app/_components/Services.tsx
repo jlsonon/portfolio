@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { CheckCircle2, Clock, ArrowUpRight, Layers, Cpu, Boxes } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 
@@ -129,6 +130,7 @@ const Services = () => {
                                             <span className="text-muted-foreground text-xs font-medium">Live System:</span>
                                             <Link
                                                 href={`/projects/${service.exampleProject.slug}`}
+                                                onClick={() => playKeebsClick(1.05)}
                                                 className="inline-flex items-center gap-1 font-bold text-primary hover:underline text-xs"
                                             >
                                                 <span>{service.exampleProject.name}</span>
@@ -149,6 +151,7 @@ const Services = () => {
                                         variant="secondary"
                                         icon={<ArrowUpRight size={14} />}
                                         className="px-4 py-2 text-xs"
+                                        onClick={() => playKeebsClick(1.1)}
                                     >
                                         Inquire
                                     </FamilyButton>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Home, ArrowUpRight } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 export default function NotFound() {
     return (
@@ -23,14 +24,16 @@ export default function NotFound() {
             <div className="flex flex-wrap gap-3.5 justify-center mt-2">
                 <Link
                     href="/"
-                    className="h-12 px-7 bg-primary text-black rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-primary-hover shadow-xl shadow-primary/20 transition-all duration-200 active:scale-[0.97]"
+                    onClick={() => playKeebsClick()}
+                    className="h-12 px-7 bg-primary text-primary-foreground rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-primary-hover shadow-xl shadow-primary/20 transition-all duration-200 active:scale-[0.97]"
                 >
                     <Home size={16} />
                     <span>Return to Home</span>
                 </Link>
                 <Link
                     href="/#selected-projects"
-                    className="h-12 px-7 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 bg-background-light/40 transition-all duration-200 active:scale-[0.97]"
+                    onClick={() => playKeebsClick()}
+                    className="h-12 px-7 border border-border/60 hover:border-primary/50 text-foreground hover:text-primary rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 bg-card transition-all duration-200 active:scale-[0.97]"
                 >
                     <span>View Projects</span>
                     <ArrowUpRight size={16} />

@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { Dumbbell, Shirt, GraduationCap, Building2, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { playKeebsClick } from '@/lib/keebs-audio';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 
@@ -57,11 +58,11 @@ const WhoIBuildFor = () => {
                     {WHO_I_BUILD_FOR.map((niche) => (
                         <div
                             key={niche.title}
-                            className="niche-card group flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-border/40 bg-background-light/40 hover:border-primary/50 hover:bg-background-light/80 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
+                            className="niche-card group flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-border/50 bg-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-lg hover:shadow-primary/5"
                         >
                             <div>
                                 <div className="flex items-center justify-between gap-3 mb-5">
-                                    <div className="size-11 rounded-2xl bg-background border border-border/40 flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300 shadow-sm">
+                                    <div className="size-11 rounded-2xl bg-muted border border-border/40 flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300 shadow-sm">
                                         {ICONS_MAP[niche.icon]}
                                     </div>
                                     <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary">
@@ -88,6 +89,7 @@ const WhoIBuildFor = () => {
                                 </div>
                                 <Link
                                     href="/#selected-projects"
+                                    onClick={() => playKeebsClick(1.05)}
                                     className="text-primary hover:text-primary-hover p-1"
                                     aria-label={`View projects for ${niche.title}`}
                                 >

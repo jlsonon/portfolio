@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { GitCommit, Flame, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 interface DayData {
     date: string;
@@ -111,17 +112,22 @@ export default function GitHubCalendar() {
     }, [daysData]);
 
     const activeStreak = useMemo(() => {
+        if (!daysData.length) return 0;
         let streak = 0;
         for (let i = daysData.length - 1; i >= 0; i--) {
-            if (daysData[i].count > 0) streak++;
-            else if (streak > 0) break;
+            if (daysData[i].count > 0) {
+                streak++;
+            } else if (i < daysData.length - 2) {
+                // Break streak only if not the very last day (today may not have commits yet)
+                break;
+            }
         }
         return streak;
     }, [daysData]);
 
-    const handleMouseEnter = (day: DayData, e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
+    const handleMouseEnter = (day: DayData, e: React.MouseEvent<HTMLDivElement>) => {
         setHoveredDay(day);
+        const rect = e.currentTarget.getBoundingClientRect();
         setTooltipPos({
             x: rect.left + rect.width / 2,
             y: rect.top - 8,
@@ -129,7 +135,7 @@ export default function GitHubCalendar() {
     };
 
     return (
-        <div className="w-full rounded-3xl border border-border/40 bg-background-light/40 backdrop-blur-md p-6 sm:p-8 shadow-lg">
+        <div className="w-full rounded-3xl border border-border/50 bg-card p-6 sm:p-8 shadow-md">
 
             {/* Header / Stats Block */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/30 mb-6">
@@ -144,7 +150,7 @@ export default function GitHubCalendar() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-border/40 text-xs font-semibold text-foreground">
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-border/50 text-xs font-semibold text-foreground">
                         <Flame size={13} className="text-primary" />
                         <span>{totalCommits} Contributions in the Last Year</span>
                     </div>
@@ -159,6 +165,7 @@ export default function GitHubCalendar() {
                         href="https://github.com/jlsonon"
                         target="_blank"
                         rel="noreferrer noopener"
+                        onClick={() => playKeebsClick()}
                         className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 text-xs font-bold transition-all active:scale-95 cursor-pointer"
                     >
                         <span>@jlsonon</span>
@@ -206,9 +213,10 @@ export default function GitHubCalendar() {
                                                 key={`${wIdx}-${dIdx}`}
                                                 onMouseEnter={(e) => handleMouseEnter(day, e)}
                                                 onMouseLeave={() => setHoveredDay(null)}
+                                                onClick={() => playKeebsClick()}
                                                 className={cn(
                                                     'size-2.5 rounded-[2.5px] transition-all duration-150 cursor-pointer',
-                                                    day.level === 0 && 'bg-background border border-border/40 hover:border-primary/40',
+                                                    day.level === 0 && 'bg-muted/50 border border-border/50 hover:border-primary/40',
                                                     day.level === 1 && 'bg-primary/30 border border-primary/40 hover:scale-125',
                                                     day.level === 2 && 'bg-primary/55 border border-primary/60 hover:scale-125',
                                                     day.level === 3 && 'bg-primary/80 border border-primary/85 hover:scale-125 shadow-sm shadow-primary/20',

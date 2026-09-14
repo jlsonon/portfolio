@@ -1,13 +1,13 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
-import { MoveUpRight, Layers, X } from 'lucide-react';
+import { MoveUpRight, Layers, X, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
-import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { SOCIAL_LINKS } from '@/lib/data';
 import { SocialIcon } from './SocialIcon';
+import { playKeebsClick, isKeebsSoundEnabled, setKeebsSoundEnabled } from '@/lib/keebs-audio';
 import Image from 'next/image';
 import Link from 'next/link';
-
 
 const MENU_LINKS = [
     { name: 'Home', url: '/' },
@@ -23,8 +23,43 @@ const MENU_LINKS = [
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [soundActive, setSoundActive] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
+
+    useEffect(() => {
+        // Read active theme from DOM
+        const currentTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' | null;
+        if (currentTheme) {
+            setTheme(currentTheme);
+        } else {
+            const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+            if (stored) {
+                setTheme(stored);
+                document.documentElement.setAttribute('data-theme', stored);
+            }
+        }
+        setSoundActive(isKeebsSoundEnabled());
+    }, []);
+
+    const toggleTheme = () => {
+        const nextTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(nextTheme);
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        playKeebsClick(1.2);
+    };
+
+    const toggleSound = () => {
+        const nextSound = !soundActive;
+        setSoundActive(nextSound);
+        setKeebsSoundEnabled(nextSound);
+        if (nextSound) {
+            // Give an immediate audible feedback clack
+            playKeebsClick(1.0);
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -52,6 +87,7 @@ const Navbar = () => {
     }, [isMenuOpen]);
 
     const handleNavClick = (url: string) => {
+        playKeebsClick(1.05);
         setIsMenuOpen(false);
         if (url.startsWith('/#')) {
             if (pathname === '/') {
@@ -102,11 +138,41 @@ const Navbar = () => {
                         </div>
                     </button>
 
-                    {/* Right controls: Quick CTA + Hamburger toggle */}
-                    <div className="flex items-center gap-3">
+                    {/* Right controls: Sound Toggle + Theme Toggle + Quick CTA + Hamburger toggle */}
+                    <div className="flex items-center gap-2 sm:gap-2.5">
+                        {/* Keebs Mechanical Sound Toggle */}
+                        <button
+                            onClick={toggleSound}
+                            className={cn(
+                                'size-9 sm:size-10 flex items-center justify-center rounded-full border transition-all duration-200 active:scale-90 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
+                                soundActive
+                                    ? 'bg-primary/15 border-primary/40 text-primary shadow-sm'
+                                    : 'bg-background-light/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-border'
+                            )}
+                            title={soundActive ? 'Keebs Audio: Active (Click to mute)' : 'Keebs Audio: Muted (Click for mechanical clicks)'}
+                            aria-label="Toggle Keebs mechanical audio"
+                        >
+                            {soundActive ? <Volume2 size={15} /> : <VolumeX size={15} />}
+                        </button>
+
+                        {/* Theme Toggle Button */}
+                        <button
+                            onClick={toggleTheme}
+                            className="size-9 sm:size-10 flex items-center justify-center rounded-full bg-background-light/60 border border-border/50 text-foreground hover:text-primary hover:border-primary/50 transition-all duration-200 active:scale-90 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                            title={theme === 'light' ? 'Switch to Obsidian Dark' : 'Switch to Alabaster Light'}
+                            aria-label="Toggle visual theme"
+                        >
+                            {theme === 'light' ? (
+                                <Moon size={15} className="transition-transform duration-200 hover:-rotate-12" />
+                            ) : (
+                                <Sun size={15} className="transition-transform duration-200 hover:rotate-45 text-amber-400" />
+                            )}
+                        </button>
+
                         <Link
                             href="/#contact-cta"
-                            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-primary text-black hover:bg-primary-hover shadow-sm hover:shadow-md hover:shadow-primary/20 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
+                            onClick={() => playKeebsClick(1.1)}
+                            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary-hover shadow-sm hover:shadow-md hover:shadow-primary/20 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]"
                         >
                             <span>Let&apos;s Talk</span>
                             <MoveUpRight size={13} />
@@ -114,9 +180,12 @@ const Navbar = () => {
 
                         <button
                             className={cn(
-                                'group size-11 relative z-[2] flex items-center justify-center rounded-full bg-background-light/60 border border-border/50 hover:border-primary/50 hover:bg-background-light transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]'
+                                'group size-9 sm:size-10 relative z-[2] flex items-center justify-center rounded-full bg-background-light/60 border border-border/50 hover:border-primary/50 hover:bg-background-light transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-[0.97]'
                             )}
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            onClick={() => {
+                                playKeebsClick(1.0);
+                                setIsMenuOpen(!isMenuOpen);
+                            }}
                             aria-label="Toggle menu"
                             aria-expanded={isMenuOpen}
                         >
@@ -211,39 +280,25 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                <div className="pt-8 border-t border-border/30 mt-8 space-y-6">
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
-                            Connect &amp; Social
-                        </p>
-                        <ul className="flex flex-wrap gap-2.5">
-                            {SOCIAL_LINKS.map((link) => (
-                                <li key={link.name}>
-                                    <a
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="px-3 py-1.5 rounded-lg bg-background/60 border border-border/40 hover:border-primary/40 text-xs text-muted-foreground hover:text-primary transition-all flex items-center gap-2"
-                                    >
-                                        <SocialIcon name={link.name} size={14} />
-                                        <span className="capitalize">{link.name}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
-                            Direct Inquiry
-                        </p>
-                        <a
-                            href={`mailto:${GENERAL_INFO.email}`}
-                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors block truncate"
-                        >
-                            {GENERAL_INFO.email}
-                        </a>
-                    </div>
+                <div className="pt-8 border-t border-border/30 mt-8">
+                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                        Connect &amp; Social
+                    </p>
+                    <ul className="flex flex-wrap gap-2.5">
+                        {SOCIAL_LINKS.map((link) => (
+                            <li key={link.name}>
+                                <a
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="px-3 py-1.5 rounded-lg bg-background/60 border border-border/40 hover:border-primary/40 text-xs text-muted-foreground hover:text-primary transition-all flex items-center gap-2"
+                                >
+                                    <SocialIcon name={link.name} size={14} />
+                                    <span className="capitalize">{link.name}</span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </aside>
         </>

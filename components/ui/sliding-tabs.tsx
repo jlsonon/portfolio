@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { cn } from '@/lib/utils';
+import { playKeebsClick } from '@/lib/keebs-audio';
 
 export interface TabItem {
     id: string;
@@ -111,13 +112,16 @@ export function SlidingTabs({
                         data-tab-id={tab.id}
                         aria-selected={isActive}
                         tabIndex={isActive ? 0 : -1}
-                        onClick={() => onChange(tab.id)}
+                        onClick={() => {
+                            playKeebsClick();
+                            onChange(tab.id);
+                        }}
                         onKeyDown={(e) => handleKeyDown(e, idx)}
                         className={cn(
                             'relative z-10 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-colors duration-200 flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none select-none active:scale-95',
                             isActive
                                 ? variant === 'primary'
-                                    ? 'text-black'
+                                    ? 'text-primary-foreground'
                                     : 'text-foreground'
                                 : 'text-muted-foreground hover:text-foreground',
                             tabClassName
@@ -131,7 +135,7 @@ export function SlidingTabs({
                                     'size-4 rounded-full text-[10px] flex items-center justify-center font-bold',
                                     isActive
                                         ? variant === 'primary'
-                                            ? 'bg-black/20 text-black'
+                                            ? 'bg-primary-foreground/20 text-primary-foreground'
                                             : 'bg-primary/20 text-primary'
                                         : 'bg-border/40 text-muted-foreground'
                                 )}

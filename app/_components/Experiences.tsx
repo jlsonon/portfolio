@@ -52,7 +52,7 @@ const Experiences = () => {
                         >
                             {/* Numbered circular node + vertical timeline line */}
                             <div className="shrink-0 flex flex-col items-center gap-2 self-stretch">
-                                <span className="size-10 rounded-2xl border border-primary/40 bg-background-light flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-black group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 shadow-sm shrink-0">
+                                <span className="size-10 rounded-2xl border border-primary/40 bg-card flex items-center justify-center text-primary text-sm font-anton group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 shadow-sm shrink-0">
                                     {String(idx + 1).padStart(2, '0')}
                                 </span>
                                 {idx < MY_EXPERIENCE.length - 1 && (
@@ -61,7 +61,7 @@ const Experiences = () => {
                             </div>
 
                             {/* Card Content */}
-                            <div className="flex-1 p-6 sm:p-7 rounded-2xl border border-border/40 bg-background-light/40 group-hover:border-primary/40 group-hover:bg-background-light/80 transition-all duration-300">
+                            <div className="flex-1 p-6 sm:p-7 rounded-2xl border border-border/50 bg-card group-hover:border-primary/40 group-hover:shadow-md transition-all duration-300">
                                 <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                                     <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
                                         {item.company}
